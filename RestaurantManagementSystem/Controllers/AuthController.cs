@@ -102,8 +102,8 @@ namespace RestaurantManagementSystem.Controllers
             _logger.LogInformation("verification attempt");
             try
             {
-                string? email = User.FindFirstValue(ClaimTypes.Email);                  //extracting email from token
-                result = authService.Verify(r, email).Result;
+                string? userId = User.FindFirstValue(ClaimTypes.Sid);                  //extracting userid from token
+                result = authService.Verify(r, userId).Result;
                 return Ok(result);
             }
             catch (Exception ex)
@@ -126,8 +126,30 @@ namespace RestaurantManagementSystem.Controllers
                 string token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();        //getting token from header
                 /*var user = HttpContext.User;
                 string email = user.FindFirst(ClaimTypes.Email)?.Value;*/
-                string? email = User.FindFirstValue(ClaimTypes.Email);
-                result = authService.ChangePassword(r, email, token).Result;
+                string? userId = User.FindFirstValue(ClaimTypes.Sid);
+                result = authService.ChangePassword(r, userId, token).Result;
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Internal server error ", ex.Message);
+                response2.statusCode = 500;
+                response2.message = ex.Message;
+                response2.success = false;
+                return StatusCode(500, response2);
+            }
+        }
+
+        [HttpPost, Authorize(Roles = "login")]
+        [Route("/api/v1/user/logout")]
+        public ActionResult<User> Logout()
+        {
+            _logger.LogInformation("user logout attempt");
+            try
+            {
+                string? userId = User.FindFirstValue(ClaimTypes.Sid);
+                string token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+                result = authService.Logout(userId, token).Result;
                 return Ok(result);
             }
             catch (Exception ex)

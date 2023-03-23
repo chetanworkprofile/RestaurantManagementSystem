@@ -10,8 +10,8 @@
         public string address { get; set; } = string.Empty;
         public byte[] passwordHash { get; set; } = new byte[32];
         public string pathToProfilePic { get; set; } = string.Empty;
-        public DateTime? createdAt { get; set; }
-        public DateTime? updatedAt { get; set; }
+        public DateTime createdAt { get; set; }
+        public DateTime updatedAt { get; set; }
         public string token { get; set; } = string.Empty;
         public int? verificationOTP { get; set; }
         public DateTime otpUsableTill { get; set; }

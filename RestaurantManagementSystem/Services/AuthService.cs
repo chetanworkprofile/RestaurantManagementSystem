@@ -217,11 +217,14 @@ namespace RestaurantManagementSystem.Services
             }
         }
 
-        public async Task<Object> Verify(ResetPasswordModel r, string email)
+        public async Task<Object> Verify(ResetPasswordModel r, string userId)
         {
             //this api function is used after forget password to verify user and help user reset his/her password
             //var user = await DbContext.Users.FirstOrDefaultAsync(u => u.VerificationToken == token);
-            var user = await DbContext.Users.FirstOrDefaultAsync(u => u.email == email);
+            //var user = await DbContext.Users.FirstOrDefaultAsync(u => u.email == email);
+            Guid id = new Guid(userId);
+            var user =  await DbContext.Users.FindAsync(id);
+            Console.WriteLine(user);
             if (user == null)               //check if email exists in database
             {
                 response2.statusCode = 404;
@@ -244,16 +247,16 @@ namespace RestaurantManagementSystem.Services
                 return response2;
             }
             user.verifiedAt = DateTime.UtcNow;
-            result = ResetPassword(r.Password, email).Result;
+            result = ResetPassword(r.Password, id).Result;
             user.otpUsableTill = DateTime.Now;
             await DbContext.SaveChangesAsync();
             return result;
         }
 
-        internal async Task<object> ResetPassword(string password, string email)
+        internal async Task<object> ResetPassword(string password, Guid id)
         {
             //var user = await DbContext.Users.FirstOrDefaultAsync(u => u.VerificationToken == token);
-            var user = await DbContext.Users.FirstOrDefaultAsync(u => u.email == email);
+            var user = await DbContext.Users.FindAsync(id);
 
             //password validation
             string regexPatternPassword = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
@@ -297,10 +300,11 @@ namespace RestaurantManagementSystem.Services
             }
         }
 
-        public async Task<object> ChangePassword(ChangePasswordModel r, string email, string token)
+        public async Task<object> ChangePassword(ChangePasswordModel r, string userId, string token)
         {
             //var user = await DbContext.Users.FirstOrDefaultAsync(u => u.VerificationToken == token);
-            var user = await DbContext.Users.FirstOrDefaultAsync(u => u.email == email);
+            Guid id = new Guid(userId);
+            var user = await DbContext.Users.FindAsync(id);
             //var PasswordHash = CreatePasswordHash(r.oldPassword);
             if (token != user.token)
             {
@@ -349,6 +353,50 @@ namespace RestaurantManagementSystem.Services
                 response.data = responsedata;
                 response.success = true;
                 return response;
+            }
+            catch (Exception ex)
+            {
+                response2.statusCode = 500;
+                response2.message = ex.Message;
+                //response.Data = ex.Data;
+                response2.success = false;
+                return response2;
+            }
+        }
+
+        public async Task<object> Logout(string userId, string token)
+        {
+            Guid id = new Guid(userId);
+            var user = await DbContext.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                response2.statusCode = 404;
+                response2.message = "User not found";
+                response2.success = false;
+                return response2;
+            }
+            if (token != user.token)
+            {
+                response2.statusCode = 401;
+                response2.message = "Invalid/expired token. Login First";
+                response2.success = false;
+                return response2;
+            }
+            try
+            {
+                // remove token from database
+                user.token = string.Empty;
+                await DbContext.SaveChangesAsync();
+                var responsedata = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, token);
+
+                response2.statusCode = 200;
+                response2.message = "User Logged out Successfully";
+                //chatAppHub.RemoveUserFromList(email);
+                //chatAppHub.refesh();
+                //response2.Data = responsedata;
+                response2.success = true;
+                return response2;
             }
             catch (Exception ex)
             {

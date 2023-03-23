@@ -74,6 +74,7 @@ namespace RestaurantManagementSystem.Services
         {
             List<Claim> claims = new List<Claim>
             {
+                new Claim(ClaimTypes.Sid,user.userId.ToString()),
                 new Claim(ClaimTypes.Email, user.email),
                 new Claim(ClaimTypes.Name, user.firstName),
                 new Claim(ClaimTypes.Role,user.role)

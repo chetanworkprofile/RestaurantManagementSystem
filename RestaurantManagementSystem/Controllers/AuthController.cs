@@ -5,6 +5,9 @@ using RestaurantManagementSystem.Models.OutputModels;
 using RestaurantManagementSystem.Models.InputModels;
 using RestaurantManagementSystem.Models;
 using RestaurantManagementSystem.Services;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using System.Security.Claims;
 
 namespace RestaurantManagementSystem.Controllers
 {
@@ -60,6 +63,71 @@ namespace RestaurantManagementSystem.Controllers
             try
             {
                 result = authService.Login(request);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Internal server error ", ex.Message);
+                response2.statusCode = 500;
+                response2.message = ex.Message;
+                response2.success = false;
+                return StatusCode(500, response2);
+            }
+        }
+
+        [HttpPost]
+        [Route("/api/v1/forgetPassword")]
+        public ActionResult<User> ForgetPassword(string Email)
+        {
+            _logger.LogInformation("forget password attempt");
+            try
+            {
+                result = authService.ForgetPassword(Email).Result;
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Internal server error ", ex.Message);
+                response2.statusCode = 500;
+                response2.message = ex.Message;
+                response2.success = false;
+                return StatusCode(500, response2);
+            }
+        }
+
+        [HttpPost, Authorize(Roles = "resetpassword")]
+        [Route("/api/v1/resetPassword")]
+        public ActionResult<User> Verify(ResetPasswordModel r)
+        {
+            _logger.LogInformation("verification attempt");
+            try
+            {
+                string? email = User.FindFirstValue(ClaimTypes.Email);                  //extracting email from token
+                result = authService.Verify(r, email).Result;
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Internal server error ", ex.Message);
+                response2.statusCode = 500;
+                response2.message = ex.Message;
+                response2.success = false;
+                return StatusCode(500, response);
+            }
+        }
+
+        [HttpPost, Authorize(Roles = "user")]
+        [Route("/api/v1/changePassword")]
+        public ActionResult<User> ChangePasswod(ChangePasswordModel r)
+        {
+            _logger.LogInformation("reset password attempt");
+            try
+            {
+                string token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();        //getting token from header
+                /*var user = HttpContext.User;
+                string email = user.FindFirst(ClaimTypes.Email)?.Value;*/
+                string? email = User.FindFirstValue(ClaimTypes.Email);
+                result = authService.ChangePassword(r, email, token).Result;
                 return Ok(result);
             }
             catch (Exception ex)

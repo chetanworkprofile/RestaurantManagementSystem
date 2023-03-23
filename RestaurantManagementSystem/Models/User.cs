@@ -19,9 +19,9 @@
         public bool isDeleted { get; set; }
 
         public User() { }
-        public User(string firstName, string lastName,string email,long phone,string address, byte[] passwordHash,string pathToProfilePic,string token)
+        public User(Guid userId,string firstName, string lastName,string email,long phone,string address, byte[] passwordHash,string pathToProfilePic,string token)
         {
-            userId = Guid.NewGuid();
+            userId = userId;
             this.firstName = firstName;
             this.lastName = lastName;
             this.email = email;

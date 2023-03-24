@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using RestaurantManagementSystem.Models.OutputModels;
 using RestaurantManagementSystem.Data;
 using System.Net;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using Object = System.Object;
 
 namespace RestaurantManagementSystem.Services
 {
@@ -34,29 +36,22 @@ namespace RestaurantManagementSystem.Services
 
             if (userLoggedIn == null || userLoggedIn.isDeleted == true)
             {
-                response2.statusCode = 404;
-                response2.message = "Can't get details user error";
-                response2.success = false;
+                response2 = new ResponseWithoutData(404, "Can't get details user error", false);
                 return response2;
             }
 
             if (token != userLoggedIn.token)
             {
-                response2.statusCode = 401;
-                response2.message = "Invalid/expired token. Login First";
-                response2.success = false;
+                response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
                 return response2;
             }
 
             ResponseUser r = new ResponseUser(userLoggedIn.userId, userLoggedIn.firstName, userLoggedIn.lastName, userLoggedIn.email, userLoggedIn.phone, userLoggedIn.address, userLoggedIn.pathToProfilePic, userLoggedIn.createdAt, userLoggedIn.updatedAt);
 
-            response.StatusCode = 200;
-            response.Message = "Users list fetched";
-            response.Data = r;
-            response.Success = true;
+            response = new Response(200, "Users list fetched", r, true);
             return response;
         }
-        public object GetUsers(string userId,string token,Guid? UserId, string? searchString, string? Email, long Phone, String OrderBy, int SortOrder, int RecordsPerPage, int PageNumber)          // sort order   ===   e1 for ascending   -1 for descending
+        public object GetUsers(string userId,string token,Guid? UserId, string? searchString, string? Email, long Phone, string OrderBy, int SortOrder, int RecordsPerPage, int PageNumber)          // sort order   ===   e1 for ascending   -1 for descending
         {
             //get logged in user from database
             Guid id = new Guid(userId);
@@ -70,9 +65,7 @@ namespace RestaurantManagementSystem.Services
             
             if (token != userLoggedIn.token)
             {
-                response2.statusCode = 401;
-                response2.message = "Invalid/expired token. Login First";
-                response2.success = false;
+                response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
                 return response2;
             }
 
@@ -125,16 +118,10 @@ namespace RestaurantManagementSystem.Services
 
             if (!res.Any())
             {
-                response2.statusCode = 200;
-                response2.message = "No user found";
-                response2.success= true;
+                response2 = new ResponseWithoutData(200, "No User found.", true);
                 return response2;
             }
-
-            response.statusCode = 200;
-            response.message = "Users list fetched";
-            response.data = res;
-            response.success = true;
+            response = new Response(200, "Users list fetched", res, true);
             return response;
         }
 
@@ -146,9 +133,7 @@ namespace RestaurantManagementSystem.Services
 
             if (tokenloggedin != user.Token)
             {
-                response2.StatusCode = 401;
-                response2.Message = "Invalid/expired token. Login First";
-                response2.Success = false;
+                response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
                 return response2;
             }
 
@@ -168,9 +153,7 @@ namespace RestaurantManagementSystem.Services
                     var EmailAlreadyExists = DbContext.Users.Where(s => s.Email == u.Email).First();
                     if(EmailAlreadyExists!=null)
                     {
-                        response2.Success = false;
-                        response2.StatusCode = 400;
-                        response2.Message = "Email you entered already registered. Please try another";
+                        response2 = new ResponseWithoutData(400, "Email you entered already registered. Please try another", false);
                         return response2;
                     }
                     user.Email = u.Email;

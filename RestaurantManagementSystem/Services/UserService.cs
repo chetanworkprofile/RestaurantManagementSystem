@@ -6,6 +6,7 @@ using RestaurantManagementSystem.Data;
 using System.Net;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Object = System.Object;
+using RestaurantManagementSystem.Models.InputModels;
 
 namespace RestaurantManagementSystem.Services
 {
@@ -13,7 +14,6 @@ namespace RestaurantManagementSystem.Services
     {
         Response response = new Response();
         ResponseWithoutData response2 = new ResponseWithoutData();
-        //TokenUser tokenUser = new TokenUser();
         private readonly RestaurantDbContext DbContext;
         private readonly IConfiguration _configuration;
         IAuthService authService;
@@ -125,134 +125,90 @@ namespace RestaurantManagementSystem.Services
             return response;
         }
 
-        /*public async Task<object> UpdateUser(string email, UpdateUser u,string tokenloggedin)
+        public async Task<Object> UpdateUser(string userId, UpdateUser u, string tokenloggedin)
         {
-            User? user = await DbContext.Users.Where(u=>u.Email == email).FirstOrDefaultAsync();
-            TimeSpan ageTimeSpan = DateTime.Now - u.DateOfBirth;
-            int age = (int)(ageTimeSpan.Days / 365.25);
+            Guid id = new Guid(userId);
+            User? user = DbContext.Users.Find(id);
 
-            if (tokenloggedin != user.Token)
+            if (tokenloggedin != user.token)
             {
                 response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
                 return response2;
             }
 
-
-            if (user != null && user.IsDeleted == false)
+            if (user != null && user.isDeleted == false)
             {
-                if (u.FirstName != "string" && u.FirstName != string.Empty)
+                if (u.firstName != "string" && u.firstName != string.Empty)
                 {
-                    user.FirstName = u.FirstName;
+                    user.firstName = u.firstName;
                 }
-                if (u.LastName != "string" && u.LastName != string.Empty)
+                if (u.lastName != "string" && u.lastName != string.Empty)
                 {
-                    user.LastName = u.LastName;
+                    user.lastName = u.lastName;
                 }
-               *//* if (u.Email != "string" && u.Email != string.Empty)
+                if (u.pathToProfilePic != "string" && u.pathToProfilePic != string.Empty)
                 {
-                    var EmailAlreadyExists = DbContext.Users.Where(s => s.Email == u.Email).First();
-                    if(EmailAlreadyExists!=null)
-                    {
-                        response2 = new ResponseWithoutData(400, "Email you entered already registered. Please try another", false);
-                        return response2;
-                    }
-                    user.Email = u.Email;
-                }*//*
-                if (u.PathToProfilePic != "string" && u.PathToProfilePic != string.Empty)
-                {
-                    user.PathToProfilePic = u.PathToProfilePic;
+                    user.pathToProfilePic = u.pathToProfilePic;
                 }
-                if (u.Phone != -1 && u.Phone != 0)
+                if (u.address != "string" && u.address != string.Empty)
                 {
-                    user.Phone = u.Phone;
+                    user.address = u.address;
                 }
-                if (u.DateOfBirth != DateTime.MinValue && u.DateOfBirth != DateTime.Now)
+                if (u.phone != -1 && u.phone != 0)
                 {
-                    // Perform your DOB validation here based on your specific requirements
-                    if (age < 12)
-                    {
-                        // The user is not enough
-                        response2.StatusCode = 200;
-                        response2.Message = "Not allowed. User is underage. Must be atleast 12 years old";
-                        response2.Success = false;
-                        return response2;
-                    }
-                    user.DateOfBirth = u.DateOfBirth;
+                    user.phone = u.phone;
                 }
-                user.UpdatedAt= DateTime.Now;
-                await DbContext.SaveChangesAsync();
                 
-                *//*var tokenUser = new TokenUser()
-                {
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    Role = "login"
-                    *//* LastName= inpUser.LastName,
-                     UserId = user.UserId*//*
-                };
-                string token = _secondaryAuthService.CreateToken(tokenUser);
-                user.Token = token;*//*
-                ResponseDataObj2 data = new ResponseDataObj2()
-                {
-                    UserId = user.UserId,
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    //Token = token
-                };
+                user.updatedAt = DateTime.Now;
                 await DbContext.SaveChangesAsync();
-                response.StatusCode = 200;
-                response.Message = "User updated successfully";
-                response.Success = true;
-                response.Data = data;
+
+                /*var userToken = new CreateToken(user.userId, user.firstName, user.email, "user");
+                string token = _secondaryAuthService.CreateToken(userToken);
+                user.token = token;*/
+                RegistrationLoginResponse data = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, user.token);
+
+                /*await DbContext.SaveChangesAsync();*/
+                response = new Response(200, "User updated successfully", data, true);
                 return response;
             }
             else
             {
-                response2.StatusCode = 404;
-                response2.Message = "User not found";
-                response2.Success = false;
+                response2 = new ResponseWithoutData(404, "User not found", false);
                 return response2;
             }
-        }*/
+        }
 
-        /*public async Task<object> DeleteUser(string email, string token,string password)
+        public async Task<object> DeleteUser(string userId, string token, string password)
         {
-            User? user = await DbContext.Users.Where(u => u.Email == email).FirstOrDefaultAsync();
-            if (token != user.Token)
+            Guid id = new Guid(userId);
+            User? user = DbContext.Users.Find(id);
+            if (token != user.token)
             {
-                response2.StatusCode = 401;
-                response2.Message = "Invalid/expired token. Login First";
-                response2.Success = false;
+                response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
                 return response2;
             }
-            byte[] phash = user.PasswordHash;
-            if (!_secondaryAuthService.VerifyPasswordHash(password, phash)){
-                response2.Success = false;
-                response2.Message = "Invalid Password";
-                response2.StatusCode = 400;
+            byte[] phash = user.passwordHash;
+            if (!_secondaryAuthService.VerifyPasswordHash(password, phash))
+            {
+                response2 = new ResponseWithoutData(400, "Wrong password.", false);
                 return response2;
             }
 
-            if (user != null && user.IsDeleted == false)
+            if (user != null && user.isDeleted == false)
             {
-                user.IsDeleted = true;
-                user.Token= string.Empty;
+                user.isDeleted = true;
+                user.token = string.Empty;
                 await DbContext.SaveChangesAsync();
 
-                response2.StatusCode = 200;
-                response2.Message = "User deleted successfully";
-                response2.Success = true;
+                response2 = new ResponseWithoutData(200, "User deleted successfully", true);
                 return response2;
             }
             else
             {
-                response2.StatusCode = 404;
-                response2.Message = "User Not found";
-                response2.Success = false;
+                response2 = new ResponseWithoutData(404, "User Not found", false);
                 return response2;
             }
 
-        }*/
+        }
     }
 }

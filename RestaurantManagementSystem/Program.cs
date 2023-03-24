@@ -81,8 +81,8 @@ builder.Services.AddCors(options => options.AddPolicy(name: "CorsPolicy",
 
 // service dependencies to be resolved here for dependency injection
 builder.Services.AddScoped<IAuthService, AuthService>();
-/*builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IUploadPicService, UploadPicService>();*/
+builder.Services.AddScoped<IUserService, UserService>();
+//builder.Services.AddScoped<IUploadPicService, UploadPicService>();
 
 var app = builder.Build();
 

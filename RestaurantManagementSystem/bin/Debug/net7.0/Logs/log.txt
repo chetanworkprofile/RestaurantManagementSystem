@@ -1,26 +1,6 @@
-2023-03-23 19:24:19,260  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
- 2023-03-23 19:24:19,281  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
- 2023-03-23 19:24:19,282  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
- 2023-03-23 19:24:19,283  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
- 2023-03-23 19:24:19,283  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos_new\RestaurantManagementSystem\RestaurantManagementSystem\RestaurantManagementSystem
- 2023-03-23 19:24:37,062  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [62] - MESSAGE: User Login attempt
- 2023-03-23 19:24:37,557  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (24ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
-WHERE [u].[email] = @__request_email_0
- 2023-03-23 19:24:37,708  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SET IMPLICIT_TRANSACTIONS OFF;
-SET NOCOUNT ON;
-UPDATE [Users] SET [token] = @p0
-OUTPUT 1
-WHERE [userId] = @p1;
- 2023-03-23 19:24:54,739  INFO RestaurantManagementSystem.Controllers.AuthController.GetUsers [52] - MESSAGE: Get Students method started
- 2023-03-23 19:24:54,768  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (7ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
-WHERE [u].[userId] = @__get_Item_0
- 2023-03-23 19:24:54,778  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
-WHERE [u].[isDeleted] = CAST(0 AS bit)
+2023-03-24 12:31:42,852  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
+ 2023-03-24 12:31:42,911  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
+ 2023-03-24 12:31:42,913  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
+ 2023-03-24 12:31:42,916  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
+ 2023-03-24 12:31:42,916  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\User\Source\Repos\RestaurantManagementSystem\RestaurantManagementSystem
  

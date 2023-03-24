@@ -27,57 +27,44 @@ namespace RestaurantManagementSystem.Services
             _secondaryAuthService = new SecondaryAuthService(configuration, dbContext, logger);
         }
 
-       /* public object GetYourself(string email, string token)
+        public object GetYourself(string userId, string token)
         {
-            var userLoggedIn = DbContext.Users.Where(u => u.Email == email).FirstOrDefault();
-            
-            if(userLoggedIn == null || userLoggedIn.IsDeleted==true)
+            Guid id = new Guid(userId);
+            var userLoggedIn = DbContext.Users.Find(id);
+
+            if (userLoggedIn == null || userLoggedIn.isDeleted == true)
             {
-                response2.StatusCode = 404;
-                response2.Message = "Can't get details user error";
-                response2.Success = false;
+                response2.statusCode = 404;
+                response2.message = "Can't get details user error";
+                response2.success = false;
                 return response2;
             }
 
-            if (token != userLoggedIn.Token)
+            if (token != userLoggedIn.token)
             {
-                response2.StatusCode = 401;
-                response2.Message = "Invalid/expired token. Login First";
-                response2.Success = false;
+                response2.statusCode = 401;
+                response2.message = "Invalid/expired token. Login First";
+                response2.success = false;
                 return response2;
             }
 
-            ResponseUser r = new ResponseUser()
-            {
-                UserId = userLoggedIn.UserId,
-                FirstName = userLoggedIn.FirstName,
-                LastName = userLoggedIn.LastName,
-                Email = userLoggedIn.Email,
-                Phone = userLoggedIn.Phone,
-                DateOfBirth = userLoggedIn.DateOfBirth,
-                CreatedAt = userLoggedIn.CreatedAt,
-                UpdatedAt = userLoggedIn.UpdatedAt,
-                PathToProfilePic = userLoggedIn.PathToProfilePic,
-            };
-
+            ResponseUser r = new ResponseUser(userLoggedIn.userId, userLoggedIn.firstName, userLoggedIn.lastName, userLoggedIn.email, userLoggedIn.phone, userLoggedIn.address, userLoggedIn.pathToProfilePic, userLoggedIn.createdAt, userLoggedIn.updatedAt);
 
             response.StatusCode = 200;
             response.Message = "Users list fetched";
             response.Data = r;
             response.Success = true;
             return response;
-        }*/
+        }
         public object GetUsers(string userId,string token,Guid? UserId, string? searchString, string? Email, long Phone, String OrderBy, int SortOrder, int RecordsPerPage, int PageNumber)          // sort order   ===   e1 for ascending   -1 for descending
         {
             //get logged in user from database
             Guid id = new Guid(userId);
             var userLoggedIn = DbContext.Users.Find(id);
-            //var userLoggedIn = DbContext.Users.Where(u => u.Email == email).FirstOrDefault();
             var userss = DbContext.Users.AsQueryable();
 
             //userss = userss.Where(x => (x.UserId == UserId || UserId == null) && (x.IsDeleted == false) && (EF.Functions.Like(x.FirstName, "%" + searchString + "%") || EF.Functions.Like(x.LastName, "%" + searchString + "%") || searchString == null) &&
             //(x.Email == Email || Email == null)).Select(x => x);
-
 
             userss = userss.Where(t => t.isDeleted == false);     //remove deleted users from list
             

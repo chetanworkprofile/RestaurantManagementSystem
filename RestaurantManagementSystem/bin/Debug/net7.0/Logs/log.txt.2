@@ -1,8 +1,44 @@
-2023-03-23 19:19:58,343  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
- 2023-03-23 19:19:58,368  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
- 2023-03-23 19:19:58,369  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
- 2023-03-23 19:19:58,370  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
- 2023-03-23 19:19:58,370  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos_new\RestaurantManagementSystem\RestaurantManagementSystem\RestaurantManagementSystem
- 2023-03-23 19:20:03,680  INFO RestaurantManagementSystem.Controllers.AuthController.GetUsers [52] - MESSAGE: Get Students method started
- 2023-03-23 19:20:03,709 ERROR RestaurantManagementSystem.Controllers.AuthController.GetUsers [57] - MESSAGE: Internal server error 
+2023-03-24 12:31:04,795  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (25ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+ 2023-03-24 12:31:04,880  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (18ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+ 2023-03-24 12:31:04,883  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+ 2023-03-24 12:31:04,947  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+ 2023-03-24 12:31:04,948  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+ 2023-03-24 12:31:04,951  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+ 2023-03-24 12:31:04,967  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+ 2023-03-24 12:31:04,979  INFO Microsoft.EntityFrameworkCore.Migrations.? [?] - MESSAGE: Applying migration '20230323110125_first'.
+ 2023-03-24 12:31:05,026  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Users] (
+    [userId] uniqueidentifier NOT NULL,
+    [firstName] nvarchar(max) NOT NULL,
+    [lastName] nvarchar(max) NOT NULL,
+    [email] nvarchar(max) NOT NULL,
+    [phone] bigint NOT NULL,
+    [address] nvarchar(max) NOT NULL,
+    [passwordHash] varbinary(max) NOT NULL,
+    [pathToProfilePic] nvarchar(max) NOT NULL,
+    [createdAt] datetime2 NULL,
+    [updatedAt] datetime2 NULL,
+    [token] nvarchar(max) NOT NULL,
+    [verificationOTP] int NULL,
+    [otpUsableTill] datetime2 NOT NULL,
+    [verifiedAt] datetime2 NULL,
+    [isDeleted] bit NOT NULL,
+    CONSTRAINT [PK_Users] PRIMARY KEY ([userId])
+);
+ 2023-03-24 12:31:05,034  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20230323110125_first', N'7.0.4');
  

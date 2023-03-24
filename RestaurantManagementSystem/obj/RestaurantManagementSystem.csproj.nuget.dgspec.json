@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ChicMic\\source\\repos_new\\RestaurantManagementSystem\\RestaurantManagementSystem\\RestaurantManagementSystem\\RestaurantManagementSystem.csproj": {}
+    "C:\\Users\\User\\Source\\Repos\\RestaurantManagementSystem\\RestaurantManagementSystem\\RestaurantManagementSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ChicMic\\source\\repos_new\\RestaurantManagementSystem\\RestaurantManagementSystem\\RestaurantManagementSystem\\RestaurantManagementSystem.csproj": {
+    "C:\\Users\\User\\Source\\Repos\\RestaurantManagementSystem\\RestaurantManagementSystem\\RestaurantManagementSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ChicMic\\source\\repos_new\\RestaurantManagementSystem\\RestaurantManagementSystem\\RestaurantManagementSystem\\RestaurantManagementSystem.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\RestaurantManagementSystem\\RestaurantManagementSystem\\RestaurantManagementSystem.csproj",
         "projectName": "RestaurantManagementSystem",
-        "projectPath": "C:\\Users\\ChicMic\\source\\repos_new\\RestaurantManagementSystem\\RestaurantManagementSystem\\RestaurantManagementSystem\\RestaurantManagementSystem.csproj",
-        "packagesPath": "C:\\Users\\ChicMic\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ChicMic\\source\\repos_new\\RestaurantManagementSystem\\RestaurantManagementSystem\\RestaurantManagementSystem\\obj\\",
+        "projectPath": "C:\\Users\\User\\Source\\Repos\\RestaurantManagementSystem\\RestaurantManagementSystem\\RestaurantManagementSystem.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Source\\Repos\\RestaurantManagementSystem\\RestaurantManagementSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ChicMic\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -102,7 +102,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

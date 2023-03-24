@@ -1,4 +1,6 @@
-﻿namespace RestaurantManagementSystem.Models.OutputModels
+﻿using System.Security.Permissions;
+
+namespace RestaurantManagementSystem.Models.OutputModels
 {
     public class Response
     {
@@ -6,6 +8,15 @@
         public string message { get; set; } = "Ok";
         public Object data { get; set; } = new Object();
         public bool success { get; set; } = true;
+
+        public Response() { }
+        public Response(int statusCode, string message, Object data, bool success)
+        {
+            this.statusCode = statusCode;
+            this.message = message;
+            this.data = data;
+            this.success = success;
+        }
     }
 }
 

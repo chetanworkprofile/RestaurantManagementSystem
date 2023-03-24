@@ -34,9 +34,7 @@ namespace RestaurantManagementSystem.Controllers
         {
             if (!ModelState.IsValid)
             {   //checks for validation of model
-                response2.statusCode = 400;
-                response2.message = "Invalid Input/One or more fields are invalid";
-                response2.success = false;
+                response2 = new ResponseWithoutData(400, "Invalid Input/One or more fields are invalid", false);
                 return BadRequest(response2);
             }
             try
@@ -48,10 +46,7 @@ namespace RestaurantManagementSystem.Controllers
             catch (Exception ex)
             {
                 _logger.LogError("Internal server error ", ex.Message);
-                //ResponseWithoutData response = new ResponseWithoutData();
-                response2.statusCode = 500;
-                response2.message = ex.Message;
-                response2.success = false;
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
                 return StatusCode(500, response2);
             }
         }
@@ -68,9 +63,7 @@ namespace RestaurantManagementSystem.Controllers
             catch (Exception ex)
             {
                 _logger.LogError("Internal server error ", ex.Message);
-                response2.statusCode = 500;
-                response2.message = ex.Message;
-                response2.success = false;
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
                 return StatusCode(500, response2);
             }
         }
@@ -88,9 +81,7 @@ namespace RestaurantManagementSystem.Controllers
             catch (Exception ex)
             {
                 _logger.LogError("Internal server error ", ex.Message);
-                response2.statusCode = 500;
-                response2.message = ex.Message;
-                response2.success = false;
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
                 return StatusCode(500, response2);
             }
         }
@@ -109,10 +100,8 @@ namespace RestaurantManagementSystem.Controllers
             catch (Exception ex)
             {
                 _logger.LogError("Internal server error ", ex.Message);
-                response2.statusCode = 500;
-                response2.message = ex.Message;
-                response2.success = false;
-                return StatusCode(500, response);
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
+                return StatusCode(500, response2);
             }
         }
 
@@ -133,9 +122,7 @@ namespace RestaurantManagementSystem.Controllers
             catch (Exception ex)
             {
                 _logger.LogError("Internal server error ", ex.Message);
-                response2.statusCode = 500;
-                response2.message = ex.Message;
-                response2.success = false;
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
                 return StatusCode(500, response2);
             }
         }
@@ -155,9 +142,7 @@ namespace RestaurantManagementSystem.Controllers
             catch (Exception ex)
             {
                 _logger.LogError("Internal server error ", ex.Message);
-                response2.statusCode = 500;
-                response2.message = ex.Message;
-                response2.success = false;
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
                 return StatusCode(500, response2);
             }
         }

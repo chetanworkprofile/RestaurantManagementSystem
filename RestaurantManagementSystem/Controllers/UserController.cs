@@ -15,6 +15,7 @@ namespace RestaurantManagementSystem.Controllers
     {
         IUserService userService;                   //service dependency
         Response response = new Response();
+        ResponseWithoutData response2 = new ResponseWithoutData();
         object result = new object();
         private readonly ILogger<AuthController> _logger;
 
@@ -24,7 +25,7 @@ namespace RestaurantManagementSystem.Controllers
             _logger = logger;
         }
 
-        /*[HttpGet, Authorize(Roles = "login")]
+        [HttpGet, Authorize(Roles = "user")]
         [Route("/api/v1/users/getYourself")]
         public IActionResult GetYourself()                  // api for user to get data of himself for proifile details
         {
@@ -32,16 +33,17 @@ namespace RestaurantManagementSystem.Controllers
             try
             {
                 string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-                string? email = User.FindFirstValue(ClaimTypes.Email);
-                result = userService.GetYourself(email, token);
+                string? userId = User.FindFirstValue(ClaimTypes.Sid);
+                result = userService.GetYourself(userId, token);
                 return Ok(result);
             }
             catch (Exception ex)
             {
                 _logger.LogError("Internal server error ", ex.Message);
-                return StatusCode(500, $"Internal server error: {ex}"); ;
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
+                return StatusCode(500, response2);
             }
-        }*/
+        }
 
         //getusers api to get list of other users and details
         //[HttpGet, Authorize(Roles = "admin")]
@@ -60,7 +62,8 @@ namespace RestaurantManagementSystem.Controllers
             catch (Exception ex)
             {
                 _logger.LogError("Internal server error ", ex.Message);
-                return StatusCode(500, $"Internal server error: {ex}"); ;
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
+                return StatusCode(500, response2);
             }
         }
 
@@ -83,7 +86,8 @@ namespace RestaurantManagementSystem.Controllers
             catch (Exception ex)
             {
                 _logger.LogError("Internal server error ", ex.Message);
-                return StatusCode(500, $"Internal server error: {ex}"); ;
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
+                return StatusCode(500, response2);
             }
         }*/
 
@@ -106,7 +110,8 @@ namespace RestaurantManagementSystem.Controllers
             catch (Exception ex)
             {
                 _logger.LogError("Internal server error ", ex.Message);
-                return StatusCode(500, $"Internal server error: {ex}"); ;
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
+                return StatusCode(500, response2);
             }
         }*/
     }

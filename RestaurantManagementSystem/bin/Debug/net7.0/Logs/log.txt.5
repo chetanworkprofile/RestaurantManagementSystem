@@ -1,27 +1,8 @@
-2023-03-23 18:43:10,396  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
- 2023-03-23 18:43:10,421  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
- 2023-03-23 18:43:10,421  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
- 2023-03-23 18:43:10,422  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
- 2023-03-23 18:43:10,422  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos_new\RestaurantManagementSystem\RestaurantManagementSystem\RestaurantManagementSystem
- 2023-03-23 18:43:40,400  INFO RestaurantManagementSystem.Controllers.AuthController.ForgetPassword [82] - MESSAGE: forget password attempt
- 2023-03-23 18:43:40,883  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (31ms) [Parameters=[@__email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
-WHERE [u].[email] = @__email_0
- 2023-03-23 18:43:40,950  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[@__email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SELECT CASE
-    WHEN EXISTS (
-        SELECT 1
-        FROM [Users] AS [u]
-        WHERE [u].[email] = @__email_0) THEN CAST(1 AS bit)
-    ELSE CAST(0 AS bit)
-END
- 2023-03-23 18:43:45,038  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Guid), @p0='?' (DbType = DateTime2), @p1='?' (Size = 4000), @p2='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
-SET IMPLICIT_TRANSACTIONS OFF;
-SET NOCOUNT ON;
-UPDATE [Users] SET [otpUsableTill] = @p0, [token] = @p1, [verificationOTP] = @p2
-OUTPUT 1
-WHERE [userId] = @p3;
- 2023-03-23 18:44:56,663  INFO RestaurantManagementSystem.Controllers.AuthController.Verify [102] - MESSAGE: verification attempt
- 2023-03-23 18:44:56,712 ERROR RestaurantManagementSystem.Controllers.AuthController.Verify [106] - MESSAGE: Internal server error 
+2023-03-23 19:19:58,343  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
+ 2023-03-23 19:19:58,368  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
+ 2023-03-23 19:19:58,369  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
+ 2023-03-23 19:19:58,370  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
+ 2023-03-23 19:19:58,370  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos_new\RestaurantManagementSystem\RestaurantManagementSystem\RestaurantManagementSystem
+ 2023-03-23 19:20:03,680  INFO RestaurantManagementSystem.Controllers.AuthController.GetUsers [52] - MESSAGE: Get Students method started
+ 2023-03-23 19:20:03,709 ERROR RestaurantManagementSystem.Controllers.AuthController.GetUsers [57] - MESSAGE: Internal server error 
  

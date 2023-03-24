@@ -7,6 +7,8 @@ using RestaurantManagementSystem.Models.InputModels;
 using RestaurantManagementSystem.Models.OutputModels;
 using System.Net;
 using System.Text.RegularExpressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using Object = System.Object;
 
 namespace RestaurantManagementSystem.Services
 {
@@ -30,7 +32,7 @@ namespace RestaurantManagementSystem.Services
             _secondaryAuthService = new SecondaryAuthService(configuration, dbContext, logger);
         }
 
-        public async Task<object> CreateUser(RegisterUser inpUser)
+        public async Task<Object> CreateUser(RegisterUser inpUser)
         {
             var DbUsers = DbContext.Users;
             bool existingUser = DbUsers.Where(u => u.email == inpUser.email).Any();
@@ -42,33 +44,25 @@ namespace RestaurantManagementSystem.Services
                 string regexPatternFirstName = "^[A-Z][a-zA-Z]*$";
                 if (!Regex.IsMatch(inpUser.firstName, regexPatternFirstName))
                 {
-                    response2.statusCode = 400;
-                    response2.message = "Please Enter Valid Name";
-                    response2.success = false;
+                    response2 = new ResponseWithoutData(400, "Please Enter Valid Name", false);
                     return response2;
                 }
                 string regexPatternEmail = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
                 if (!Regex.IsMatch(inpUser.email, regexPatternEmail))
                 {
-                    response2.statusCode = 400;
-                    response2.message = "Please Enter Valid Email";
-                    response2.success = false;
+                    response2 = new ResponseWithoutData(400, "Please Enter Valid Email", false);
                     return response2;
                 }
                 string regexPatternPassword = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
                 if (!Regex.IsMatch(inpUser.password, regexPatternPassword))
                 {
-                    response2.statusCode = 400;
-                    response2.message = "Please Enter Valid Password. Must contain atleast one uppercase letter, one lowercase letter, one number and one special chararcter and must be atleast 8 characters long";
-                    response2.success = false;
+                    response2 = new ResponseWithoutData(400, "Please Enter Valid Password. Must contain atleast one uppercase letter, one lowercase letter, one number and one special chararcter and must be atleast 8 characters long", false);
                     return response2;
                 }
                 string regexPatternPhone = "^[6-9]\\d{9}$";
                 if (!Regex.IsMatch(inpUser.phone.ToString(), regexPatternPhone))
                 {
-                    response2.statusCode = 400;
-                    response2.message = "Please Enter Valid PhoneNo";
-                    response2.success = false;
+                    response2 = new ResponseWithoutData(400, "Please Enter Valid PhoneNo", false);
                     return response2;
                 }
 
@@ -82,21 +76,14 @@ namespace RestaurantManagementSystem.Services
                 await DbContext.Users.AddAsync(user);
                 await DbContext.SaveChangesAsync();
 
-                response.statusCode = 200;
-                response.message = "User added Successfully";
-
                 //response object
                 RegistrationLoginResponse data = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, token);
-
-                response.data = data;
-                response.success = true;
+                response = new Response(200, "User added Successfully", data, true);
                 return response;
             }
             else
             {
-                response2.statusCode = 409;
-                response2.message = "Email already registered please try another";
-                response2.success = false;
+                response2 = new ResponseWithoutData(400, "Email already registered please try another", false);
                 return response2;
             }
         }
@@ -108,32 +95,24 @@ namespace RestaurantManagementSystem.Services
             string regexPatternEmail = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
             if (!Regex.IsMatch(request.email, regexPatternEmail))
             {
-                response2.statusCode = 400;
-                response2.message = "Please Enter Valid Email";
-                response2.success = false;
+                response2 = new ResponseWithoutData(400, "Please Enter Valid Name", false);
                 return response2;
             }
             //int index = details.Teacher.FindIndex(t => t.Username == request.Username);
             var user = DbContext.Users.Where(u => u.email == request.email).FirstOrDefault();
             if (user == null)
             {
-                response2.statusCode = 404;
-                response2.message = "User not found";
-                response2.success = false;
+                response2 = new ResponseWithoutData(404, "User not found", false);
                 return response2;
             }
             else if (request.password == null)
             {
-                response2.statusCode = 403;
-                response2.message = "Null/Wrong password.";
-                response2.success = false;
+                response2 = new ResponseWithoutData(400, "Null/Wrong password", false);
                 return response2;
             }
             else if (!_secondaryAuthService.VerifyPasswordHash(request.password, user.passwordHash))
             {
-                response2.statusCode = 403;
-                response2.message = "Wrong password.";
-                response2.success = false;
+                response2 = new ResponseWithoutData(400, "Wrong password.", false);
                 return response2;
             }
             //-----------------------------------------------------------------------------------------------------------------//
@@ -145,11 +124,8 @@ namespace RestaurantManagementSystem.Services
 
             DbContext.SaveChanges();            // save into database
 
-            response.statusCode = 200;
-            response.message = "Login Successful";
             RegistrationLoginResponse data = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, token);
-            response.data = data;
-            response.success = true;
+            response = new Response(200, "Login Successful", data, true);
 
             return response;
         }
@@ -161,9 +137,7 @@ namespace RestaurantManagementSystem.Services
                 string regexPatternEmail = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
                 if (!Regex.IsMatch(email, regexPatternEmail))
                 {
-                    response2.statusCode = 400;
-                    response2.message = "Please Enter Valid Email";
-                    response2.success = false;
+                    response2 = new ResponseWithoutData(400, "Please Enter Valid Email", false);
                     return response2;
                 }
                 //find user in database
@@ -172,9 +146,7 @@ namespace RestaurantManagementSystem.Services
 
                 if (!exists || user == null)            //retrun if user doesn't exist
                 {
-                    response2.statusCode = 404;
-                    response2.message = "User not found";
-                    response2.success = false;
+                    response2 = new ResponseWithoutData(404, "User not found", false);
                     return response2;
                 }
 
@@ -198,21 +170,15 @@ namespace RestaurantManagementSystem.Services
                 //response object
                 if (response2.statusCode == 200)
                 {
-                    response.statusCode = 200;
-                    response.message = response2.message;
-                    response.success = true;
                     RegistrationLoginResponse data = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, returntoken);
-
-                    response.data = data;
+                    response = new Response(200, response2.message, data, true);
                     return response;
                 }
                 return response2;
             }
             catch (Exception ex)
             {
-                response2.statusCode = 500;
-                response2.message = "Invalid Mail or " + ex.Message;
-                response2.success = false;
+                response2 = new ResponseWithoutData(500, "Invalid Mail or " + ex.Message, false);
                 return response2;
             }
         }
@@ -227,23 +193,17 @@ namespace RestaurantManagementSystem.Services
             Console.WriteLine(user);
             if (user == null)               //check if email exists in database
             {
-                response2.statusCode = 404;
-                response2.message = "User not found";
-                response2.success = false;
+                response2 = new ResponseWithoutData(404, "User not found", false);
                 return response2;
             }
             if (r.OTP != user.verificationOTP)//(user == null)
             {
-                response2.statusCode = 400;
-                response2.message = "Invalid verification Value/Otp";
-                response2.success = false;
+                response2 = new ResponseWithoutData(400, "Invalid verification Value/Otp", false);
                 return response2;
             }
             if (user.otpUsableTill < DateTime.Now)           // checks if otp is expired or not
             {
-                response2.statusCode = 400;
-                response2.message = "Otp Expired";
-                response2.success = false;
+                response2 = new ResponseWithoutData(400, "OTP Expired", false);
                 return response2;
             }
             user.verifiedAt = DateTime.UtcNow;
@@ -253,7 +213,7 @@ namespace RestaurantManagementSystem.Services
             return result;
         }
 
-        internal async Task<object> ResetPassword(string password, Guid id)
+        internal async Task<Object> ResetPassword(string password, Guid id)
         {
             //var user = await DbContext.Users.FirstOrDefaultAsync(u => u.VerificationToken == token);
             var user = await DbContext.Users.FindAsync(id);
@@ -262,9 +222,7 @@ namespace RestaurantManagementSystem.Services
             string regexPatternPassword = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
             if (!Regex.IsMatch(password, regexPatternPassword))
             {
-                response2.statusCode = 400;
-                response2.message = "Please Enter Valid Password. Must contain atleast one uppercase letter, one lowercase letter, one number and one special chararcter and must be atleast 8 characters long";
-                response2.success = false;
+                response2 = new ResponseWithoutData(400, "Please Enter Valid Password. Must contain atleast one uppercase letter, one lowercase letter, one number and one special chararcter and must be atleast 8 characters long", false);
                 return response2;
             }
             try
@@ -274,33 +232,24 @@ namespace RestaurantManagementSystem.Services
                 user.passwordHash = pass;
 
                 //create token
-                tokenUser.email = user.email;
-                tokenUser.firstName = user.firstName;
-                tokenUser.role = "user";
+                tokenUser = new CreateToken(user.userId, user.firstName, user.email, "user");
                 string token = _secondaryAuthService.CreateToken(tokenUser);
 
                 user.token = token;
                 await DbContext.SaveChangesAsync();
 
                 var responsedata = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, token);
-
-                response.statusCode = 200;
-                response.message = "Password reset successful";
-                response.data = responsedata;
-                response.success = true;
+                response = new Response(200, "Password Reset was successful", responsedata, true);
                 return response;
             }
             catch (Exception ex)
             {
-                response.statusCode = 500;
-                response.message = ex.Message;
-                response.data = ex.Data;
-                response.success = false;
+                response2 = new ResponseWithoutData(200, ex.Message, false);
                 return response;
             }
         }
 
-        public async Task<object> ChangePassword(ChangePasswordModel r, string userId, string token)
+        public async Task<Object> ChangePassword(ChangePasswordModel r, string userId, string token)
         {
             //var user = await DbContext.Users.FirstOrDefaultAsync(u => u.VerificationToken == token);
             Guid id = new Guid(userId);
@@ -308,31 +257,23 @@ namespace RestaurantManagementSystem.Services
             //var PasswordHash = CreatePasswordHash(r.oldPassword);
             if (token != user.token)
             {
-                response2.statusCode = 401;
-                response2.message = "Invalid/expired token. Login First";
-                response2.success = false;
+                response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
                 return response2;
             }
             if (user == null)
             {
-                response2.statusCode = 404;
-                response2.message = "User not found";
-                response2.success = false;
+                response2 = new ResponseWithoutData(404, "User not found", false);
                 return response2;
             }
             string regexPatternPassword = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
             if (!Regex.IsMatch(r.Password, regexPatternPassword))
             {
-                response2.statusCode = 400;
-                response2.message = "Enter Valid Password. Must contain atleast one uppercase letter, one lowercase letter, one number and one special chararcter and must be atleast 8 characters long";
-                response2.success = false;
+                response2 = new ResponseWithoutData(400, "Enter Valid Password. Must contain atleast one uppercase letter, one lowercase letter, one number and one special chararcter and must be atleast 8 characters long", false);
                 return response2;
             }
             if (!_secondaryAuthService.VerifyPasswordHash(r.oldPassword, user.passwordHash))
             {
-                response2.statusCode = 400;
-                response2.message = "Invalid Old password";
-                response2.success = false;
+                response2 = new ResponseWithoutData(400, "Invalid old password.", false);
                 return response2;
             }
 
@@ -348,18 +289,12 @@ namespace RestaurantManagementSystem.Services
                 await DbContext.SaveChangesAsync();
                 var responsedata = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, user.token);
 
-                response.statusCode = 200;
-                response.message = "Password change successful";
-                response.data = responsedata;
-                response.success = true;
+                response = new Response(200, "Password change successful", responsedata, true);
                 return response;
             }
             catch (Exception ex)
             {
-                response2.statusCode = 500;
-                response2.message = ex.Message;
-                //response.Data = ex.Data;
-                response2.success = false;
+                response2 = new ResponseWithoutData(500, ex.Message, false);
                 return response2;
             }
         }
@@ -371,16 +306,12 @@ namespace RestaurantManagementSystem.Services
 
             if (user == null)
             {
-                response2.statusCode = 404;
-                response2.message = "User not found";
-                response2.success = false;
+                response2 = new ResponseWithoutData(404, "User not found", false);
                 return response2;
             }
             if (token != user.token)
             {
-                response2.statusCode = 401;
-                response2.message = "Invalid/expired token. Login First";
-                response2.success = false;
+                response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
                 return response2;
             }
             try
@@ -390,20 +321,12 @@ namespace RestaurantManagementSystem.Services
                 await DbContext.SaveChangesAsync();
                 var responsedata = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, token);
 
-                response2.statusCode = 200;
-                response2.message = "User Logged out Successfully";
-                //chatAppHub.RemoveUserFromList(email);
-                //chatAppHub.refesh();
-                //response2.Data = responsedata;
-                response2.success = true;
+                response2 = new ResponseWithoutData(200, "User Logged out Successfully", true);
                 return response2;
             }
             catch (Exception ex)
             {
-                response2.statusCode = 500;
-                response2.message = ex.Message;
-                //response.Data = ex.Data;
-                response2.success = false;
+                response2 = new ResponseWithoutData(500, ex.Message, false);
                 return response2;
             }
         }

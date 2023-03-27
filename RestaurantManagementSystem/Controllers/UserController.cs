@@ -46,28 +46,6 @@ namespace RestaurantManagementSystem.Controllers
             }
         }
 
-        //getusers api to get list of other users and details
-        //[HttpGet, Authorize(Roles = "admin")]
-        [HttpGet, Authorize(Roles = "admin")]
-        [Route("/api/v1/admin/get")]
-        public IActionResult GetUsers(Guid? UserId = null, string? searchString = null, string? Email = null, long Phone = -1, String OrderBy = "Id", int SortOrder = 1, int RecordsPerPage = 100, int PageNumber = 0)          // sort order   ===   e1 for ascending  -1 for descending
-        {
-            _logger.LogInformation("Get users method started");
-            try
-            {
-                string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-                string? userId = User.FindFirstValue(ClaimTypes.Sid);
-                result = userService.GetUsers(userId, token, UserId, searchString, Email, Phone, OrderBy, SortOrder, RecordsPerPage, PageNumber);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("Internal server error ", ex.Message);
-                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
-                return StatusCode(500, response2);
-            }
-        }
-
         [HttpPut, Authorize(Roles = "user,chef,admin")]
         [Route("/api/v1/update")]
         public IActionResult UpdateUser(UpdateUser u)

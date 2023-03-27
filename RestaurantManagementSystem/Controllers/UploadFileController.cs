@@ -24,6 +24,28 @@ namespace RestaurantManagementSystem.Controllers
             _logger = logger;
         }
 
+        [HttpPost, DisableRequestSizeLimit, Authorize(Roles = "user,chef,admin")]
+        [Route("/api/v1/uploadProfilePic")]
+        public async Task<IActionResult> ProfilePicUploadAsync(IFormFile file)                //[FromForm] FileUpload File
+        {
+            _logger.LogInformation("Pic Upload method started");
+            try
+            {
+                string userId = User.FindFirstValue(ClaimTypes.Sid);
+                string userRole = User.FindFirstValue(ClaimTypes.Role);
+                string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+                result = await uploadPicServiceInstance.ProfilePicUploadAsync(file, userId, token,userRole);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Internal server error ", ex.Message);
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
+                return StatusCode(500, response2);
+            }
+        }
+
         /*[HttpPost, DisableRequestSizeLimit, Authorize(Roles = "user")]
         [Route("/api/v1/uploadFile")]
         public async Task<IActionResult> FileUploadAsync(int type, IFormFile file)
@@ -47,26 +69,5 @@ namespace RestaurantManagementSystem.Controllers
         }*/
 
 
-        [HttpPost, DisableRequestSizeLimit, Authorize(Roles = "user,chef,admin")]
-        [Route("/api/v1/uploadProfilePic")]
-        public async Task<IActionResult> ProfilePicUploadAsync(IFormFile file)                //[FromForm] FileUpload File
-        {
-            _logger.LogInformation("Pic Upload method started");
-            try
-            {
-                string userId = User.FindFirstValue(ClaimTypes.Sid);
-                string userRole = User.FindFirstValue(ClaimTypes.Role);
-                string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-                result = await uploadPicServiceInstance.ProfilePicUploadAsync(file, userId, token,userRole);
-
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("Internal server error ", ex.Message);
-                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
-                return StatusCode(500, response2);
-            }
-        }
     }
 }

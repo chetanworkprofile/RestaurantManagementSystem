@@ -29,7 +29,7 @@ namespace RestaurantManagementSystem.Services
         {
             this._configuration = configuration;
             DbContext = dbContext;
-            _secondaryAuthService = new SecondaryAuthService(configuration, dbContext, logger);
+            _secondaryAuthService = new SecondaryAuthService(configuration, dbContext);
         }
 
         public async Task<Object> CreateUser(RegisterUser inpUser)

@@ -26,7 +26,7 @@ namespace RestaurantManagementSystem.Services
             this._configuration = configuration;
             DbContext = dbContext;
             authService = new AuthService(configuration, dbContext, logger);
-            _secondaryAuthService = new SecondaryAuthService(configuration, dbContext, logger);
+            _secondaryAuthService = new SecondaryAuthService(configuration, dbContext);
         }
 
         public object GetYourself(string userId, string token)
@@ -49,83 +49,6 @@ namespace RestaurantManagementSystem.Services
             ResponseUser r = new ResponseUser(userLoggedIn.userId, userLoggedIn.firstName, userLoggedIn.lastName, userLoggedIn.email, userLoggedIn.phone,userLoggedIn.userRole, userLoggedIn.address, userLoggedIn.pathToProfilePic, userLoggedIn.createdAt, userLoggedIn.updatedAt);
 
             response = new Response(200, "User fetched", r, true);
-            return response;
-        }
-        public object GetUsers(string userId,string token,Guid? UserId, string? searchString, string? Email, long Phone, string OrderBy, int SortOrder, int RecordsPerPage, int PageNumber)          // sort order   ===   e1 for ascending   -1 for descending
-        {
-            //get logged in user from database
-            Guid id = new Guid(userId);
-            var userLoggedIn = DbContext.Users.Find(id);
-            var userss = DbContext.Users.AsQueryable();
-
-            //userss = userss.Where(x => (x.UserId == UserId || UserId == null) && (x.IsDeleted == false) && (EF.Functions.Like(x.FirstName, "%" + searchString + "%") || EF.Functions.Like(x.LastName, "%" + searchString + "%") || searchString == null) &&
-            //(x.Email == Email || Email == null)).Select(x => x);
-
-            userss = userss.Where(t => t.isDeleted == false);     //remove deleted users from list
-            
-            if (token != userLoggedIn.token)
-            {
-                response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
-                return response2;
-            }
-
-            //--------------------------filtering based on userId,searchString, Email, or Phone---------------------------------//
-            
-            if (UserId != null) { userss = userss.Where(s => (s.userId == UserId)); }
-            if (searchString != null) { userss = userss.Where(s => EF.Functions.Like(s.firstName, "%" + searchString + "%") || EF.Functions.Like(s.lastName, "%" + searchString + "%") || EF.Functions.Like(s.firstName +" "+s.lastName, "%" + searchString + "%")); }
-            //if (FirstName != null) { users = users.Where(s => (s.FirstName == FirstName)).ToList(); }
-            if (Email != null) { userss = userss.Where(s => (s.email == Email)); }
-            if (Phone != -1) { userss = userss.Where(s => (s.phone == Phone)); }
-
-            var users = userss.ToList();
-
-            // delegate used to create orderby depending on user input
-            Func<User, Object> orderBy = s => s.userId;
-            if (OrderBy == "UserId" || OrderBy == "ID" || OrderBy == "Id")
-            {
-                orderBy = x => x.userId;
-            }
-            else if (OrderBy == "FirstName" || OrderBy == "Name" || OrderBy == "firstname")
-            {
-                orderBy = x => x.firstName;
-            }
-            else if (OrderBy == "Email" || OrderBy == "email")
-            {
-                orderBy = x => x.email;
-            }
-            else if (OrderBy == "UserRole" || OrderBy == "userRole" || OrderBy == "userrole")
-            {
-                orderBy = x => x.userRole;
-            }
-
-            // sort according to input based on orderby
-            if (SortOrder == 1)
-            {
-                users = users.OrderBy(orderBy).Select(c => (c)).ToList();
-            }
-            else
-            {
-                users = users.OrderByDescending(orderBy).Select(c => (c)).ToList();
-            }
-
-            //pagination
-            users = users.Skip((PageNumber - 1) * RecordsPerPage)
-                                  .Take(RecordsPerPage).ToList();
-
-            List<ResponseUser> res = new List<ResponseUser>();
-
-            foreach (var user in users)
-            {
-                ResponseUser r = new ResponseUser(user.userId, user.firstName, user.lastName, user.email, user.phone,user.userRole, user.address, user.pathToProfilePic, user.createdAt, user.updatedAt);
-                res.Add(r);
-            }
-
-            if (!res.Any())
-            {
-                response2 = new ResponseWithoutData(200, "No User found.", true);
-                return response2;
-            }
-            response = new Response(200, "Users list fetched", res, true);
             return response;
         }
 

@@ -21,7 +21,7 @@ namespace RestaurantManagementSystem.Services
         private readonly RestaurantDbContext DbContext;
         private readonly IConfiguration _configuration;
 
-        public SecondaryAuthService(IConfiguration configuration, RestaurantDbContext dbContext, ILogger<AuthController> logger)
+        public SecondaryAuthService(IConfiguration configuration, RestaurantDbContext dbContext)
         {
             this._configuration = configuration;
             DbContext = dbContext;

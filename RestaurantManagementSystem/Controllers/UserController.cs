@@ -26,11 +26,11 @@ namespace RestaurantManagementSystem.Controllers
             _logger = logger;
         }
 
-        [HttpGet, Authorize(Roles = "user")]
-        [Route("/api/v1/users/getYourself")]
+        [HttpGet, Authorize(Roles = "user,chef,admin")]
+        [Route("/api/v1/getYourself")]
         public IActionResult GetYourself()                  // api for user to get data of himself for proifile details
         {
-            _logger.LogInformation("Get Students method started");
+            _logger.LogInformation("Get yourself method started");
             try
             {
                 string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
@@ -48,11 +48,11 @@ namespace RestaurantManagementSystem.Controllers
 
         //getusers api to get list of other users and details
         //[HttpGet, Authorize(Roles = "admin")]
-        [HttpGet, Authorize(Roles = "user")]
-        [Route("/api/v1/users/get")]
+        [HttpGet, Authorize(Roles = "admin")]
+        [Route("/api/v1/admin/get")]
         public IActionResult GetUsers(Guid? UserId = null, string? searchString = null, string? Email = null, long Phone = -1, String OrderBy = "Id", int SortOrder = 1, int RecordsPerPage = 100, int PageNumber = 0)          // sort order   ===   e1 for ascending  -1 for descending
         {
-            _logger.LogInformation("Get Students method started");
+            _logger.LogInformation("Get users method started");
             try
             {
                 string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
@@ -68,9 +68,9 @@ namespace RestaurantManagementSystem.Controllers
             }
         }
 
-        [HttpPut, Authorize(Roles = "user")]
-        [Route("/api/v1/users/update")]
-        public IActionResult UpdateStudent(UpdateUser u)
+        [HttpPut, Authorize(Roles = "user,chef,admin")]
+        [Route("/api/v1/update")]
+        public IActionResult UpdateUser(UpdateUser u)
         {
             _logger.LogInformation("Update user method started");
             try
@@ -89,8 +89,8 @@ namespace RestaurantManagementSystem.Controllers
             }
         }
 
-        [HttpDelete, Authorize(Roles = "user")]
-        [Route("/api/v1/user/delete")]
+        [HttpDelete, Authorize(Roles = "user,chef")]
+        [Route("/api/v1/usernchef/delete")]
         public IActionResult DeleteUser(string Password)
         {
             _logger.LogInformation("Delete Student method started");

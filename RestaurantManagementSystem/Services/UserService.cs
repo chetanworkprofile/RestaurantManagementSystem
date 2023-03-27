@@ -36,7 +36,7 @@ namespace RestaurantManagementSystem.Services
 
             if (userLoggedIn == null || userLoggedIn.isDeleted == true)
             {
-                response2 = new ResponseWithoutData(404, "Can't get details user error", false);
+                response2 = new ResponseWithoutData(404, "Can't get details user not found", false);
                 return response2;
             }
 
@@ -46,9 +46,9 @@ namespace RestaurantManagementSystem.Services
                 return response2;
             }
 
-            ResponseUser r = new ResponseUser(userLoggedIn.userId, userLoggedIn.firstName, userLoggedIn.lastName, userLoggedIn.email, userLoggedIn.phone, userLoggedIn.address, userLoggedIn.pathToProfilePic, userLoggedIn.createdAt, userLoggedIn.updatedAt);
+            ResponseUser r = new ResponseUser(userLoggedIn.userId, userLoggedIn.firstName, userLoggedIn.lastName, userLoggedIn.email, userLoggedIn.phone,userLoggedIn.userRole, userLoggedIn.address, userLoggedIn.pathToProfilePic, userLoggedIn.createdAt, userLoggedIn.updatedAt);
 
-            response = new Response(200, "Users list fetched", r, true);
+            response = new Response(200, "User fetched", r, true);
             return response;
         }
         public object GetUsers(string userId,string token,Guid? UserId, string? searchString, string? Email, long Phone, string OrderBy, int SortOrder, int RecordsPerPage, int PageNumber)          // sort order   ===   e1 for ascending   -1 for descending
@@ -93,6 +93,10 @@ namespace RestaurantManagementSystem.Services
             {
                 orderBy = x => x.email;
             }
+            else if (OrderBy == "UserRole" || OrderBy == "userRole" || OrderBy == "userrole")
+            {
+                orderBy = x => x.userRole;
+            }
 
             // sort according to input based on orderby
             if (SortOrder == 1)
@@ -112,7 +116,7 @@ namespace RestaurantManagementSystem.Services
 
             foreach (var user in users)
             {
-                ResponseUser r = new ResponseUser(user.userId, user.firstName, user.lastName, user.email, user.phone, user.address, user.pathToProfilePic, user.createdAt, user.updatedAt);
+                ResponseUser r = new ResponseUser(user.userId, user.firstName, user.lastName, user.email, user.phone,user.userRole, user.address, user.pathToProfilePic, user.createdAt, user.updatedAt);
                 res.Add(r);
             }
 
@@ -165,7 +169,7 @@ namespace RestaurantManagementSystem.Services
                 /*var userToken = new CreateToken(user.userId, user.firstName, user.email, "user");
                 string token = _secondaryAuthService.CreateToken(userToken);
                 user.token = token;*/
-                RegistrationLoginResponse data = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, user.token);
+                RegistrationLoginResponse data = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, user.userRole, user.token);
 
                 /*await DbContext.SaveChangesAsync();*/
                 response = new Response(200, "User updated successfully", data, true);

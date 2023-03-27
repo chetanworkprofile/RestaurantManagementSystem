@@ -71,13 +71,13 @@ namespace RestaurantManagementSystem.Services
                 // create token to return after successful registration
                 string token = _secondaryAuthService.CreateToken(tokenUser);
                 //create new user object to add into database
-                var user = new User(tokenUser.userId, inpUser.firstName, inpUser.lastName, inpUser.email, inpUser.phone, inpUser.address, _secondaryAuthService.CreatePasswordHash(inpUser.password), inpUser.pathToProfilePic, token);
+                var user = new User(tokenUser.userId, inpUser.firstName, inpUser.lastName, inpUser.email, inpUser.phone, "user" , inpUser.address, _secondaryAuthService.CreatePasswordHash(inpUser.password), inpUser.pathToProfilePic, token);
 
                 await DbContext.Users.AddAsync(user);
                 await DbContext.SaveChangesAsync();
 
                 //response object
-                RegistrationLoginResponse data = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, token);
+                RegistrationLoginResponse data = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, user.userRole,token);
                 response = new Response(200, "User added Successfully", data, true);
                 return response;
             }
@@ -118,13 +118,13 @@ namespace RestaurantManagementSystem.Services
             //-----------------------------------------------------------------------------------------------------------------//
 
             //creating token
-            tokenUser = new CreateToken(user.userId, user.firstName, user.email, "user");
+            tokenUser = new CreateToken(user.userId, user.firstName, user.email, user.userRole);
             string token = _secondaryAuthService.CreateToken(tokenUser);
             user.token = token;
 
             DbContext.SaveChanges();            // save into database
 
-            RegistrationLoginResponse data = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, token);
+            RegistrationLoginResponse data = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, user.userRole, token);
             response = new Response(200, "Login Successful", data, true);
 
             return response;
@@ -170,7 +170,7 @@ namespace RestaurantManagementSystem.Services
                 //response object
                 if (response2.statusCode == 200)
                 {
-                    RegistrationLoginResponse data = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, returntoken);
+                    RegistrationLoginResponse data = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, user.userRole, returntoken);
                     response = new Response(200, response2.message, data, true);
                     return response;
                 }
@@ -232,13 +232,13 @@ namespace RestaurantManagementSystem.Services
                 user.passwordHash = pass;
 
                 //create token
-                tokenUser = new CreateToken(user.userId, user.firstName, user.email, "user");
+                tokenUser = new CreateToken(user.userId, user.firstName, user.email, user.userRole);
                 string token = _secondaryAuthService.CreateToken(tokenUser);
 
                 user.token = token;
                 await DbContext.SaveChangesAsync();
 
-                var responsedata = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, token);
+                var responsedata = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, user.userRole, token);
                 response = new Response(200, "Password Reset was successful", responsedata, true);
                 return response;
             }
@@ -282,12 +282,12 @@ namespace RestaurantManagementSystem.Services
                 byte[] pass = _secondaryAuthService.CreatePasswordHash(r.Password);
                 user.passwordHash = pass;
 
-                tokenUser = new CreateToken(user.userId, user.firstName, user.email, "user");
+                tokenUser = new CreateToken(user.userId, user.firstName, user.email, user.userRole);
 
                 /*string token = CreateToken(tokenUser);
                 user.Token = token;*/
                 await DbContext.SaveChangesAsync();
-                var responsedata = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, user.token);
+                var responsedata = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, user.userRole, user.token);
 
                 response = new Response(200, "Password change successful", responsedata, true);
                 return response;
@@ -319,7 +319,7 @@ namespace RestaurantManagementSystem.Services
                 // remove token from database
                 user.token = string.Empty;
                 await DbContext.SaveChangesAsync();
-                var responsedata = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, token);
+                var responsedata = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, user.userRole, token);
 
                 response2 = new ResponseWithoutData(200, "User Logged out Successfully", true);
                 return response2;

@@ -51,7 +51,7 @@ namespace RestaurantManagementSystem.Controllers
             }
         }
 
-        [HttpPost("/api/v1/user/login")]
+        [HttpPost("/api/v1/login")]
         public ActionResult<User> UserLogin(UserDTO request)
         {
             _logger.LogInformation("User Login attempt");
@@ -105,9 +105,9 @@ namespace RestaurantManagementSystem.Controllers
             }
         }
 
-        [HttpPost, Authorize(Roles = "user")]
+        [HttpPost, Authorize(Roles = "user,chef,admin")]
         [Route("/api/v1/changePassword")]
-        public ActionResult<User> ChangePasswod(ChangePasswordModel r)
+        public ActionResult<User> ChangePassword(ChangePasswordModel r)
         {
             _logger.LogInformation("reset password attempt");
             try
@@ -127,7 +127,7 @@ namespace RestaurantManagementSystem.Controllers
             }
         }
 
-        [HttpPost, Authorize(Roles = "login")]
+        [HttpPost, Authorize(Roles = "user,chef,admin")]
         [Route("/api/v1/user/logout")]
         public ActionResult<User> Logout()
         {

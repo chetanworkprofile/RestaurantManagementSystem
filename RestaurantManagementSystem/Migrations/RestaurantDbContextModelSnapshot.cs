@@ -32,7 +32,7 @@ namespace RestaurantManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("createdAt")
+                    b.Property<DateTime>("createdAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("email")
@@ -68,8 +68,12 @@ namespace RestaurantManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("updatedAt")
+                    b.Property<DateTime>("updatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("userRole")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("verificationOTP")
                         .HasColumnType("int");

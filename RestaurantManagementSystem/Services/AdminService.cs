@@ -28,7 +28,7 @@ namespace RestaurantManagementSystem.Services
             _secondaryAuthService = new SecondaryAuthService(configuration, dbContext);
         }
 
-        public async Task<Object> AddChef(RegisterUser inpUser)
+        public Object AddChef(RegisterUser inpUser, out int code)
         {
             var DbUsers = DbContext.Users;
             bool existingUser = DbUsers.Where(u => u.email == inpUser.email).Any();
@@ -41,24 +41,28 @@ namespace RestaurantManagementSystem.Services
                 if (!Regex.IsMatch(inpUser.firstName, regexPatternFirstName))
                 {
                     response2 = new ResponseWithoutData(400, "Please Enter Valid Name", false);
+                    code = 400;
                     return response2;
                 }
                 string regexPatternEmail = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
                 if (!Regex.IsMatch(inpUser.email, regexPatternEmail))
                 {
                     response2 = new ResponseWithoutData(400, "Please Enter Valid Email", false);
+                    code = 400;
                     return response2;
                 }
                 string regexPatternPassword = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
                 if (!Regex.IsMatch(inpUser.password, regexPatternPassword))
                 {
                     response2 = new ResponseWithoutData(400, "Please Enter Valid Password. Must contain atleast one uppercase letter, one lowercase letter, one number and one special chararcter and must be atleast 8 characters long", false);
+                    code = 400;
                     return response2;
                 }
                 string regexPatternPhone = "^[6-9]\\d{9}$";
                 if (!Regex.IsMatch(inpUser.phone.ToString(), regexPatternPhone))
                 {
                     response2 = new ResponseWithoutData(400, "Please Enter Valid PhoneNo", false);
+                    code = 400;
                     return response2;
                 }
 
@@ -69,22 +73,24 @@ namespace RestaurantManagementSystem.Services
                 //create new user object to add into database
                 var user = new User(tokenUser.userId, inpUser.firstName, inpUser.lastName, inpUser.email, inpUser.phone, "chef" , inpUser.address, _secondaryAuthService.CreatePasswordHash(inpUser.password), inpUser.pathToProfilePic, token);
 
-                await DbContext.Users.AddAsync(user);
-                await DbContext.SaveChangesAsync();
+                DbContext.Users.Add(user);
+                DbContext.SaveChanges();
 
                 //response object
                 RegistrationLoginResponse data = new RegistrationLoginResponse(user.userId, user.email, user.firstName, user.lastName, user.userRole, token);
                 response = new Response(200, "Chef added Successfully", data, true);
+                code = 200;
                 return response;
             }
             else
             {
                 response2 = new ResponseWithoutData(400, "Email already registered please try another", false);
+                code = 400;
                 return response2;
             }
         }
 
-        public object GetUsers(string userId, string token, Guid? UserId, string? searchString, string? Email, long Phone, string OrderBy, int SortOrder, int RecordsPerPage, int PageNumber)          // sort order   ===   e1 for ascending   -1 for descending
+        public Object GetUsers(string userId, string userType,string token, Guid? UserId, string? searchString, string? Email, long Phone, string OrderBy, int SortOrder, int RecordsPerPage, int PageNumber, out int code)          // sort order   ===   e1 for ascending   -1 for descending
         {
             //get logged in user from database
             Guid id = new Guid(userId);
@@ -96,9 +102,15 @@ namespace RestaurantManagementSystem.Services
 
             userss = userss.Where(t => t.isDeleted == false);     //remove deleted users from list
 
+            if (userType != "all")
+            {
+                userss = userss.Where(t => t.userRole == userType);
+            }
+
             if (token != userLoggedIn.token)
             {
                 response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
+                code = 401;
                 return response2;
             }
 
@@ -155,12 +167,44 @@ namespace RestaurantManagementSystem.Services
 
             if (!res.Any())
             {
-                response2 = new ResponseWithoutData(200, "No User found.", true);
+                response2 = new ResponseWithoutData(404, "No User found.", true);
+                code= 404;
                 return response2;
             }
             response = new Response(200, "Users list fetched", res, true);
+            code = 200;
             return response;
         }
 
+        public Object DeleteUser(string userId, string token, out int code)
+        {
+            Guid id = new Guid(userId);
+            User? user = DbContext.Users.Find(id);
+            User admin = DbContext.Users.Where(s=> (s.userRole == "admin")).First();
+            if (token != admin.token)
+            {
+                response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
+                code = 401;
+                return response2;
+            }
+
+            if (user != null && user.isDeleted == false)
+            {
+                user.isDeleted = true;
+                user.token = string.Empty;
+                DbContext.SaveChanges();
+
+                response2 = new ResponseWithoutData(200, "User/Chef deleted successfully", true);
+                code = 200;
+                return response2;
+            }
+            else
+            {
+                response2 = new ResponseWithoutData(404, "User/Chef Not found", false);
+                code = 404;
+                return response2;
+            }
+
+        }
     }
 }

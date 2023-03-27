@@ -29,7 +29,7 @@ namespace RestaurantManagementSystem.Services
             _secondaryAuthService = new SecondaryAuthService(configuration, dbContext);
         }
 
-        public object GetYourself(string userId, string token)
+        public Object GetYourself(string userId, string token, out int code)
         {
             Guid id = new Guid(userId);
             var userLoggedIn = DbContext.Users.Find(id);
@@ -37,22 +37,25 @@ namespace RestaurantManagementSystem.Services
             if (userLoggedIn == null || userLoggedIn.isDeleted == true)
             {
                 response2 = new ResponseWithoutData(404, "Can't get details user not found", false);
+                code = 404;
                 return response2;
             }
 
             if (token != userLoggedIn.token)
             {
                 response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
+                code = 401;
                 return response2;
             }
 
             ResponseUser r = new ResponseUser(userLoggedIn.userId, userLoggedIn.firstName, userLoggedIn.lastName, userLoggedIn.email, userLoggedIn.phone,userLoggedIn.userRole, userLoggedIn.address, userLoggedIn.pathToProfilePic, userLoggedIn.createdAt, userLoggedIn.updatedAt);
 
             response = new Response(200, "User fetched", r, true);
+            code = 200;
             return response;
         }
 
-        public async Task<Object> UpdateUser(string userId, UpdateUser u, string tokenloggedin)
+        public Object UpdateUser(string userId, UpdateUser u, string tokenloggedin, out int code)
         {
             Guid id = new Guid(userId);
             User? user = DbContext.Users.Find(id);
@@ -60,6 +63,7 @@ namespace RestaurantManagementSystem.Services
             if (tokenloggedin != user.token)
             {
                 response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
+                code = 401;
                 return response2;
             }
 
@@ -87,7 +91,7 @@ namespace RestaurantManagementSystem.Services
                 }
                 
                 user.updatedAt = DateTime.Now;
-                await DbContext.SaveChangesAsync();
+                DbContext.SaveChanges();
 
                 /*var userToken = new CreateToken(user.userId, user.firstName, user.email, "user");
                 string token = _secondaryAuthService.CreateToken(userToken);
@@ -96,28 +100,32 @@ namespace RestaurantManagementSystem.Services
 
                 /*await DbContext.SaveChangesAsync();*/
                 response = new Response(200, "User updated successfully", data, true);
+                code= 200;
                 return response;
             }
             else
             {
                 response2 = new ResponseWithoutData(404, "User not found", false);
+                code = 404;
                 return response2;
             }
         }
 
-        public async Task<object> DeleteUser(string userId, string token, string password)
+        public Object DeleteUser(string userId, string token, string password, out int code)
         {
             Guid id = new Guid(userId);
             User? user = DbContext.Users.Find(id);
             if (token != user.token)
             {
                 response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
+                code = 401;
                 return response2;
             }
             byte[] phash = user.passwordHash;
             if (!_secondaryAuthService.VerifyPasswordHash(password, phash))
             {
                 response2 = new ResponseWithoutData(400, "Wrong password.", false);
+                code = 400;
                 return response2;
             }
 
@@ -125,14 +133,16 @@ namespace RestaurantManagementSystem.Services
             {
                 user.isDeleted = true;
                 user.token = string.Empty;
-                await DbContext.SaveChangesAsync();
+                DbContext.SaveChanges();
 
                 response2 = new ResponseWithoutData(200, "User deleted successfully", true);
+                code = 200;
                 return response2;
             }
             else
             {
                 response2 = new ResponseWithoutData(404, "User Not found", false);
+                code = 404;
                 return response2;
             }
 

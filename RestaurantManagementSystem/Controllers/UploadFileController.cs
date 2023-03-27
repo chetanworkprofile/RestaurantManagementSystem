@@ -26,17 +26,18 @@ namespace RestaurantManagementSystem.Controllers
 
         [HttpPost, DisableRequestSizeLimit, Authorize(Roles = "user,chef,admin")]
         [Route("/api/v1/uploadProfilePic")]
-        public async Task<IActionResult> ProfilePicUploadAsync(IFormFile file)                //[FromForm] FileUpload File
+        public IActionResult ProfilePicUploadAsync(IFormFile file)                //[FromForm] FileUpload File
         {
             _logger.LogInformation("Profile Pic Upload method started");
             try
             {
-                string userId = User.FindFirstValue(ClaimTypes.Sid);
-                string userRole = User.FindFirstValue(ClaimTypes.Role);
+                string? userId = User.FindFirstValue(ClaimTypes.Sid);
+                string? userRole = User.FindFirstValue(ClaimTypes.Role);
                 string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-                result = await uploadPicServiceInstance.ProfilePicUploadAsync(file, userId, token,userRole);
+                int statusCode = 0;
+                result = uploadPicServiceInstance.ProfilePicUpload(file, userId, token,userRole, out statusCode);
 
-                return Ok(result);
+                return StatusCode(statusCode, result);
             }
             catch (Exception ex)
             {
@@ -48,17 +49,18 @@ namespace RestaurantManagementSystem.Controllers
 
         [HttpPost, DisableRequestSizeLimit, Authorize(Roles = "chef,admin")]
         [Route("/api/v1/uploadFoodPic")]
-        public async Task<IActionResult> FoodPicUploadAsync(IFormFile file)                //[FromForm] FileUpload File
+        public IActionResult FoodPicUploadAsync(IFormFile file)                //[FromForm] FileUpload File
         {
             _logger.LogInformation("Food Pic Upload method started");
             try
             {
-                string userId = User.FindFirstValue(ClaimTypes.Sid);
-                string userRole = User.FindFirstValue(ClaimTypes.Role);
+                string? userId = User.FindFirstValue(ClaimTypes.Sid);
+                string? userRole = User.FindFirstValue(ClaimTypes.Role);
                 string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-                result = await uploadPicServiceInstance.FoodPicUploadAsync(file, userId,token);
+                int statusCode = 0;
+                result = uploadPicServiceInstance.FoodPicUpload(file, userId,token, out statusCode);
 
-                return Ok(result);
+                return StatusCode(statusCode, result);
             }
             catch (Exception ex)
             {

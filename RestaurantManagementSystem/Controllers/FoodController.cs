@@ -7,6 +7,7 @@ using RestaurantManagementSystem.Models.InputModels;
 using RestaurantManagementSystem.Models.OutputModels;
 using RestaurantManagementSystem.Services;
 using System.Data;
+using System.Security.Claims;
 
 namespace RestaurantManagementSystem.Controllers
 {
@@ -27,7 +28,7 @@ namespace RestaurantManagementSystem.Controllers
         }
 
         [HttpPost, Authorize(Roles = "admin,chef")]
-        [Route("/api/v1/admin/addFood")]
+        [Route("/api/v1/food/addFood")]
         public IActionResult AddFood(AddFood inpFood)
         {
             if (!ModelState.IsValid)
@@ -38,8 +39,9 @@ namespace RestaurantManagementSystem.Controllers
             try
             {
                 _logger.LogInformation("Adding new food attempt");
-                result = foodService.AddFood(inpFood).Result; ;
-                return Ok(result);
+                int statusCode = 0;
+                result = foodService.AddFood(inpFood, out statusCode); ;
+                return StatusCode(statusCode, result);
             }
             catch (Exception ex)
             {
@@ -48,5 +50,71 @@ namespace RestaurantManagementSystem.Controllers
                 return StatusCode(500, response2);
             }
         }
+
+        [HttpGet, Authorize(Roles = "user,chef,admin")]
+        [Route("/api/v1/food/get")]
+        public IActionResult GetFoods(Guid? foodId = null, string? searchString = null, string? category = "all", String OrderBy = "Id", int SortOrder = 1, int RecordsPerPage = 100, int PageNumber = 0)          // sort order   ===   e1 for ascending  -1 for descending
+        {
+            _logger.LogInformation("Get foods method started");
+            try
+            {
+                string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+                string? userId = User.FindFirstValue(ClaimTypes.Sid);
+                int statusCode = 0;
+                result = foodService.GetFoods(foodId, userId, token, searchString, category, OrderBy, SortOrder, RecordsPerPage, PageNumber, out int code);
+                //result = adminService.GetUsers(userId,userType, token, UserId, searchString, Email, Phone, OrderBy, SortOrder, RecordsPerPage, PageNumber, out statusCode);
+                return StatusCode(statusCode, result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Internal server error ", ex.Message);
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
+                return StatusCode(500, response2);
+            }
+        } 
+        /*  
+        [HttpPut, Authorize(Roles = "user,chef,admin")]
+        [Route("/api/v1/update")]
+        public IActionResult UpdateUser(UpdateUser u)
+        {
+            _logger.LogInformation("Update user method started");
+            try
+            {
+                string? userId = User.FindFirstValue(ClaimTypes.Sid);
+                string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+                int statusCode = 0;
+                result = userService.UpdateUser(userId, u, token, out statusCode);
+
+                return StatusCode(statusCode, result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Internal server error ", ex.Message);
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
+                return StatusCode(500, response2);
+            }
+        }
+
+        [HttpDelete, Authorize(Roles = "user,chef")]
+        [Route("/api/v1/usernchef/delete")]
+        public IActionResult DeleteUser(string Password)
+        {
+            _logger.LogInformation("Delete Student method started");
+            try
+            {
+                string? userId = User.FindFirstValue(ClaimTypes.Sid);
+                string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+                int statusCode = 0;
+                result = userService.DeleteUser(userId, token, Password, out statusCode);
+                return StatusCode(statusCode, result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Internal server error ", ex.Message);
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
+                return StatusCode(500, response2);
+            }
+        }*/
+
     }
 }

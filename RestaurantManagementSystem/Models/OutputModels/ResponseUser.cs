@@ -12,9 +12,10 @@
         public string pathToProfilePic { get; set; } = string.Empty;
         public DateTime? createdAt { get; set; }
         public DateTime? updatedAt { get; set; }
+        //public bool isBlocked { get; set; }
 
         public ResponseUser() { }
-        public ResponseUser(Guid userId, string firstName, string lastName, string email, long phone, string userRole, string address,string pathToProfilePic,DateTime createdAt,DateTime updatedaAt)
+        public ResponseUser(Guid userId, string firstName, string lastName, string email, long phone, string userRole, string address,string pathToProfilePic, DateTime createdAt, DateTime updatedaAt)
         {
             this.userId = userId;
             this.firstName = firstName;
@@ -26,6 +27,7 @@
             this.pathToProfilePic = pathToProfilePic;
             this.createdAt = createdAt;
             this.updatedAt = updatedAt;
+            //this.isBlocked = isBlocked;
         }
     }
 }

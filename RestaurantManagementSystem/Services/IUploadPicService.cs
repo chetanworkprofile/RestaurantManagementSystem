@@ -2,7 +2,7 @@
 {
     public interface IUploadPicService
     {
-        public Task<object> ProfilePicUploadAsync(IFormFile file, string userId, string token, string userRole);
-        public Task<object> FoodPicUploadAsync(IFormFile file, string userId, string token);
+        public Object ProfilePicUpload(IFormFile file, string userId, string token, string userRole, out int code);
+        public Object FoodPicUpload(IFormFile file, string userId, string token, out int code);
     }
 }

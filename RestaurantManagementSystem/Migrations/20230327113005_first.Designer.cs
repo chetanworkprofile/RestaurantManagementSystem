@@ -12,7 +12,7 @@ using RestaurantManagementSystem.Data;
 namespace RestaurantManagementSystem.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20230327045845_first")]
+    [Migration("20230327113005_first")]
     partial class first
     {
         /// <inheritdoc />
@@ -24,6 +24,38 @@ namespace RestaurantManagementSystem.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("RestaurantManagementSystem.Models.Food", b =>
+                {
+                    b.Property<Guid>("foodId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("foodName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("pathToPic")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("price")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("status")
+                        .HasColumnType("bit");
+
+                    b.Property<TimeSpan>("timeToPrepare")
+                        .HasColumnType("time");
+
+                    b.HasKey("foodId");
+
+                    b.ToTable("Foods");
+                });
 
             modelBuilder.Entity("RestaurantManagementSystem.Models.User", b =>
                 {

@@ -35,8 +35,9 @@ namespace RestaurantManagementSystem.Controllers
             {
                 string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
                 string? userId = User.FindFirstValue(ClaimTypes.Sid);
-                result = userService.GetYourself(userId, token);
-                return Ok(result);
+                int statusCode = 0;
+                result = userService.GetYourself(userId, token,out statusCode);
+                return StatusCode(statusCode, result);
             }
             catch (Exception ex)
             {
@@ -55,9 +56,10 @@ namespace RestaurantManagementSystem.Controllers
             {
                 string? userId = User.FindFirstValue(ClaimTypes.Sid);
                 string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-                result = userService.UpdateUser(userId, u, token).Result;
+                int statusCode = 0;
+                result = userService.UpdateUser(userId, u, token, out statusCode);
 
-                return Ok(result);
+                return StatusCode(statusCode, result);
             }
             catch (Exception ex)
             {
@@ -76,8 +78,9 @@ namespace RestaurantManagementSystem.Controllers
             {
                 string? userId = User.FindFirstValue(ClaimTypes.Sid);
                 string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-                result = userService.DeleteUser(userId, token, Password).Result;
-                return Ok(result);
+                int statusCode = 0;
+                result = userService.DeleteUser(userId, token, Password, out statusCode);
+                return StatusCode(statusCode, result);
             }
             catch (Exception ex)
             {

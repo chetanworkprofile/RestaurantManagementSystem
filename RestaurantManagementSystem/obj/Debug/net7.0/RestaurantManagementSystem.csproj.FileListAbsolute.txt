@@ -164,8 +164,9 @@ C:\Users\User\Source\Repos\RestaurantManagementSystem\RestaurantManagementSystem
 C:\Users\User\Source\Repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Debug\net7.0\RestaurantManagementSystem.pdb
 C:\Users\User\Source\Repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Debug\net7.0\RestaurantManagementSystem.genruntimeconfig.cache
 C:\Users\User\Source\Repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Debug\net7.0\ref\RestaurantManagementSystem.dll
-C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\bin\Debug\net7.0\log4net.config
+C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\bin\Debug\net7.0\appsettings.json
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\bin\Debug\net7.0\RestaurantManagementSystem.exe
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\bin\Debug\net7.0\RestaurantManagementSystem.deps.json
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\bin\Debug\net7.0\RestaurantManagementSystem.runtimeconfig.json
@@ -246,4 +247,3 @@ C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSys
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Debug\net7.0\RestaurantManagementSystem.pdb
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Debug\net7.0\RestaurantManagementSystem.genruntimeconfig.cache
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Debug\net7.0\ref\RestaurantManagementSystem.dll
-C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\bin\Debug\net7.0\appsettings.json

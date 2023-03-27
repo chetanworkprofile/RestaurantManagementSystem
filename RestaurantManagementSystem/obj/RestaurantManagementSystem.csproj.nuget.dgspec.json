@@ -11,7 +11,7 @@
         "projectName": "RestaurantManagementSystem",
         "projectPath": "C:\\Users\\ChicMic\\source\\repos\\RestaurantManagementSystem\\RestaurantManagementSystem\\RestaurantManagementSystem.csproj",
         "packagesPath": "C:\\Users\\ChicMic\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ChicMic\\Source\\Repos\\RestaurantManagementSystem\\RestaurantManagementSystem\\obj\\",
+        "outputPath": "C:\\Users\\ChicMic\\source\\repos\\RestaurantManagementSystem\\RestaurantManagementSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ChicMic\\AppData\\Roaming\\NuGet\\NuGet.Config",

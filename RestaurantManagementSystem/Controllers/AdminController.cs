@@ -38,8 +38,29 @@ namespace RestaurantManagementSystem.Controllers
             try
             {
                 _logger.LogInformation("Adding new chef attempt");
-                result = adminService.AddChef(inpUser).Result; ;
-                return Ok(result);
+                int statusCode = 0;
+                result = adminService.AddChef(inpUser,out statusCode); ;
+                return StatusCode(statusCode, result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Internal server error ", ex.Message);
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
+                return StatusCode(500, response2);
+            }
+        }
+
+        [HttpDelete, Authorize(Roles = "admin")]
+        [Route("/api/v1/admin/removeUser")]
+        public IActionResult RemoveUser(string userId)             //add chef uses service 
+        {
+            try
+            {
+                _logger.LogInformation("Removing user attempt with id "+userId);
+                string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+                int statusCode = 0;
+                result = adminService.DeleteUser(userId, token, out statusCode);
+                return StatusCode(statusCode, result);
             }
             catch (Exception ex)
             {
@@ -53,15 +74,16 @@ namespace RestaurantManagementSystem.Controllers
         //[HttpGet, Authorize(Roles = "admin")]
         [HttpGet, Authorize(Roles = "admin")]
         [Route("/api/v1/admin/get")]
-        public IActionResult GetUsers(Guid? UserId = null, string? searchString = null, string? Email = null, long Phone = -1, String OrderBy = "Id", int SortOrder = 1, int RecordsPerPage = 100, int PageNumber = 0)          // sort order   ===   e1 for ascending  -1 for descending
+        public IActionResult GetUsers(Guid? UserId = null, string userType = "all", string? searchString = null, string? Email = null, long Phone = -1, String OrderBy = "Id", int SortOrder = 1, int RecordsPerPage = 100, int PageNumber = 0)          // sort order   ===   e1 for ascending  -1 for descending
         {
             _logger.LogInformation("Get users method started");
             try
             {
                 string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
                 string? userId = User.FindFirstValue(ClaimTypes.Sid);
-                result = adminService.GetUsers(userId, token, UserId, searchString, Email, Phone, OrderBy, SortOrder, RecordsPerPage, PageNumber);
-                return Ok(result);
+                int statusCode = 0;
+                result = adminService.GetUsers(userId,userType, token, UserId, searchString, Email, Phone, OrderBy, SortOrder, RecordsPerPage, PageNumber, out statusCode);
+                return StatusCode(statusCode, result);
             }
             catch (Exception ex)
             {

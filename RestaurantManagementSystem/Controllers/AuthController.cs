@@ -8,6 +8,7 @@ using RestaurantManagementSystem.Services;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using System.Security.Claims;
+using Azure.Core;
 
 namespace RestaurantManagementSystem.Controllers
 {
@@ -40,8 +41,9 @@ namespace RestaurantManagementSystem.Controllers
             try
             {
                 _logger.LogInformation("User registration attempt");
-                result = authService.CreateUser(inpUser).Result; ;
-                return Ok(result);
+                int statusCode = 0;
+                result = authService.CreateUser(inpUser,out statusCode);
+                return StatusCode(statusCode, result);
             }
             catch (Exception ex)
             {
@@ -57,8 +59,9 @@ namespace RestaurantManagementSystem.Controllers
             _logger.LogInformation("User Login attempt");
             try
             {
-                result = authService.Login(request);
-                return Ok(result);
+                int statusCode = 0;
+                result = authService.Login(request,out statusCode);
+                return StatusCode(statusCode, result);
             }
             catch (Exception ex)
             {
@@ -75,8 +78,9 @@ namespace RestaurantManagementSystem.Controllers
             _logger.LogInformation("forget password attempt");
             try
             {
-                result = authService.ForgetPassword(Email).Result;
-                return Ok(result);
+                int statusCode = 0;
+                result = authService.ForgetPassword(Email, out statusCode);
+                return StatusCode(statusCode,result);
             }
             catch (Exception ex)
             {
@@ -94,8 +98,9 @@ namespace RestaurantManagementSystem.Controllers
             try
             {
                 string? userId = User.FindFirstValue(ClaimTypes.Sid);                  //extracting userid from token
-                result = authService.Verify(r, userId).Result;
-                return Ok(result);
+                int statusCode = 0;
+                result = authService.Verify(r, userId, out statusCode);
+                return StatusCode(statusCode, result);
             }
             catch (Exception ex)
             {
@@ -116,8 +121,9 @@ namespace RestaurantManagementSystem.Controllers
                 /*var user = HttpContext.User;
                 string email = user.FindFirst(ClaimTypes.Email)?.Value;*/
                 string? userId = User.FindFirstValue(ClaimTypes.Sid);
-                result = authService.ChangePassword(r, userId, token).Result;
-                return Ok(result);
+                int statusCode = 0;
+                result = authService.ChangePassword(r, userId, token, out statusCode);
+                return StatusCode(statusCode, result);
             }
             catch (Exception ex)
             {
@@ -128,7 +134,7 @@ namespace RestaurantManagementSystem.Controllers
         }
 
         [HttpPost, Authorize(Roles = "user,chef,admin")]
-        [Route("/api/v1/user/logout")]
+        [Route("/api/v1/logout")]
         public ActionResult<User> Logout()
         {
             _logger.LogInformation("user logout attempt");
@@ -136,8 +142,9 @@ namespace RestaurantManagementSystem.Controllers
             {
                 string? userId = User.FindFirstValue(ClaimTypes.Sid);
                 string token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-                result = authService.Logout(userId, token).Result;
-                return Ok(result);
+                int statusCode = 0;
+                result = authService.Logout(userId, token, out statusCode);
+                return StatusCode(statusCode, result);
             }
             catch (Exception ex)
             {

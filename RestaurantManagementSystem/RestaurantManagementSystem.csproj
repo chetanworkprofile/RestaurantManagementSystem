@@ -27,7 +27,6 @@
     <Folder Include="Assets\ProfilePics\chef\" />
     <Folder Include="Assets\ProfilePics\admin\" />
     <Folder Include="Assets\ProfilePics\user\" />
-    <Folder Include="Hubs\" />
   </ItemGroup>
 
 </Project>

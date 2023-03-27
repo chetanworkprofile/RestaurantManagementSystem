@@ -24,7 +24,7 @@ namespace RestaurantManagementSystem.Migrations
 
             modelBuilder.Entity("RestaurantManagementSystem.Models.Food", b =>
                 {
-                    b.Property<Guid>("userId")
+                    b.Property<Guid>("foodId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -49,7 +49,7 @@ namespace RestaurantManagementSystem.Migrations
                     b.Property<TimeSpan>("timeToPrepare")
                         .HasColumnType("time");
 
-                    b.HasKey("userId");
+                    b.HasKey("foodId");
 
                     b.ToTable("Foods");
                 });

@@ -83,6 +83,8 @@ builder.Services.AddCors(options => options.AddPolicy(name: "CorsPolicy",
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUploadPicService, UploadPicService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IFoodService, FoodService>();
 
 var app = builder.Build();
 

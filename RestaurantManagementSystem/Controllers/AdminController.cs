@@ -26,7 +26,7 @@ namespace RestaurantManagementSystem.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "admin")]
         [Route("/api/v1/admin/addChef")]
         public IActionResult AddChef([FromBody] RegisterUser inpUser)             //add chef uses service 
         {
@@ -70,5 +70,7 @@ namespace RestaurantManagementSystem.Controllers
                 return StatusCode(500, response2);
             }
         }
+
+        
     }
 }

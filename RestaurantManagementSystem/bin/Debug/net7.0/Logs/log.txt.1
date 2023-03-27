@@ -1,42 +1,44 @@
-2023-03-27 10:55:37,965  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
- 2023-03-27 10:55:37,992  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
- 2023-03-27 10:55:37,993  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
- 2023-03-27 10:55:37,993  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
- 2023-03-27 10:55:37,994  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
- 2023-03-27 10:56:37,854  INFO RestaurantManagementSystem.Controllers.AuthController.RegisterUser [42] - MESSAGE: User registration attempt
- 2023-03-27 10:56:38,674  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (33ms) [Parameters=[@__inpUser_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SELECT CASE
-    WHEN EXISTS (
-        SELECT 1
-        FROM [Users] AS [u]
-        WHERE [u].[email] = @__inpUser_email_0) THEN CAST(1 AS bit)
-    ELSE CAST(0 AS bit)
-END
- 2023-03-27 10:56:38,975  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (15ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Boolean), @p6='?' (Size = 4000), @p7='?' (DbType = DateTime2), @p8='?' (Size = 8000) (DbType = Binary), @p9='?' (Size = 4000), @p10='?' (DbType = Int64), @p11='?' (Size = 4000), @p12='?' (DbType = DateTime2), @p13='?' (Size = 4000), @p14='?' (DbType = Int32), @p15='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
-SET IMPLICIT_TRANSACTIONS OFF;
-SET NOCOUNT ON;
-INSERT INTO [Users] ([userId], [address], [createdAt], [email], [firstName], [isDeleted], [lastName], [otpUsableTill], [passwordHash], [pathToProfilePic], [phone], [token], [updatedAt], [userRole], [verificationOTP], [verifiedAt])
-VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15);
- 2023-03-27 10:57:11,565  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [57] - MESSAGE: User Login attempt
- 2023-03-27 10:57:11,618  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (13ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+2023-03-27 13:33:03,257  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
+ 2023-03-27 13:33:03,280  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
+ 2023-03-27 13:33:03,281  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
+ 2023-03-27 13:33:03,282  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
+ 2023-03-27 13:33:03,282  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
+ 2023-03-27 13:36:38,778  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [57] - MESSAGE: User Login attempt
+ 2023-03-27 13:36:39,573  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (28ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
 SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
 FROM [Users] AS [u]
 WHERE [u].[email] = @__request_email_0
- 2023-03-27 10:57:11,640  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+ 2023-03-27 13:36:39,814  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
 SET IMPLICIT_TRANSACTIONS OFF;
 SET NOCOUNT ON;
 UPDATE [Users] SET [token] = @p0
 OUTPUT 1
 WHERE [userId] = @p1;
- 2023-03-27 10:57:43,347  INFO RestaurantManagementSystem.Controllers.AuthController.ChangePassword [112] - MESSAGE: reset password attempt
- 2023-03-27 10:57:43,434  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (2ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+ 2023-03-27 13:36:53,300  INFO RestaurantManagementSystem.Controllers.AdminController.GetUsers [58] - MESSAGE: Get users method started
+ 2023-03-27 13:36:53,348  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (6ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
 SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
 FROM [Users] AS [u]
 WHERE [u].[userId] = @__get_Item_0
- 2023-03-27 10:57:48,013  INFO RestaurantManagementSystem.Controllers.AuthController.ChangePassword [112] - MESSAGE: reset password attempt
- 2023-03-27 10:57:48,020  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+ 2023-03-27 13:36:53,360  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+WHERE [u].[isDeleted] = CAST(0 AS bit)
+ 2023-03-27 13:40:24,399  INFO RestaurantManagementSystem.Controllers.UploadFileController.MoveNext [53] - MESSAGE: Food Pic Upload method started
+ 2023-03-27 13:40:24,487  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (22ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
 SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
 FROM [Users] AS [u]
 WHERE [u].[userId] = @__get_Item_0
- 2023-03-27 10:57:58,819  INFO RestaurantManagementSystem.Controllers.UploadFileController.MoveNext [53] - MESSAGE: Pic Upload method started
+ 2023-03-27 13:40:24,521  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (4ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [pathToProfilePic] = @p0
+OUTPUT 1
+WHERE [userId] = @p1;
+ 2023-03-27 13:41:38,167  INFO RestaurantManagementSystem.Controllers.AdminController.AddFood [85] - MESSAGE: Adding new food attempt
+ 2023-03-27 13:41:44,120  INFO RestaurantManagementSystem.Controllers.AdminController.AddFood [85] - MESSAGE: Adding new food attempt
+ 2023-03-27 13:41:44,179  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p5='?' (DbType = Boolean), @p6='?' (DbType = Time)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Foods] ([userId], [category], [foodName], [pathToPic], [price], [status], [timeToPrepare])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
  

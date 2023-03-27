@@ -96,5 +96,65 @@ namespace RestaurantManagementSystem.Services
             response2 = new ResponseWithoutData(400, "Please provide a file for successful upload", false);
             return response2;
         }
+
+        public async Task<object> FoodPicUploadAsync(IFormFile file,string userId, string token)
+        {
+            try
+            {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "Assets", "FoodPics");
+                
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Guid id = new Guid(userId);
+            var user = await DbContext.Users.FindAsync(id);
+            var folderName = Path.Combine("Assets", "FoodPics");
+            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+            if (token != user.token)
+            {
+                response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
+                return response2;
+            }
+            if (file == null)
+            {
+                response2 = new ResponseWithoutData(400, "Please provide a file for successful upload", false);
+                return response2;
+            }
+            if (file.Length > 0)
+            {
+                var fileName = string.Concat(
+                                    "FoodPic",
+                                    DateTime.Now.ToString("yyyyMMddHHmmssfff"),
+                                    Path.GetFileNameWithoutExtension(file.FileName),
+                                    Path.GetExtension(file.FileName)
+                                    );
+
+                var fullPath = Path.Combine(pathToSave, fileName);
+
+                using (var stream = System.IO.File.Create(fullPath))
+                {
+                    await file.CopyToAsync(stream);
+                }
+                user.pathToProfilePic = Path.Combine(folderName, fileName);
+                await DbContext.SaveChangesAsync();
+
+                FoodPicUploadResponse data = new FoodPicUploadResponse()
+                {
+                    FileName = fileName,
+                    PathToPic = Path.Combine(folderName, fileName)
+                };
+                response = new Response(200, "File Uploaded Successfully", data, true);
+                return response;
+            }
+            response2 = new ResponseWithoutData(400, "Please provide a file for successful upload", false);
+            return response2;
+        }
     }
 }

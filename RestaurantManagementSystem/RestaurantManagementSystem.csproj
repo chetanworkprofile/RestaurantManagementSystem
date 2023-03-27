@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Assets\FoodPics\" />
     <Folder Include="Assets\ProfilePics\chef\" />
     <Folder Include="Assets\ProfilePics\admin\" />
     <Folder Include="Assets\ProfilePics\user\" />

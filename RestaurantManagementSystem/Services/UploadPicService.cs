@@ -82,13 +82,13 @@ namespace RestaurantManagementSystem.Services
                 {
                     file.CopyTo(stream);
                 }
-                user.pathToProfilePic = Path.Combine(folderName, fileName);
-                DbContext.SaveChanges();
+                /*user.pathToProfilePic = Path.Combine(folderName, fileName);
+                DbContext.SaveChanges();*/
 
                 ResponseUser responseUser = new ResponseUser(user.userId, user.firstName, user.lastName, user.email, user.phone, user.userRole, user.address, user.pathToProfilePic, user.createdAt, user.updatedAt);
                 PicUploadResponse data = new PicUploadResponse()
                 {
-                    User = responseUser,
+                    //User = responseUser,
                     FileName = fileName,
                     PathToPic = Path.Combine(folderName, fileName)
                 };

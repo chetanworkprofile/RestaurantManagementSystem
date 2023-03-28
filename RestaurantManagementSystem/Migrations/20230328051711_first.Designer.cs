@@ -12,7 +12,7 @@ using RestaurantManagementSystem.Data;
 namespace RestaurantManagementSystem.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20230327113005_first")]
+    [Migration("20230328051711_first")]
     partial class first
     {
         /// <inheritdoc />
@@ -39,6 +39,9 @@ namespace RestaurantManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("pathToPic")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -55,6 +58,53 @@ namespace RestaurantManagementSystem.Migrations
                     b.HasKey("foodId");
 
                     b.ToTable("Foods");
+                });
+
+            modelBuilder.Entity("RestaurantManagementSystem.Models.Order", b =>
+                {
+                    b.Property<Guid>("orderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("orderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("rejectAttempts")
+                        .HasColumnType("int");
+
+                    b.Property<string>("status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("totalPrice")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("userId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("orderId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("RestaurantManagementSystem.Models.OrderFoodMapping", b =>
+                {
+                    b.Property<Guid>("mapId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("foodId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("orderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("mapId");
+
+                    b.ToTable("OrderFoodMap");
                 });
 
             modelBuilder.Entity("RestaurantManagementSystem.Models.User", b =>
@@ -77,6 +127,9 @@ namespace RestaurantManagementSystem.Migrations
                     b.Property<string>("firstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isBlocked")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("isDeleted")
                         .HasColumnType("bit");

@@ -1,19 +1,28 @@
-2023-03-27 17:02:39,268  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+2023-03-28 10:47:50,629  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 SELECT 1
- 2023-03-27 17:02:39,292  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ 2023-03-28 10:47:50,648  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
- 2023-03-27 17:02:39,293  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ 2023-03-28 10:47:50,649  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 SELECT 1
- 2023-03-27 17:02:39,294  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ 2023-03-28 10:47:50,683  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+ 2023-03-28 10:47:50,683  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+ 2023-03-28 10:47:50,684  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
- 2023-03-27 17:02:39,305  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ 2023-03-28 10:47:50,691  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 SELECT [MigrationId], [ProductVersion]
 FROM [__EFMigrationsHistory]
 ORDER BY [MigrationId];
- 2023-03-27 17:02:39,316  INFO Microsoft.EntityFrameworkCore.Migrations.? [?] - MESSAGE: Applying migration '20230327113005_first'.
- 2023-03-27 17:02:39,340  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ 2023-03-28 10:47:50,697  INFO Microsoft.EntityFrameworkCore.Migrations.? [?] - MESSAGE: Applying migration '20230328051711_first'.
+ 2023-03-28 10:47:50,714  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 CREATE TABLE [Foods] (
     [foodId] uniqueidentifier NOT NULL,
+    [isDeleted] bit NOT NULL,
     [foodName] nvarchar(max) NOT NULL,
     [price] int NOT NULL,
     [timeToPrepare] time NOT NULL,
@@ -22,7 +31,25 @@ CREATE TABLE [Foods] (
     [pathToPic] nvarchar(max) NOT NULL,
     CONSTRAINT [PK_Foods] PRIMARY KEY ([foodId])
 );
- 2023-03-27 17:02:39,341  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ 2023-03-28 10:47:50,716  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [OrderFoodMap] (
+    [mapId] uniqueidentifier NOT NULL,
+    [orderId] uniqueidentifier NOT NULL,
+    [foodId] uniqueidentifier NOT NULL,
+    [quantity] int NOT NULL,
+    CONSTRAINT [PK_OrderFoodMap] PRIMARY KEY ([mapId])
+);
+ 2023-03-28 10:47:50,717  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Orders] (
+    [orderId] uniqueidentifier NOT NULL,
+    [userId] uniqueidentifier NOT NULL,
+    [status] nvarchar(max) NOT NULL,
+    [totalPrice] int NOT NULL,
+    [orderDate] datetime2 NOT NULL,
+    [rejectAttempts] int NOT NULL,
+    CONSTRAINT [PK_Orders] PRIMARY KEY ([orderId])
+);
+ 2023-03-28 10:47:50,718  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 CREATE TABLE [Users] (
     [userId] uniqueidentifier NOT NULL,
     [firstName] nvarchar(max) NOT NULL,
@@ -40,9 +67,10 @@ CREATE TABLE [Users] (
     [otpUsableTill] datetime2 NOT NULL,
     [verifiedAt] datetime2 NULL,
     [isDeleted] bit NOT NULL,
+    [isBlocked] bit NOT NULL,
     CONSTRAINT [PK_Users] PRIMARY KEY ([userId])
 );
- 2023-03-27 17:02:39,342  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ 2023-03-28 10:47:51,125  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20230327113005_first', N'7.0.4');
+VALUES (N'20230328051711_first', N'7.0.4');
  

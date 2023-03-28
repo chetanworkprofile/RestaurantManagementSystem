@@ -60,8 +60,8 @@ namespace RestaurantManagementSystem.Controllers
             {
                 string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
                 string? userId = User.FindFirstValue(ClaimTypes.Sid);
-                int statusCode = 0;
-                result = foodService.GetFoods(foodId, userId, token, searchString, category, OrderBy, SortOrder, RecordsPerPage, PageNumber, out int code);
+                int statusCode = 200;
+                result = foodService.GetFoods(foodId, userId, token, searchString, category, OrderBy, SortOrder, RecordsPerPage, PageNumber, out statusCode);
                 //result = adminService.GetUsers(userId,userType, token, UserId, searchString, Email, Phone, OrderBy, SortOrder, RecordsPerPage, PageNumber, out statusCode);
                 return StatusCode(statusCode, result);
             }

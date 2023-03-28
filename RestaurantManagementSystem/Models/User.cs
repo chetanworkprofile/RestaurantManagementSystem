@@ -18,7 +18,7 @@
         public DateTime otpUsableTill { get; set; }
         public DateTime? verifiedAt { get; set; }
         public bool isDeleted { get; set; }
-        //public bool isBlocked { get; set; } = false;
+        public bool isBlocked { get; set; } = false;
 
         public User() { }
         public User(Guid userId,string firstName, string lastName,string email,long phone, string userRole,string address, byte[] passwordHash,string pathToProfilePic,string token)
@@ -39,7 +39,7 @@
             otpUsableTill = DateTime.Now;
             verifiedAt = DateTime.Now;
             isDeleted = false;
-            //isBlocked= false;
+            isBlocked= false;
         }
     }
 }

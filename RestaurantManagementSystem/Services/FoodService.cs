@@ -70,11 +70,6 @@ namespace RestaurantManagementSystem.Services
 
             foods = foods.Where(t => t.isDeleted == false);     //remove deleted foods from list
 
-            if (category != "all" || category != null)
-            {
-                foods = foods.Where(t => t.category == category);
-            }
-
             if (token != userLoggedIn.token)
             {
                 response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
@@ -87,7 +82,7 @@ namespace RestaurantManagementSystem.Services
             if (foodId != null) { foods = foods.Where(s => (s.foodId == foodId)); }
             if (searchString != null) { foods = foods.Where(s => EF.Functions.Like(s.foodName, "%" + searchString + "%") || EF.Functions.Like(s.category, "%" + searchString + "%")); }
             //if (FirstName != null) { users = users.Where(s => (s.FirstName == FirstName)).ToList(); }
-            if (category != null || category != "all") { foods = foods.Where(s => (s.category == category)); }
+            if ( category != "all") { foods = foods.Where(s => (s.category == category)); }
 
             var foodsList = foods.ToList();
 

@@ -16,6 +16,7 @@ namespace RestaurantManagementSystem.Migrations
                 columns: table => new
                 {
                     foodId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    isDeleted = table.Column<bool>(type: "bit", nullable: false),
                     foodName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     price = table.Column<int>(type: "int", nullable: false),
                     timeToPrepare = table.Column<TimeSpan>(type: "time", nullable: false),
@@ -26,6 +27,36 @@ namespace RestaurantManagementSystem.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Foods", x => x.foodId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderFoodMap",
+                columns: table => new
+                {
+                    mapId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    orderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    foodId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    quantity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderFoodMap", x => x.mapId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    orderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    userId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    totalPrice = table.Column<int>(type: "int", nullable: false),
+                    orderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    rejectAttempts = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.orderId);
                 });
 
             migrationBuilder.CreateTable(
@@ -47,7 +78,8 @@ namespace RestaurantManagementSystem.Migrations
                     verificationOTP = table.Column<int>(type: "int", nullable: true),
                     otpUsableTill = table.Column<DateTime>(type: "datetime2", nullable: false),
                     verifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    isDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    isDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    isBlocked = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,6 +92,12 @@ namespace RestaurantManagementSystem.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Foods");
+
+            migrationBuilder.DropTable(
+                name: "OrderFoodMap");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Users");

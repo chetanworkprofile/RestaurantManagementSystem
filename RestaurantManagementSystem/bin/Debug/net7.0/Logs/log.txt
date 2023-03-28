@@ -1,15 +1,45 @@
-2023-03-28 11:02:12,174  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
- 2023-03-28 11:02:12,197  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
- 2023-03-28 11:02:12,197  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
- 2023-03-28 11:02:12,198  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
- 2023-03-28 11:02:12,198  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
- 2023-03-28 11:02:38,309  INFO RestaurantManagementSystem.Controllers.AdminController.GetFoods [58] - MESSAGE: Get foods method started
- 2023-03-28 11:02:39,120  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (36ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+2023-03-28 19:38:30,907  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
+ 2023-03-28 19:38:30,930  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
+ 2023-03-28 19:38:30,931  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
+ 2023-03-28 19:38:30,932  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
+ 2023-03-28 19:38:30,932  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
+ 2023-03-28 19:38:50,300  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [59] - MESSAGE: User Login attempt
+ 2023-03-28 19:38:51,107  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (36ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+WHERE [u].[email] = @__request_email_0
+ 2023-03-28 19:38:51,348  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [token] = @p0
+OUTPUT 1
+WHERE [userId] = @p1;
+ 2023-03-28 19:39:09,388  INFO RestaurantManagementSystem.Controllers.AdminController.GetOrdersAsAdmin [36] - MESSAGE: Get foods method started
+ 2023-03-28 19:39:09,429  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
 SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
 FROM [Users] AS [u]
 WHERE [u].[userId] = @__get_Item_0
- 2023-03-28 11:02:39,221  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT [f].[foodId], [f].[category], [f].[foodName], [f].[isDeleted], [f].[pathToPic], [f].[price], [f].[status], [f].[timeToPrepare]
-FROM [Foods] AS [f]
-WHERE [f].[isDeleted] = CAST(0 AS bit)
+ 2023-03-28 19:39:09,436  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [o].[orderId], [o].[orderDate], [o].[rejectAttempts], [o].[status], [o].[totalPrice], [o].[userId]
+FROM [Orders] AS [o]
+ 2023-03-28 19:39:09,455  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
+FROM [OrderFoodMap] AS [o]
+WHERE [o].[orderId] = @__order_orderId_0
+ 2023-03-28 19:39:09,459  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
+FROM [OrderFoodMap] AS [o]
+WHERE [o].[orderId] = @__order_orderId_0
+ 2023-03-28 19:39:09,460  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
+FROM [OrderFoodMap] AS [o]
+WHERE [o].[orderId] = @__order_orderId_0
+ 2023-03-28 19:39:09,461  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
+FROM [OrderFoodMap] AS [o]
+WHERE [o].[orderId] = @__order_orderId_0
+ 2023-03-28 19:39:09,462  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
+FROM [OrderFoodMap] AS [o]
+WHERE [o].[orderId] = @__order_orderId_0
  

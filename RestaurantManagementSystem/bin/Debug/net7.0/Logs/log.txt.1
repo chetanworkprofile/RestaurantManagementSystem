@@ -1,15 +1,8 @@
-2023-03-28 10:59:15,935  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
- 2023-03-28 10:59:15,958  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
- 2023-03-28 10:59:15,958  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
- 2023-03-28 10:59:15,959  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
- 2023-03-28 10:59:15,959  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
- 2023-03-28 10:59:26,606  INFO RestaurantManagementSystem.Controllers.AdminController.GetFoods [58] - MESSAGE: Get foods method started
- 2023-03-28 10:59:27,435  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (41ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
-WHERE [u].[userId] = @__get_Item_0
- 2023-03-28 10:59:27,547  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT [f].[foodId], [f].[category], [f].[foodName], [f].[isDeleted], [f].[pathToPic], [f].[price], [f].[status], [f].[timeToPrepare]
-FROM [Foods] AS [f]
-WHERE [f].[isDeleted] = CAST(1 AS bit)
+2023-03-28 19:38:09,701  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
+ 2023-03-28 19:38:09,729  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
+ 2023-03-28 19:38:09,730  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
+ 2023-03-28 19:38:09,731  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
+ 2023-03-28 19:38:09,731  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
+ 2023-03-28 19:38:14,618  INFO RestaurantManagementSystem.Controllers.AdminController.GetOrdersAsAdmin [36] - MESSAGE: Get foods method started
+ 2023-03-28 19:38:14,648 ERROR RestaurantManagementSystem.Controllers.AdminController.GetOrdersAsAdmin [42] - MESSAGE: Internal server error 
  

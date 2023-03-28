@@ -4,6 +4,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RestaurantManagementSystem.Data;
+using RestaurantManagementSystem.Hubs;
 using RestaurantManagementSystem.Services;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
@@ -85,6 +86,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUploadPicService, UploadPicService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IFoodService, FoodService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 var app = builder.Build();
 
@@ -123,7 +125,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 //socket hub mapping 
-//app.MapHub<ChatAppHub>("/chatHubs");
+app.MapHub<RestaurantHub>("/foodHub");
 
 app.MapControllers();
 

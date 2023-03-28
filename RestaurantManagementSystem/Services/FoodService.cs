@@ -28,13 +28,13 @@ namespace RestaurantManagementSystem.Services
             //-----------------------------------------------------------------------------------------------------------------//
             //-----------------model validations--------------------------------------//
 
-            string regexPatternFirstName = "^[A-Z][a-zA-Z]*$";
+            /*string regexPatternFirstName = "^[A-Z][a-zA-Z]*$";
             if (!Regex.IsMatch(inpFood.foodName, regexPatternFirstName))
             {
                 response2 = new ResponseWithoutData(400, "Please Enter Valid Name", false);
                 code = 400;
                 return response2;
-            }
+            }*/
             string regexPatternPhone = "^[0-9]*$";
             if (!Regex.IsMatch(inpFood.price.ToString(), regexPatternPhone))
             {

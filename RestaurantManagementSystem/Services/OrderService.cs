@@ -39,7 +39,7 @@ namespace RestaurantManagementSystem.Services
             //var foods = DbContext.Foods.AsQueryable();
             //var orderFoodMap = DbContext.OrderFoodMap.AsQueryable();
             //ord1erFoodMap = orderFoodMap.Where()
-            //--------------------------filtering based on userId,searchString, Email, or Phone---------------------------------//
+            //--------------------------filtering based on userId,status etc---------------------------------//
 
             if (orderId != null) { orders = orders.Where(s => (s.orderId == orderId)); }
             if (userId != null) { orders = orders.Where(s => (s.userId == new Guid(userId))); }

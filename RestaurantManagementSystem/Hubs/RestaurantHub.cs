@@ -45,7 +45,7 @@ namespace RestaurantManagementSystem.Hubs
                     AddUserConnectionId(userId);
                     //await Clients.Client(adminId).SendAsync("GetOnlineUsers");
                     await Clients.All.SendAsync("GetOnlineUsers");
-                    await Clients.All.SendAsync("mes",new PlaceOrder());
+                    /*await Clients.All.SendAsync("mes",new PlaceOrder());*/
                 }
                 catch(Exception ex)
                 {
@@ -181,9 +181,11 @@ namespace RestaurantManagementSystem.Hubs
 
                 Order order = new Order(Guid.NewGuid(), userId, "queued", inpPlacedOrder.totalPrice, DateTime.Now);
                 await DbContext.Orders.AddAsync(order);
+                //int totalPrice = 0;
                 foreach (var a in inpPlacedOrder.list)
                 {
                     OrderFoodMapping temp = new OrderFoodMapping(Guid.NewGuid(), order.orderId, a.foodId, a.quantity);
+                    //var food = DbContext.Foods.Find()
                     await DbContext.OrderFoodMap.AddAsync(temp);
                 }
                 DbContext.SaveChangesAsync();
@@ -197,7 +199,7 @@ namespace RestaurantManagementSystem.Hubs
             catch (Exception ex)
             {
 
-                await Clients.Caller.SendAsync("message", ex);
+                await Clients.Caller.SendAsync("MessageError", ex);
             }
 
         }
@@ -241,7 +243,7 @@ namespace RestaurantManagementSystem.Hubs
                 else
                 {
                     var onlineChefs = OnlineUsersService();     //get length generate random number assign to that chef
-                    onlineChefs = onlineChefs.Where(s => s.userRole == "chef").ToList();
+                    onlineChefs = onlineChefs.Where(s => s.userRole == "chef" && s.isActive == true).ToList();
                     int length = onlineChefs.Count();
                     if (length <= 0)
                     {
@@ -267,6 +269,17 @@ namespace RestaurantManagementSystem.Hubs
             OrderOutput orderOutput = new OrderOutput(order);
             await Clients.Client(GetConnectionIdByUser(order.userId.ToString())).SendAsync("UserOrderStatus", orderOutput);
             await Clients.Caller.SendAsync("Message", "Order submitted successfully");
+        }
+
+        public async Task ChefChangeFoodStatus(ChangeFoodStatus inp)       // true - available  false - not available
+        {
+            Guid foodGuid = new Guid(inp.foodId);
+            Food food= DbContext.Foods.Find(foodGuid);
+            food.status = inp.status;
+            DbContext.SaveChangesAsync();
+            FoodResponse foodOutput = new FoodResponse(food);
+            //await Clients.Client(GetConnectionIdByUser(order.userId.ToString())).SendAsync("UserOrderStatus", orderOutput);
+            await Clients.All.SendAsync("GetFoods",food);
         }
 
         // ---------------------------------  service functions goes here --------------------------------------------------------------//

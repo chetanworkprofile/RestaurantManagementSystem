@@ -10,7 +10,7 @@ namespace RestaurantManagementSystem.Models
         public string foodName { get; set; } = string.Empty;
         public int price { get; set; } = 0;
         public TimeSpan timeToPrepare { get; set; } = TimeSpan.Zero;
-        public bool status { get; set; } = false;
+        public bool status { get; set; } = false;           //1 - available  0 - not available
         public string category { get; set; } = string.Empty;
         public string pathToPic { get; set; } = string.Empty;
 

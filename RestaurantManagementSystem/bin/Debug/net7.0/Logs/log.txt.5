@@ -1,10 +1,10 @@
-2023-03-29 16:33:17,498  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
- 2023-03-29 16:33:17,524  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
- 2023-03-29 16:33:17,525  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
- 2023-03-29 16:33:17,526  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
- 2023-03-29 16:33:17,526  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
- 2023-03-29 16:33:25,412  INFO RestaurantManagementSystem.Controllers.AuthController.RegisterUser [43] - MESSAGE: User registration attempt
- 2023-03-29 16:33:25,875  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (25ms) [Parameters=[@__inpUser_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+2023-03-29 16:33:36,221  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
+ 2023-03-29 16:33:36,246  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
+ 2023-03-29 16:33:36,247  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
+ 2023-03-29 16:33:36,247  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
+ 2023-03-29 16:33:36,247  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
+ 2023-03-29 16:33:43,187  INFO RestaurantManagementSystem.Controllers.AuthController.RegisterUser [43] - MESSAGE: User registration attempt
+ 2023-03-29 16:33:43,992  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (28ms) [Parameters=[@__inpUser_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
 SELECT CASE
     WHEN EXISTS (
         SELECT 1
@@ -12,4 +12,9 @@ SELECT CASE
         WHERE [u].[email] = @__inpUser_email_0) THEN CAST(1 AS bit)
     ELSE CAST(0 AS bit)
 END
+ 2023-03-29 16:33:44,044  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (2ms) [Parameters=[@__inpUser_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+WHERE [u].[email] = @__inpUser_email_0
+ 2023-03-29 16:33:44,095 ERROR RestaurantManagementSystem.Controllers.AuthController.RegisterUser [45] - MESSAGE: Internal server error 
  

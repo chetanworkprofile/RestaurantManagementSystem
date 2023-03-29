@@ -51,7 +51,7 @@ namespace RestaurantManagementSystem.Services
             //-----------------------------------------------------------------------------------------------------------------//
 
             //create new food object to add into database
-            var food = new Food(Guid.NewGuid(), inpFood.foodName, inpFood.price, inpFood.timeToPrepare, false, inpFood.category, inpFood.pathToPic);
+            var food = new Food(Guid.NewGuid(), inpFood.foodName, inpFood.price, inpFood.timeToPrepare, true, inpFood.category, inpFood.pathToPic);
 
             DbContext.Foods.Add(food);
             DbContext.SaveChanges();

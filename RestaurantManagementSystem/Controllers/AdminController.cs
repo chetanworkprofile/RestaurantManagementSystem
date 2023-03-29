@@ -93,6 +93,26 @@ namespace RestaurantManagementSystem.Controllers
             }
         }
 
-        
+        [HttpDelete, Authorize(Roles = "admin")]
+        [Route("/api/v1/admin/ToggleBlockUser")]
+        public IActionResult ToggleBlockUser(string userId)             //add chef uses service 
+        {
+            try
+            {
+                _logger.LogInformation("Removing user attempt with id " + userId);
+                string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+                int statusCode = 0;
+                result = adminService.ToggleBlockUser(userId, token, out statusCode);
+                return StatusCode(statusCode, result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Internal server error ", ex.Message);
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
+                return StatusCode(500, response2);
+            }
+        }
+
+
     }
 }

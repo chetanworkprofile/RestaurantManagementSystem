@@ -211,5 +211,46 @@ namespace RestaurantManagementSystem.Services
             }
 
         }
+
+        public Object ToggleBlockUser(string userId, string token, out int code)
+        {
+            Guid id = new Guid(userId);
+            User? user = DbContext.Users.Find(id);
+            User admin = DbContext.Users.Where(s => (s.userRole == "admin")).First();
+            if (token != admin.token)
+            {
+                response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
+                code = 401;
+                return response2;
+            }
+
+            if (user != null && user.isDeleted == false)
+            {
+                string res;
+                if (user.isBlocked == false)
+                {
+                    user.isBlocked = true;
+                    res = "User/Chef Blocked successfully";
+                }
+                else
+                {
+                    user.isBlocked = false;
+                    res = "User/Chef UnBlocked successfully";
+                }
+                user.token = string.Empty;
+                DbContext.SaveChanges();
+
+                response2 = new ResponseWithoutData(200, res, true);
+                code = 200;
+                return response2;
+            }
+            else
+            {
+                response2 = new ResponseWithoutData(404, "User/Chef Not found", false);
+                code = 404;
+                return response2;
+            }
+
+        }
     }
 }

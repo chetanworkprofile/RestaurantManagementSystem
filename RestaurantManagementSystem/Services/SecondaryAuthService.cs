@@ -33,8 +33,8 @@ namespace RestaurantManagementSystem.Services
                 MailMessage message = new MailMessage();
 
                 // set the sender and recipient email addresses
-                message.From = new MailAddress("verification@chatapp.chicmic.co.in");
-                message.Subject = "Mail Verification by ChatApplication. Verify your account";
+                message.From = new MailAddress("verification@Restaurant.chicmic.co.in");
+                message.Subject = "Mail Verification by Restaurant Management System. Verify your account";
                 message.To.Add(new MailAddress(email));
 
                 // set the subject and body of the email

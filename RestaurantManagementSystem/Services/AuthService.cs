@@ -38,6 +38,7 @@ namespace RestaurantManagementSystem.Services
         {
             var DbUsers = DbContext.Users;
             bool existingUser = DbUsers.Where(u => u.email == inpUser.email).Any();
+            
             if (!existingUser)
             {
                 //-----------------------------------------------------------------------------------------------------------------//
@@ -90,6 +91,13 @@ namespace RestaurantManagementSystem.Services
             }
             else
             {
+                User userFound = DbUsers.Where(u => u.email == inpUser.email).First();
+                if (userFound.isBlocked == true || userFound.isDeleted == true)
+                {
+                    response2 = new ResponseWithoutData(401, "Account with this email is blocked/deleted", false);
+                    code = 401;
+                    return response2;
+                }
                 response2 = new ResponseWithoutData(400, "Email already registered please try another", false);
                 code = 400;
                 return response2;
@@ -119,6 +127,12 @@ namespace RestaurantManagementSystem.Services
             {
                 response2 = new ResponseWithoutData(404, "User not found", false);
                 code = 404;
+                return response2;
+            }
+            if (user.isBlocked == true || user.isDeleted == true)
+            {
+                response2 = new ResponseWithoutData(401, "Account with this email is blocked/deleted", false);
+                code = 401;
                 return response2;
             }
             else if (request.password == null)

@@ -146,5 +146,104 @@ namespace RestaurantManagementSystem.Services
             code = 200;
             return response;
         }
+
+        public Object DeleteFood(string userId, string token, Guid foodId, out int code)
+        {
+            Guid id = new Guid(userId);
+            User? user = DbContext.Users.Find(id);
+            if (token != user.token)
+            {
+                response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
+                code = 401;
+                return response2;
+            }
+            //Guid foodGuid = new Guid(foodId);
+            Food food = DbContext.Foods.Find(foodId);
+            if (food != null && food.isDeleted == false)
+            {
+                food.isDeleted = true;
+                DbContext.SaveChanges();
+
+                response2 = new ResponseWithoutData(200, "Food deleted successfully", true);
+                code = 200;
+                return response2;
+            }
+            else
+            {
+                response2 = new ResponseWithoutData(404, "Food Not found", false);
+                code = 404;
+                return response2;
+            }
+
+        }
+
+        public Object UpdateFood(string userId, UpdateFood f, string tokenloggedin, out int code)
+        {
+            Guid id = new Guid(userId);
+            User? user = DbContext.Users.Find(id);
+
+            if (tokenloggedin != user.token)
+            {
+                response2 = new ResponseWithoutData(401, "Invalid/expired token. Login First", false);
+                code = 401;
+                return response2;
+            }
+            if(f.foodId == null || f.foodId == Guid.Empty)
+            {
+                response2 = new ResponseWithoutData(400, "Invalid input. Please enter valid Food id", false);
+                code = 400;
+                return response2;
+            }
+            Food food = DbContext.Foods.Find(f.foodId);
+            if (food != null && food.isDeleted == false)
+            {
+                if (f.foodName != "string" && f.foodName != string.Empty)
+                {
+                    food.foodName = f.foodName;
+                }
+                if (f.category != "string" && f.category != string.Empty)
+                {
+                    food.category = f.category;
+                }
+                if (f.pathToPic != "string" && f.pathToPic != string.Empty)
+                {
+                    food.pathToPic = f.pathToPic;
+                }
+                if (f.price != -1 && f.price != 0)
+                {
+                    food.price = f.price;
+                }
+                if (f.timeToPrepare != -1 && f.timeToPrepare != 0)
+                {
+                    int hours = 0;
+                    int mins = 0;
+                    int secs = 0;
+                    if (f.timeToPrepare > 60)
+                    {
+                        hours = f.timeToPrepare / 60;
+                        mins = f.timeToPrepare % 60;
+                    }
+                    else
+                    {
+                        mins = f.timeToPrepare;
+                    }
+                    food.timeToPrepare  = new TimeSpan(hours, mins, secs); 
+                }
+
+                DbContext.SaveChanges();
+                FoodResponse foodResponse = new FoodResponse(food);
+
+                /*await DbContext.SaveChangesAsync();*/
+                response = new Response(200, "Food updated successfully", foodResponse, true);
+                code = 200;
+                return response;
+            }
+            else
+            {
+                response2 = new ResponseWithoutData(404, $"Food with id {f.foodId} not found", false);
+                code = 404;
+                return response2;
+            }
+        }
     }
 }

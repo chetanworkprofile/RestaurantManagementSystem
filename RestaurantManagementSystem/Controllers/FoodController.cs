@@ -71,19 +71,19 @@ namespace RestaurantManagementSystem.Controllers
                 response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
                 return StatusCode(500, response2);
             }
-        } 
-        /*  
-        [HttpPut, Authorize(Roles = "user,chef,admin")]
-        [Route("/api/v1/update")]
-        public IActionResult UpdateUser(UpdateUser u)
+        }
+
+        [HttpPut, Authorize(Roles = "chef,admin")]
+        [Route("/api/v1/food/update")]
+        public IActionResult UpdateFood(UpdateFood u)
         {
-            _logger.LogInformation("Update user method started");
+            _logger.LogInformation("Update Food method started");
             try
             {
                 string? userId = User.FindFirstValue(ClaimTypes.Sid);
                 string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
                 int statusCode = 0;
-                result = userService.UpdateUser(userId, u, token, out statusCode);
+                result = foodService.UpdateFood(userId, u, token, out statusCode);
 
                 return StatusCode(statusCode, result);
             }
@@ -95,17 +95,17 @@ namespace RestaurantManagementSystem.Controllers
             }
         }
 
-        [HttpDelete, Authorize(Roles = "user,chef")]
-        [Route("/api/v1/usernchef/delete")]
-        public IActionResult DeleteUser(string Password)
+        [HttpDelete, Authorize(Roles = "admin")]
+        [Route("/api/v1/food/delete")]
+        public IActionResult DeleteFood(Guid foodId)
         {
-            _logger.LogInformation("Delete Student method started");
+            _logger.LogInformation("Delete food method started");
             try
             {
                 string? userId = User.FindFirstValue(ClaimTypes.Sid);
                 string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
                 int statusCode = 0;
-                result = userService.DeleteUser(userId, token, Password, out statusCode);
+                result = foodService.DeleteFood(userId, token, foodId, out statusCode);
                 return StatusCode(statusCode, result);
             }
             catch (Exception ex)
@@ -114,7 +114,7 @@ namespace RestaurantManagementSystem.Controllers
                 response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
                 return StatusCode(500, response2);
             }
-        }*/
+        }
 
     }
 }

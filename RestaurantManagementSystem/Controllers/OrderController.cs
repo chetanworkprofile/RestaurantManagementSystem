@@ -30,8 +30,8 @@ namespace RestaurantManagementSystem.Controllers
 
         [HttpGet, Authorize(Roles = "admin")]
         //[HttpGet]
-        [Route("/api/v1/order/get")]
-        public IActionResult GetOrdersAsAdmin(Guid? orderId = null, string? userId = null, string? status = "all", String OrderBy = "Id", int SortOrder = 1, int RecordsPerPage = 100, int PageNumber = 0)          // sort order   ===   e1 for ascending  -1 for descending
+        [Route("/api/v1/order/adminGet")]
+        public IActionResult GetOrdersAsAdmin(Guid? orderId = null, string? userId = null, string? status = "all", String OrderBy = "Id", int SortOrder = 1, int RecordsPerPage = 20, int PageNumber = 1)          // sort order   ===   e1 for ascending  -1 for descending
         {
             _logger.LogInformation("Get foods method started");
             try
@@ -50,5 +50,26 @@ namespace RestaurantManagementSystem.Controllers
             }
         }
 
+        [HttpGet, Authorize(Roles = "user")]
+        //[HttpGet]
+        [Route("/api/v1/order/userGet")]
+        public IActionResult GetOrdersAsUser(Guid? orderId = null, string? status = "all", String OrderBy = "Id", int SortOrder = 1, int RecordsPerPage = 20, int PageNumber = 1)          // sort order   ===   e1 for ascending  -1 for descending
+        {
+            _logger.LogInformation("Get foods method started");
+            try
+            {
+                string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+                string? loggedInUserId = User.FindFirstValue(ClaimTypes.Sid);
+                int statusCode = 200;
+                result = orderService.GetOrdersAsUser(orderId, loggedInUserId, token, status, OrderBy, SortOrder, RecordsPerPage, PageNumber, out statusCode);
+                return StatusCode(statusCode, result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Internal server error ", ex.Message);
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
+                return StatusCode(500, response2);
+            }
+        }
     }
 }

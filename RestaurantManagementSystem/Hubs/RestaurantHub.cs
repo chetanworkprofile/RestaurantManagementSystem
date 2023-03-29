@@ -279,7 +279,7 @@ namespace RestaurantManagementSystem.Hubs
             DbContext.SaveChangesAsync();
             FoodResponse foodOutput = new FoodResponse(food);
             //await Clients.Client(GetConnectionIdByUser(order.userId.ToString())).SendAsync("UserOrderStatus", orderOutput);
-            await Clients.All.SendAsync("GetFoods",food);
+            await Clients.All.SendAsync("UpdateFoods",food);
         }
 
         // ---------------------------------  service functions goes here --------------------------------------------------------------//

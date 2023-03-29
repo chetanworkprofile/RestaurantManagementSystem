@@ -37,13 +37,13 @@ namespace RestaurantManagementSystem.Services
                 //-----------------------------------------------------------------------------------------------------------------//
                 //-----------------model validations--------------------------------------//
 
-                string regexPatternFirstName = "^[A-Z][a-zA-Z]*$";
+                /*string regexPatternFirstName = "^[A-Z][a-zA-Z]*$";
                 if (!Regex.IsMatch(inpUser.firstName, regexPatternFirstName))
                 {
                     response2 = new ResponseWithoutData(400, "Please Enter Valid Name", false);
                     code = 400;
                     return response2;
-                }
+                }*/
                 string regexPatternEmail = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
                 if (!Regex.IsMatch(inpUser.email, regexPatternEmail))
                 {
@@ -130,7 +130,11 @@ namespace RestaurantManagementSystem.Services
             {
                 orderBy = x => x.userId;
             }
-            else if (OrderBy == "FirstName" || OrderBy == "Name" || OrderBy == "firstname")
+            else if (OrderBy == "FirstName" || OrderBy == "Name" || OrderBy == "firstname" || OrderBy == "firstName")
+            {
+                orderBy = x => x.firstName;
+            }
+            else if (OrderBy == "LastName" || OrderBy == "lastname" || OrderBy == "lastName")
             {
                 orderBy = x => x.firstName;
             }

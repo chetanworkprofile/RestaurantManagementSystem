@@ -53,7 +53,7 @@ namespace RestaurantManagementSystem.Controllers
 
         [HttpGet, Authorize(Roles = "user,chef,admin")]
         [Route("/api/v1/food/get")]
-        public IActionResult GetFoods(Guid? foodId = null, string? searchString = null, string? category = "all", String OrderBy = "Id", int SortOrder = 1, int RecordsPerPage = 100, int PageNumber = 0)          // sort order   ===   e1 for ascending  -1 for descending
+        public IActionResult GetFoods(Guid? foodId = null, string? searchString = null, string? category = "all", String OrderBy = "Id", int SortOrder = 1, int RecordsPerPage = 15, int PageNumber = 1)          // sort order   ===   e1 for ascending  -1 for descending
         {
             _logger.LogInformation("Get foods method started");
             try

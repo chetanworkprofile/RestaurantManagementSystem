@@ -74,7 +74,7 @@ namespace RestaurantManagementSystem.Controllers
         //[HttpGet, Authorize(Roles = "admin")]
         [HttpGet, Authorize(Roles = "admin")]
         [Route("/api/v1/admin/get")]
-        public IActionResult GetUsers(Guid? UserId = null, string userType = "all", string? searchString = null, string? Email = null, long Phone = -1, String OrderBy = "Id", int SortOrder = 1, int RecordsPerPage = 100, int PageNumber = 0)          // sort order   ===   e1 for ascending  -1 for descending
+        public IActionResult GetUsers(Guid? UserId = null, string userType = "all", string? searchString = null, string? Email = null, long Phone = -1, String OrderBy = "Id", int SortOrder = 1, int RecordsPerPage = 30, int PageNumber = 1)          // sort order   ===   e1 for ascending  -1 for descending
         {
             _logger.LogInformation("Get users method started");
             try

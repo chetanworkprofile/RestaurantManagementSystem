@@ -1,8 +1,28 @@
-2023-03-28 19:38:09,701  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
- 2023-03-28 19:38:09,729  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
- 2023-03-28 19:38:09,730  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
- 2023-03-28 19:38:09,731  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
- 2023-03-28 19:38:09,731  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
- 2023-03-28 19:38:14,618  INFO RestaurantManagementSystem.Controllers.AdminController.GetOrdersAsAdmin [36] - MESSAGE: Get foods method started
- 2023-03-28 19:38:14,648 ERROR RestaurantManagementSystem.Controllers.AdminController.GetOrdersAsAdmin [42] - MESSAGE: Internal server error 
+2023-03-29 10:54:47,413  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
+ 2023-03-29 10:54:47,436  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
+ 2023-03-29 10:54:47,437  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
+ 2023-03-29 10:54:47,437  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
+ 2023-03-29 10:54:47,437  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
+ 2023-03-29 10:54:53,687  INFO string.MoveNext [41] - MESSAGE: New User connected to socket 4-P0NIVzzOadrEyBWBHcAA
+ 2023-03-29 10:54:53,687  INFO string.MoveNext [41] - MESSAGE: New User connected to socket FxO96603-PQBe626aqIJ2A
+ 2023-03-29 10:54:53,690  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary edeb06fd-86d6-4006-8098-e87aab45a2c8
+ 2023-03-29 10:54:53,690  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
+ 2023-03-29 10:54:53,691  INFO string.AddUserToList [104] - MESSAGE: Add user : edeb06fd-86d6-4006-8098-e87aab45a2c8 connection id: 4-P0NIVzzOadrEyBWBHcAA
+ 2023-03-29 10:54:53,692  INFO string.AddUserToList [104] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: FxO96603-PQBe626aqIJ2A
+ 2023-03-29 10:55:02,518  INFO string.MoveNext [71] - MESSAGE: user disconnected
+ 2023-03-29 10:55:03,266  INFO string.MoveNext [41] - MESSAGE: New User connected to socket BQKS1HJzzkwd3JHOGNuOaA
+ 2023-03-29 10:55:03,266  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary edeb06fd-86d6-4006-8098-e87aab45a2c8
+ 2023-03-29 10:55:03,267  INFO string.AddUserToList [104] - MESSAGE: Add user : edeb06fd-86d6-4006-8098-e87aab45a2c8 connection id: BQKS1HJzzkwd3JHOGNuOaA
+ 2023-03-29 10:55:24,130  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (33ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [f].[foodId], [f].[category], [f].[foodName], [f].[isDeleted], [f].[pathToPic], [f].[price], [f].[status], [f].[timeToPrepare]
+FROM [Foods] AS [f]
+WHERE [f].[foodId] = @__get_Item_0
+ 2023-03-29 10:55:24,271  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (13ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (DbType = Boolean)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Foods] SET [status] = @p0
+OUTPUT 1
+WHERE [foodId] = @p1;
+ 2023-03-29 10:56:01,137  INFO string.MoveNext [71] - MESSAGE: user disconnected
+ 2023-03-29 10:56:02,182  INFO string.MoveNext [71] - MESSAGE: user disconnected
  

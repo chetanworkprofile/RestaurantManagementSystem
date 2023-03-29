@@ -77,8 +77,8 @@ namespace RestaurantManagementSystem.Services
             //pagination
             ordersList = ordersList.Skip((PageNumber - 1) * RecordsPerPage)
                                   .Take(RecordsPerPage).ToList();
-
-            List<OrderOutputAll> res = new List<OrderOutputAll>();
+            int count = ordersList.Count;
+            List<OrderOutputAll> list = new List<OrderOutputAll>();
 
             foreach (var order in ordersList)
             {
@@ -91,15 +91,16 @@ namespace RestaurantManagementSystem.Services
                     foodsList.Add(temp);
                 }
                 OrderOutputAll r = new OrderOutputAll(order,foodsList);
-                res.Add(r);
+                list.Add(r);
             }
 
-            if (!res.Any())
+            if (!list.Any())
             {
                 response2 = new ResponseWithoutData(404, "No order found.", true);
                 code = 404;
                 return response2;
             }
+            DataListForGet res = new DataListForGet(count, list);
             response = new Response(200, "Orders list fetched", res, true);
             code = 200;
             return response;
@@ -155,8 +156,8 @@ namespace RestaurantManagementSystem.Services
             //pagination
             ordersList = ordersList.Skip((PageNumber - 1) * RecordsPerPage)
                                   .Take(RecordsPerPage).ToList();
-
-            List<OrderOutputAll> res = new List<OrderOutputAll>();
+            int count = ordersList.Count;
+            List<OrderOutputAll> list = new List<OrderOutputAll>();
 
             foreach (var order in ordersList)
             {
@@ -169,15 +170,16 @@ namespace RestaurantManagementSystem.Services
                     foodsList.Add(temp);
                 }
                 OrderOutputAll r = new OrderOutputAll(order, foodsList);
-                res.Add(r);
+                list.Add(r);
             }
 
-            if (!res.Any())
+            if (!list.Any())
             {
                 response2 = new ResponseWithoutData(404, "No order found.", true);
                 code = 404;
                 return response2;
             }
+            DataListForGet res = new DataListForGet(count, list);
             response = new Response(200, "Orders list fetched", res, true);
             code = 200;
             return response;

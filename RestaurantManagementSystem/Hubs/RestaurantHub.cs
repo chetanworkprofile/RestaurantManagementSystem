@@ -26,7 +26,7 @@ namespace RestaurantManagementSystem.Hubs
         //private readonly IConfiguration _configuration;
         private readonly ILogger<string> _logger;
         public static string adminUserId = "8F30D30D-9467-4F22-86AB-290EC4583691";
-        public string adminId;
+        //public string adminId;
 
         public RestaurantHub(RestaurantDbContext dbContext, ILogger<string> logger)
         {
@@ -155,29 +155,10 @@ namespace RestaurantManagementSystem.Hubs
         {
             try
             {
-                //make list of busy chefs add to it 
-                var onlineChefs = OnlineUsersService();     //get length generate random number assign to that chef
-                onlineChefs = onlineChefs.Where(s => s.userRole == "chef" && s.isActive==true).ToList();
                 var httpContext = Context.GetHttpContext();
                 var userIdString = httpContext.User.FindFirst(ClaimTypes.Sid)?.Value;
                 Guid userId = new Guid(userIdString);
-                /*foreach (var a in onlineChefs)
-                {
-                    if (BusyChefs.Contains(a.userId.ToString()))
-                    {
-                        onlineChefs.Remove(a);
-                    }
-                }*/
-                int length = onlineChefs.Count();
-                if (length <= 0)
-                {
-                    await Clients.Caller.SendAsync("Message", "No Chef available please try again later");
-                    return;
-                }
-                Random random = new Random();
-                int chefNum = random.Next(0, length);
-                ActiveUsers chefSelected = onlineChefs[chefNum];
-                //BusyChefs.Add(chefSelected.userId.ToString());
+
 
                 Order order = new Order(Guid.NewGuid(), userId, "queued", inpPlacedOrder.totalPrice, DateTime.Now);
                 await DbContext.Orders.AddAsync(order);
@@ -188,10 +169,16 @@ namespace RestaurantManagementSystem.Hubs
                     //var food = DbContext.Foods.Find()
                     await DbContext.OrderFoodMap.AddAsync(temp);
                 }
-                DbContext.SaveChangesAsync();
+                DbContext.SaveChanges();
+
+                string chefId = SelectChef();
+                if(chefId == null)
+                {
+                    await Clients.Caller.SendAsync("Message", "No Chef available please try again later");
+                    return;
+                }
 
                 OrderOutput res = new OrderOutput(order);
-                string chefId = GetConnectionIdByUser(chefSelected.userId.ToString());
 
                 await Clients.Client(chefId).SendAsync("ChefReceivedOrder", res);
                 await Clients.Caller.SendAsync("UserOrderStatus", res);
@@ -199,7 +186,7 @@ namespace RestaurantManagementSystem.Hubs
             catch (Exception ex)
             {
 
-                await Clients.Caller.SendAsync("MessageError", ex);
+                _logger.LogError(ex.ToString());
             }
 
         }
@@ -207,7 +194,7 @@ namespace RestaurantManagementSystem.Hubs
         public async Task ChefConfirmOrder(ChefConfirmOrder a)
         {
             Guid orderGuid = new Guid(a.orderId);
-            Order order = DbContext.Orders.Find(orderGuid);
+            Order order = await DbContext.Orders.FindAsync(orderGuid);
 
             if (order == null)
             {
@@ -217,13 +204,14 @@ namespace RestaurantManagementSystem.Hubs
             if (a.accepted)
             {
                 order.status = "preparing";
-                DbContext.SaveChangesAsync();
+                await DbContext.SaveChangesAsync();
                 OrderOutput orderOutput = new OrderOutput(order);
                 TimeSpan totalTime = TimeSpan.Zero;
                 var orderMaps = DbContext.OrderFoodMap.Where(s=>s.orderId == orderGuid).ToList();
                 foreach (var map in orderMaps)
                 {
                     var food = DbContext.Foods.Find(map.foodId);
+                    //totalTime += food.timeToPrepare*map.quantity;
                     totalTime += food.timeToPrepare;
                 }
                 await Clients.Client(GetConnectionIdByUser(order.userId.ToString())).SendAsync("UserOrderStatus", orderOutput);
@@ -236,36 +224,33 @@ namespace RestaurantManagementSystem.Hubs
                 if(order.rejectAttempts >= 3 )
                 {
                     order.status = "rejected";
-                    DbContext.SaveChangesAsync();
+                    await DbContext.SaveChangesAsync();
                     OrderOutput orderOutput = new OrderOutput(order);
                     await Clients.Client(GetConnectionIdByUser(order.userId.ToString())).SendAsync("UserOrderStatus", orderOutput);
                 }
                 else
                 {
-                    var onlineChefs = OnlineUsersService();     //get length generate random number assign to that chef
-                    onlineChefs = onlineChefs.Where(s => s.userRole == "chef" && s.isActive == true).ToList();
-                    int length = onlineChefs.Count();
-                    if (length <= 0)
+                    string chefId = SelectChef();
+                    if (chefId == null)
                     {
-                        await Clients.Caller.SendAsync("Message", "No Chef available please try again later");
+                        string userId = GetConnectionIdByUser(order.userId.ToString());
+                        await Clients.Client(userId).SendAsync("Message", "No Chef available please try again later");
+                        await DbContext.SaveChangesAsync();
                         return;
                     }
-                    Random random = new Random();
-                    int chefNum = random.Next(0, length);
-                    ActiveUsers chefSelected = onlineChefs[chefNum];
                     OrderOutput res = new OrderOutput(order);
-                    string chefId = GetConnectionIdByUser(chefSelected.userId.ToString());
                     await Clients.Client(chefId).SendAsync("ChefReceivedOrder", res);
                 }
+                await DbContext.SaveChangesAsync();
             }
         }
 
         public async Task ChefCompletesOrder(string orderId)
         {
             Guid orderGuid = new Guid(orderId);
-            Order order = DbContext.Orders.Find(orderGuid);
+            Order order = await DbContext.Orders.FindAsync(orderGuid);
             order.status = "completed";
-            DbContext.SaveChangesAsync();
+            await DbContext.SaveChangesAsync();
             OrderOutput orderOutput = new OrderOutput(order);
             await Clients.Client(GetConnectionIdByUser(order.userId.ToString())).SendAsync("UserOrderStatus", orderOutput);
             await Clients.Caller.SendAsync("Message", "Order submitted successfully");
@@ -304,6 +289,32 @@ namespace RestaurantManagementSystem.Hubs
             var adminActive = activeList.Where(s => s.userId == loggedInUserId).First();
             activeList.Remove(adminActive);
             return activeList;
+        }
+
+        public string SelectChef()
+        {
+            /*foreach (var a in onlineChefs)
+                {
+                    if (BusyChefs.Contains(a.userId.ToString()))
+                    {
+                        onlineChefs.Remove(a);
+                    }
+                }*/
+
+            //make list of busy chefs add to it 
+            var onlineChefs = OnlineUsersService();     //get length generate random number assign to that chef
+            onlineChefs = onlineChefs.Where(s => s.userRole == "chef" && s.isActive == true).ToList();
+            int length = onlineChefs.Count();
+            if (length <= 0)
+            {
+                return null;
+            }
+            Random random = new Random();
+            int chefNum = random.Next(0, length);
+            ActiveUsers chefSelected = onlineChefs[chefNum];
+            //BusyChefs.Add(chefSelected.userId.ToString());
+            string chefId = GetConnectionIdByUser(chefSelected.userId.ToString());
+            return chefId;
         }
 
 

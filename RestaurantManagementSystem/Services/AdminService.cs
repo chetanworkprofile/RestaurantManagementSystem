@@ -160,21 +160,22 @@ namespace RestaurantManagementSystem.Services
             //pagination
             users = users.Skip((PageNumber - 1) * RecordsPerPage)
                                   .Take(RecordsPerPage).ToList();
-
-            List<ResponseUser> res = new List<ResponseUser>();
+            int count = users.Count;
+            List<ResponseUser> list = new List<ResponseUser>();
 
             foreach (var user in users)
             {
                 ResponseUser r = new ResponseUser(user.userId, user.firstName, user.lastName, user.email, user.phone, user.userRole, user.address, user.pathToProfilePic, user.createdAt, user.updatedAt);
-                res.Add(r);
+                list.Add(r);
             }
 
-            if (!res.Any())
+            if (!list.Any())
             {
                 response2 = new ResponseWithoutData(404, "No User found.", true);
                 code= 404;
                 return response2;
             }
+            DataListForGet res = new DataListForGet(count, list);
             response = new Response(200, "Users list fetched", res, true);
             code = 200;
             return response;

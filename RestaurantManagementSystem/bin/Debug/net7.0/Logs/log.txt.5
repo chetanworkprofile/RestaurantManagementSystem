@@ -1,171 +1,124 @@
-2023-03-29 10:32:31,603  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
- 2023-03-29 10:32:31,631  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
- 2023-03-29 10:32:31,632  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
- 2023-03-29 10:32:31,633  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
- 2023-03-29 10:32:31,633  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
- 2023-03-29 10:36:15,985  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [59] - MESSAGE: User Login attempt
- 2023-03-29 10:36:16,494  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (22ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
-WHERE [u].[email] = @__request_email_0
- 2023-03-29 10:36:16,652  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SET IMPLICIT_TRANSACTIONS OFF;
-SET NOCOUNT ON;
-UPDATE [Users] SET [token] = @p0
-OUTPUT 1
-WHERE [userId] = @p1;
- 2023-03-29 10:36:36,855  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [59] - MESSAGE: User Login attempt
- 2023-03-29 10:36:36,878  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (9ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
-WHERE [u].[email] = @__request_email_0
- 2023-03-29 10:36:36,882  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SET IMPLICIT_TRANSACTIONS OFF;
-SET NOCOUNT ON;
-UPDATE [Users] SET [token] = @p0
-OUTPUT 1
-WHERE [userId] = @p1;
- 2023-03-29 10:36:52,145  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [59] - MESSAGE: User Login attempt
- 2023-03-29 10:36:52,183  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
-WHERE [u].[email] = @__request_email_0
- 2023-03-29 10:36:52,185  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SET IMPLICIT_TRANSACTIONS OFF;
-SET NOCOUNT ON;
-UPDATE [Users] SET [token] = @p0
-OUTPUT 1
-WHERE [userId] = @p1;
- 2023-03-29 10:37:07,576  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [59] - MESSAGE: User Login attempt
- 2023-03-29 10:37:07,579  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
-WHERE [u].[email] = @__request_email_0
- 2023-03-29 10:37:07,583  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SET IMPLICIT_TRANSACTIONS OFF;
-SET NOCOUNT ON;
-UPDATE [Users] SET [token] = @p0
-OUTPUT 1
-WHERE [userId] = @p1;
- 2023-03-29 10:37:16,172  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [59] - MESSAGE: User Login attempt
- 2023-03-29 10:37:16,175  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
-WHERE [u].[email] = @__request_email_0
- 2023-03-29 10:37:40,187  INFO RestaurantManagementSystem.Controllers.AdminController.GetFoods [58] - MESSAGE: Get foods method started
- 2023-03-29 10:37:40,213  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (8ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
-WHERE [u].[userId] = @__get_Item_0
- 2023-03-29 10:37:40,220  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT [f].[foodId], [f].[category], [f].[foodName], [f].[isDeleted], [f].[pathToPic], [f].[price], [f].[status], [f].[timeToPrepare]
-FROM [Foods] AS [f]
-WHERE [f].[isDeleted] = CAST(0 AS bit)
- 2023-03-29 10:38:10,364  INFO RestaurantManagementSystem.Controllers.AdminController.GetOrdersAsAdmin [36] - MESSAGE: Get foods method started
- 2023-03-29 10:38:10,366  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
-WHERE [u].[userId] = @__get_Item_0
- 2023-03-29 10:38:10,370  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT [o].[orderId], [o].[orderDate], [o].[rejectAttempts], [o].[status], [o].[totalPrice], [o].[userId]
-FROM [Orders] AS [o]
- 2023-03-29 10:38:10,380  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
-FROM [OrderFoodMap] AS [o]
-WHERE [o].[orderId] = @__order_orderId_0
- 2023-03-29 10:38:10,382  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
-FROM [OrderFoodMap] AS [o]
-WHERE [o].[orderId] = @__order_orderId_0
- 2023-03-29 10:38:10,382  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
-FROM [OrderFoodMap] AS [o]
-WHERE [o].[orderId] = @__order_orderId_0
- 2023-03-29 10:38:10,383  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
-FROM [OrderFoodMap] AS [o]
-WHERE [o].[orderId] = @__order_orderId_0
- 2023-03-29 10:38:10,384  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
-FROM [OrderFoodMap] AS [o]
-WHERE [o].[orderId] = @__order_orderId_0
- 2023-03-29 10:43:54,909  INFO string.MoveNext [41] - MESSAGE: New User connected to socket 3po7QS8Xnu2zEPVWXEkR8Q
- 2023-03-29 10:43:54,910  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
- 2023-03-29 10:43:54,911  INFO string.AddUserToList [104] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: 3po7QS8Xnu2zEPVWXEkR8Q
- 2023-03-29 10:44:27,029  INFO string.MoveNext [41] - MESSAGE: New User connected to socket UBe6rMWsyoBGm94g25-hUg
- 2023-03-29 10:44:27,060  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary edeb06fd-86d6-4006-8098-e87aab45a2c8
- 2023-03-29 10:44:27,061  INFO string.AddUserToList [104] - MESSAGE: Add user : edeb06fd-86d6-4006-8098-e87aab45a2c8 connection id: UBe6rMWsyoBGm94g25-hUg
- 2023-03-29 10:45:34,122  INFO string.MoveNext [148] - MESSAGE: Online Users method started
- 2023-03-29 10:45:34,146  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
- 2023-03-29 10:46:40,173  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
- 2023-03-29 10:46:40,219  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p5='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SET IMPLICIT_TRANSACTIONS OFF;
-SET NOCOUNT ON;
-INSERT INTO [Orders] ([orderId], [orderDate], [rejectAttempts], [status], [totalPrice], [userId])
-VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
- 2023-03-29 10:49:26,262  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (11ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [o].[orderId], [o].[orderDate], [o].[rejectAttempts], [o].[status], [o].[totalPrice], [o].[userId]
-FROM [Orders] AS [o]
-WHERE [o].[orderId] = @__get_Item_0
- 2023-03-29 10:49:26,266  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
-FROM [Users] AS [u]
- 2023-03-29 10:50:47,310  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (10ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [o].[orderId], [o].[orderDate], [o].[rejectAttempts], [o].[status], [o].[totalPrice], [o].[userId]
-FROM [Orders] AS [o]
-WHERE [o].[orderId] = @__get_Item_0
- 2023-03-29 10:50:47,318  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (5ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SET IMPLICIT_TRANSACTIONS OFF;
-SET NOCOUNT ON;
-UPDATE [Orders] SET [status] = @p0
-OUTPUT 1
-WHERE [orderId] = @p1;
- 2023-03-29 10:50:47,321 ERROR Microsoft.EntityFrameworkCore.Query.? [?] - MESSAGE: An exception occurred while iterating over the results of a query for context type 'RestaurantManagementSystem.Data.RestaurantDbContext'.
+2023-03-29 13:35:52,912  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
+ 2023-03-29 13:35:52,935  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
+ 2023-03-29 13:35:52,936  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
+ 2023-03-29 13:35:52,936  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
+ 2023-03-29 13:35:52,937  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
+ 2023-03-29 13:35:57,110  INFO string.MoveNext [41] - MESSAGE: New User connected to socket Mles35aKVNDop_Gyn9ZsUA
+ 2023-03-29 13:35:57,112  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary edeb06fd-86d6-4006-8098-e87aab45a2c8
+ 2023-03-29 13:35:57,112  INFO string.AddUserToList [104] - MESSAGE: Add user : edeb06fd-86d6-4006-8098-e87aab45a2c8 connection id: Mles35aKVNDop_Gyn9ZsUA
+ 2023-03-29 13:35:59,385  INFO string.MoveNext [41] - MESSAGE: New User connected to socket scATv1yHbDTiGjhLPu8Ekw
+ 2023-03-29 13:35:59,386  INFO string.MoveNext [41] - MESSAGE: New User connected to socket zO-zHPsUS599wRSlvrIvzQ
+ 2023-03-29 13:35:59,387  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
+ 2023-03-29 13:35:59,387  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary 3ad1eb9a-e548-4be4-8bb4-d7e024912628
+ 2023-03-29 13:35:59,387  INFO string.AddUserToList [104] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: scATv1yHbDTiGjhLPu8Ekw
+ 2023-03-29 13:35:59,388  INFO string.AddUserToList [104] - MESSAGE: Add user : 3ad1eb9a-e548-4be4-8bb4-d7e024912628 connection id: zO-zHPsUS599wRSlvrIvzQ
+ 2023-03-29 13:36:32,841 ERROR Microsoft.EntityFrameworkCore.Query.? [?] - MESSAGE: An exception occurred while iterating over the results of a query for context type 'RestaurantManagementSystem.Data.RestaurantDbContext'.
 System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
    at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
    at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
  System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
    at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
    at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
-2023-03-29 10:50:47,359 ERROR Microsoft.AspNetCore.SignalR.Internal.DefaultHubDispatcher.? [?] - MESSAGE: Failed to invoke hub method 'ChefConfirmOrder'.
+2023-03-29 13:36:32,867 ERROR Microsoft.AspNetCore.SignalR.HubConnectionContext.? [?] - MESSAGE: Failed writing message. Aborting connection.
+ System.NotSupportedException: Serialization and deserialization of 'System.Reflection.MethodBase' instances are not supported. Path: $.TargetSite.
+ ---> System.NotSupportedException: Serialization and deserialization of 'System.Reflection.MethodBase' instances are not supported.
+   at System.Text.Json.Serialization.Converters.UnsupportedTypeConverter`1.Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ThrowNotSupportedException(WriteStack& state, NotSupportedException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCoreAsObject(Utf8JsonWriter writer, Object value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.JsonSerializer.WriteCoreAsObject(Utf8JsonWriter writer, Object value, JsonTypeInfo jsonTypeInfo)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteArguments(Object[] arguments, Utf8JsonWriter writer)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteInvocationMessage(InvocationMessage message, Utf8JsonWriter writer)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteMessageCore(HubMessage message, IBufferWriter`1 stream)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteMessage(HubMessage message, IBufferWriter`1 output)
+   at Microsoft.AspNetCore.SignalR.HubConnectionContext.WriteCore(HubMessage message, CancellationToken cancellationToken)
+2023-03-29 13:36:32,872  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (58ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid), @p5='?' (DbType = DateTime2), @p6='?' (DbType = Int32), @p7='?' (Size = 4000), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [OrderFoodMap] ([mapId], [foodId], [orderId], [quantity])
+VALUES (@p0, @p1, @p2, @p3);
+INSERT INTO [Orders] ([orderId], [orderDate], [rejectAttempts], [status], [totalPrice], [userId])
+VALUES (@p4, @p5, @p6, @p7, @p8, @p9);
+ 2023-03-29 13:36:32,878  INFO string.MoveNext [71] - MESSAGE: user disconnected
+ 2023-03-29 13:36:32,904  INFO string.MoveNext [41] - MESSAGE: New User connected to socket IJCSWuSOzJFKABNHmXZ60A
+ 2023-03-29 13:36:32,906  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
+ 2023-03-29 13:36:32,906  INFO string.AddUserToList [104] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: IJCSWuSOzJFKABNHmXZ60A
+ 2023-03-29 13:36:32,910 ERROR Microsoft.EntityFrameworkCore.Database.Transaction.? [?] - MESSAGE: An error occurred using a transaction.
+ 2023-03-29 13:36:41,793 ERROR Microsoft.EntityFrameworkCore.Query.? [?] - MESSAGE: An exception occurred while iterating over the results of a query for context type 'RestaurantManagementSystem.Data.RestaurantDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
  System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
    at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
    at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
-   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
-   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
-   at RestaurantManagementSystem.Hubs.RestaurantHub.ChefConfirmOrder(ChefConfirmOrder a) in C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\Hubs\RestaurantHub.cs:line 221
-   at Microsoft.AspNetCore.SignalR.Internal.DefaultHubDispatcher`1.ExecuteMethod(ObjectMethodExecutor methodExecutor, Hub hub, Object[] arguments)
-   at Microsoft.AspNetCore.SignalR.Internal.DefaultHubDispatcher`1.<Invoke>g__ExecuteInvocation|18_0(DefaultHubDispatcher`1 dispatcher, ObjectMethodExecutor methodExecutor, THub hub, Object[] arguments, AsyncServiceScope scope, IHubActivator`1 hubActivator, HubConnectionContext connection, HubMethodInvocationMessage hubMethodInvocationMessage, Boolean isStreamCall)
-2023-03-29 10:51:09,513  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [o].[orderId], [o].[orderDate], [o].[rejectAttempts], [o].[status], [o].[totalPrice], [o].[userId]
-FROM [Orders] AS [o]
-WHERE [o].[orderId] = @__get_Item_0
- 2023-03-29 10:51:09,516  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[@__orderGuid_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
-FROM [OrderFoodMap] AS [o]
-WHERE [o].[orderId] = @__orderGuid_0
- 2023-03-29 10:52:21,806  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (16ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [o].[orderId], [o].[orderDate], [o].[rejectAttempts], [o].[status], [o].[totalPrice], [o].[userId]
-FROM [Orders] AS [o]
-WHERE [o].[orderId] = @__get_Item_0
- 2023-03-29 10:52:21,814 ERROR Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Failed executing DbCommand (6ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SET IMPLICIT_TRANSACTIONS OFF;
+2023-03-29 13:36:41,803  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid), @p5='?' (DbType = DateTime2), @p6='?' (DbType = Int32), @p7='?' (Size = 4000), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
 SET NOCOUNT ON;
-UPDATE [Orders] SET [status] = @p0
-OUTPUT 1
-WHERE [orderId] = @p1;
- 2023-03-29 10:53:51,161  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (10ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [f].[foodId], [f].[category], [f].[foodName], [f].[isDeleted], [f].[pathToPic], [f].[price], [f].[status], [f].[timeToPrepare]
-FROM [Foods] AS [f]
-WHERE [f].[foodId] = @__get_Item_0
- 2023-03-29 10:53:51,186 ERROR Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Failed executing DbCommand (19ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (DbType = Boolean)], CommandType='Text', CommandTimeout='30']
-SET IMPLICIT_TRANSACTIONS OFF;
+INSERT INTO [OrderFoodMap] ([mapId], [foodId], [orderId], [quantity])
+VALUES (@p0, @p1, @p2, @p3);
+INSERT INTO [Orders] ([orderId], [orderDate], [rejectAttempts], [status], [totalPrice], [userId])
+VALUES (@p4, @p5, @p6, @p7, @p8, @p9);
+ 2023-03-29 13:36:41,803 ERROR Microsoft.AspNetCore.SignalR.HubConnectionContext.? [?] - MESSAGE: Failed writing message. Aborting connection.
+ System.NotSupportedException: Serialization and deserialization of 'System.Reflection.MethodBase' instances are not supported. Path: $.TargetSite.
+ ---> System.NotSupportedException: Serialization and deserialization of 'System.Reflection.MethodBase' instances are not supported.
+   at System.Text.Json.Serialization.Converters.UnsupportedTypeConverter`1.Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ThrowNotSupportedException(WriteStack& state, NotSupportedException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCoreAsObject(Utf8JsonWriter writer, Object value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.JsonSerializer.WriteCoreAsObject(Utf8JsonWriter writer, Object value, JsonTypeInfo jsonTypeInfo)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteArguments(Object[] arguments, Utf8JsonWriter writer)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteInvocationMessage(InvocationMessage message, Utf8JsonWriter writer)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteMessageCore(HubMessage message, IBufferWriter`1 stream)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteMessage(HubMessage message, IBufferWriter`1 output)
+   at Microsoft.AspNetCore.SignalR.HubConnectionContext.WriteCore(HubMessage message, CancellationToken cancellationToken)
+2023-03-29 13:36:41,805  INFO string.MoveNext [71] - MESSAGE: user disconnected
+ 2023-03-29 13:36:41,855  INFO string.MoveNext [41] - MESSAGE: New User connected to socket f1ZYsTV7FTtrZ2IC4fjgCQ
+ 2023-03-29 13:36:41,855  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
+ 2023-03-29 13:36:41,856  INFO string.AddUserToList [104] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: f1ZYsTV7FTtrZ2IC4fjgCQ
+ 2023-03-29 13:37:07,546 ERROR Microsoft.EntityFrameworkCore.Query.? [?] - MESSAGE: An exception occurred while iterating over the results of a query for context type 'RestaurantManagementSystem.Data.RestaurantDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+ System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+2023-03-29 13:37:07,551  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid), @p5='?' (DbType = DateTime2), @p6='?' (DbType = Int32), @p7='?' (Size = 4000), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
 SET NOCOUNT ON;
-UPDATE [Foods] SET [status] = @p0
-OUTPUT 1
-WHERE [foodId] = @p1;
+INSERT INTO [OrderFoodMap] ([mapId], [foodId], [orderId], [quantity])
+VALUES (@p0, @p1, @p2, @p3);
+INSERT INTO [Orders] ([orderId], [orderDate], [rejectAttempts], [status], [totalPrice], [userId])
+VALUES (@p4, @p5, @p6, @p7, @p8, @p9);
+ 2023-03-29 13:37:07,630 ERROR Microsoft.AspNetCore.SignalR.HubConnectionContext.? [?] - MESSAGE: Failed writing message. Aborting connection.
+ System.NotSupportedException: Serialization and deserialization of 'System.Reflection.MethodBase' instances are not supported. Path: $.TargetSite.
+ ---> System.NotSupportedException: Serialization and deserialization of 'System.Reflection.MethodBase' instances are not supported.
+   at System.Text.Json.Serialization.Converters.UnsupportedTypeConverter`1.Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ThrowNotSupportedException(WriteStack& state, NotSupportedException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCoreAsObject(Utf8JsonWriter writer, Object value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.JsonSerializer.WriteCoreAsObject(Utf8JsonWriter writer, Object value, JsonTypeInfo jsonTypeInfo)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteArguments(Object[] arguments, Utf8JsonWriter writer)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteInvocationMessage(InvocationMessage message, Utf8JsonWriter writer)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteMessageCore(HubMessage message, IBufferWriter`1 stream)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteMessage(HubMessage message, IBufferWriter`1 output)
+   at Microsoft.AspNetCore.SignalR.HubConnectionContext.WriteCore(HubMessage message, CancellationToken cancellationToken)
+2023-03-29 13:37:07,632  INFO string.MoveNext [71] - MESSAGE: user disconnected
+ 2023-03-29 13:37:07,648  INFO string.MoveNext [41] - MESSAGE: New User connected to socket ysAo8veB7z0zK8URdijp1A
+ 2023-03-29 13:37:07,652  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
+ 2023-03-29 13:37:07,653  INFO string.AddUserToList [104] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: ysAo8veB7z0zK8URdijp1A
  

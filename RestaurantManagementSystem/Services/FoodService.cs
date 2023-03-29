@@ -126,21 +126,22 @@ namespace RestaurantManagementSystem.Services
             //pagination
             foodsList = foodsList.Skip((PageNumber - 1) * RecordsPerPage)
                                   .Take(RecordsPerPage).ToList();
-
-            List<FoodResponse> res = new List<FoodResponse>();
+            int count = foodsList.Count;
+            List<FoodResponse> list = new List<FoodResponse>();
 
             foreach (var food in foodsList)
             {
                 FoodResponse r = new FoodResponse(food);
-                res.Add(r);
+                list.Add(r);
             }
 
-            if (!res.Any())
+            if (!list.Any())
             {
                 response2 = new ResponseWithoutData(404, "No food found.", true);
                 code = 404;
                 return response2;
             }
+            DataListForGet res = new DataListForGet(count, list);
             response = new Response(200, "Foods list fetched", res, true);
             code = 200;
             return response;

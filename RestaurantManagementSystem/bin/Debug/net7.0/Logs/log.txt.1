@@ -1,38 +1,91 @@
-2023-03-29 11:55:03,760  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
- 2023-03-29 11:55:03,780  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
- 2023-03-29 11:55:03,781  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
- 2023-03-29 11:55:03,781  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
- 2023-03-29 11:55:03,781  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
- 2023-03-29 11:55:28,433  INFO RestaurantManagementSystem.Controllers.AdminController.GetOrdersAsAdmin [36] - MESSAGE: Get foods method started
- 2023-03-29 11:55:29,258  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (34ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+2023-03-29 14:09:55,082  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
+ 2023-03-29 14:09:55,105  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
+ 2023-03-29 14:09:55,106  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
+ 2023-03-29 14:09:55,107  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
+ 2023-03-29 14:09:55,107  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
+ 2023-03-29 14:11:35,252  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [59] - MESSAGE: User Login attempt
+ 2023-03-29 14:11:36,065  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (29ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
 SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
 FROM [Users] AS [u]
-WHERE [u].[userId] = @__get_Item_0
- 2023-03-29 11:55:29,349  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT [o].[orderId], [o].[orderDate], [o].[rejectAttempts], [o].[status], [o].[totalPrice], [o].[userId]
-FROM [Orders] AS [o]
- 2023-03-29 11:55:29,376  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
-FROM [OrderFoodMap] AS [o]
-WHERE [o].[orderId] = @__order_orderId_0
- 2023-03-29 11:55:29,380  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
-FROM [OrderFoodMap] AS [o]
-WHERE [o].[orderId] = @__order_orderId_0
- 2023-03-29 11:55:29,381  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
-FROM [OrderFoodMap] AS [o]
-WHERE [o].[orderId] = @__order_orderId_0
- 2023-03-29 11:55:29,382  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
-FROM [OrderFoodMap] AS [o]
-WHERE [o].[orderId] = @__order_orderId_0
- 2023-03-29 11:55:29,383  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
-FROM [OrderFoodMap] AS [o]
-WHERE [o].[orderId] = @__order_orderId_0
- 2023-03-29 11:55:29,384  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
-FROM [OrderFoodMap] AS [o]
-WHERE [o].[orderId] = @__order_orderId_0
+WHERE [u].[email] = @__request_email_0
+ 2023-03-29 14:11:36,318  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (8ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [token] = @p0
+OUTPUT 1
+WHERE [userId] = @p1;
+ 2023-03-29 14:11:49,099  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [59] - MESSAGE: User Login attempt
+ 2023-03-29 14:11:49,113  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+WHERE [u].[email] = @__request_email_0
+ 2023-03-29 14:11:49,126  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (9ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [token] = @p0
+OUTPUT 1
+WHERE [userId] = @p1;
+ 2023-03-29 14:12:01,456  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [59] - MESSAGE: User Login attempt
+ 2023-03-29 14:12:01,507  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (0ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+WHERE [u].[email] = @__request_email_0
+ 2023-03-29 14:12:01,509  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [token] = @p0
+OUTPUT 1
+WHERE [userId] = @p1;
+ 2023-03-29 14:12:58,734  INFO string.MoveNext [41] - MESSAGE: New User connected to socket 2A5dPA3p_8joAMZblRDuhw
+ 2023-03-29 14:12:58,736  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
+ 2023-03-29 14:12:58,737  INFO string.AddUserToList [104] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: 2A5dPA3p_8joAMZblRDuhw
+ 2023-03-29 14:13:01,712  INFO string.MoveNext [41] - MESSAGE: New User connected to socket YBWt2Gv5SNgxiCtI4beRwg
+ 2023-03-29 14:13:01,713  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary edeb06fd-86d6-4006-8098-e87aab45a2c8
+ 2023-03-29 14:13:01,713  INFO string.AddUserToList [104] - MESSAGE: Add user : edeb06fd-86d6-4006-8098-e87aab45a2c8 connection id: YBWt2Gv5SNgxiCtI4beRwg
+ 2023-03-29 14:13:04,604  INFO string.MoveNext [41] - MESSAGE: New User connected to socket m7CQ5V96ekPy0nzkPBSTGw
+ 2023-03-29 14:13:04,605  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary 3ad1eb9a-e548-4be4-8bb4-d7e024912628
+ 2023-03-29 14:13:04,606  INFO string.AddUserToList [104] - MESSAGE: Add user : 3ad1eb9a-e548-4be4-8bb4-d7e024912628 connection id: m7CQ5V96ekPy0nzkPBSTGw
+ 2023-03-29 14:15:24,332  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (20ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?' (DbType = Guid), @p7='?' (DbType = Int32), @p8='?' (DbType = Guid), @p9='?' (DbType = DateTime2), @p10='?' (DbType = Int32), @p11='?' (Size = 4000), @p12='?' (DbType = Int32), @p13='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [OrderFoodMap] ([mapId], [foodId], [orderId], [quantity])
+VALUES (@p0, @p1, @p2, @p3),
+(@p4, @p5, @p6, @p7);
+INSERT INTO [Orders] ([orderId], [orderDate], [rejectAttempts], [status], [totalPrice], [userId])
+VALUES (@p8, @p9, @p10, @p11, @p12, @p13);
+ 2023-03-29 14:15:24,335 ERROR Microsoft.EntityFrameworkCore.Query.? [?] - MESSAGE: An exception occurred while iterating over the results of a query for context type 'RestaurantManagementSystem.Data.RestaurantDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+ System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+2023-03-29 14:15:24,356 ERROR string.MoveNext [174] - MESSAGE: System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at RestaurantManagementSystem.Hubs.RestaurantHub.OnlineUsersService() in C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\Hubs\RestaurantHub.cs:line 276
+   at RestaurantManagementSystem.Hubs.RestaurantHub.SelectChef() in C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\Hubs\RestaurantHub.cs:line 304
+   at RestaurantManagementSystem.Hubs.RestaurantHub.UserPlaceOrder(PlaceOrder inpPlacedOrder) in C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\Hubs\RestaurantHub.cs:line 174
+ 2023-03-29 14:15:24,366 ERROR Microsoft.EntityFrameworkCore.Database.Transaction.? [?] - MESSAGE: An error occurred using a transaction.
+ 2023-03-29 14:16:42,506 ERROR Microsoft.EntityFrameworkCore.Query.? [?] - MESSAGE: An exception occurred while iterating over the results of a query for context type 'RestaurantManagementSystem.Data.RestaurantDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+ System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+2023-03-29 14:16:42,507  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p5='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Orders] ([orderId], [orderDate], [rejectAttempts], [status], [totalPrice], [userId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+ 2023-03-29 14:16:42,559 ERROR string.MoveNext [174] - MESSAGE: System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at RestaurantManagementSystem.Hubs.RestaurantHub.OnlineUsersService() in C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\Hubs\RestaurantHub.cs:line 276
+   at RestaurantManagementSystem.Hubs.RestaurantHub.SelectChef() in C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\Hubs\RestaurantHub.cs:line 304
+   at RestaurantManagementSystem.Hubs.RestaurantHub.UserPlaceOrder(PlaceOrder inpPlacedOrder) in C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\Hubs\RestaurantHub.cs:line 174
  

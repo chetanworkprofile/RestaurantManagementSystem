@@ -1,28 +1,63 @@
-2023-03-29 10:54:47,413  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
- 2023-03-29 10:54:47,436  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
- 2023-03-29 10:54:47,437  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
- 2023-03-29 10:54:47,437  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
- 2023-03-29 10:54:47,437  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
- 2023-03-29 10:54:53,687  INFO string.MoveNext [41] - MESSAGE: New User connected to socket 4-P0NIVzzOadrEyBWBHcAA
- 2023-03-29 10:54:53,687  INFO string.MoveNext [41] - MESSAGE: New User connected to socket FxO96603-PQBe626aqIJ2A
- 2023-03-29 10:54:53,690  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary edeb06fd-86d6-4006-8098-e87aab45a2c8
- 2023-03-29 10:54:53,690  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
- 2023-03-29 10:54:53,691  INFO string.AddUserToList [104] - MESSAGE: Add user : edeb06fd-86d6-4006-8098-e87aab45a2c8 connection id: 4-P0NIVzzOadrEyBWBHcAA
- 2023-03-29 10:54:53,692  INFO string.AddUserToList [104] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: FxO96603-PQBe626aqIJ2A
- 2023-03-29 10:55:02,518  INFO string.MoveNext [71] - MESSAGE: user disconnected
- 2023-03-29 10:55:03,266  INFO string.MoveNext [41] - MESSAGE: New User connected to socket BQKS1HJzzkwd3JHOGNuOaA
- 2023-03-29 10:55:03,266  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary edeb06fd-86d6-4006-8098-e87aab45a2c8
- 2023-03-29 10:55:03,267  INFO string.AddUserToList [104] - MESSAGE: Add user : edeb06fd-86d6-4006-8098-e87aab45a2c8 connection id: BQKS1HJzzkwd3JHOGNuOaA
- 2023-03-29 10:55:24,130  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (33ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [f].[foodId], [f].[category], [f].[foodName], [f].[isDeleted], [f].[pathToPic], [f].[price], [f].[status], [f].[timeToPrepare]
-FROM [Foods] AS [f]
-WHERE [f].[foodId] = @__get_Item_0
- 2023-03-29 10:55:24,271  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (13ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (DbType = Boolean)], CommandType='Text', CommandTimeout='30']
+2023-03-29 13:38:10,411  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
+ 2023-03-29 13:38:10,434  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
+ 2023-03-29 13:38:10,435  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
+ 2023-03-29 13:38:10,435  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
+ 2023-03-29 13:38:10,436  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
+ 2023-03-29 13:38:13,928  INFO string.MoveNext [41] - MESSAGE: New User connected to socket 08D7LkkhYvO7ImuHZZXN2g
+ 2023-03-29 13:38:13,930  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary edeb06fd-86d6-4006-8098-e87aab45a2c8
+ 2023-03-29 13:38:13,931  INFO string.AddUserToList [104] - MESSAGE: Add user : edeb06fd-86d6-4006-8098-e87aab45a2c8 connection id: 08D7LkkhYvO7ImuHZZXN2g
+ 2023-03-29 13:38:17,377  INFO string.MoveNext [41] - MESSAGE: New User connected to socket XzMSRSEPLQqCXXrpJzlURw
+ 2023-03-29 13:38:17,377  INFO string.MoveNext [41] - MESSAGE: New User connected to socket XrqEgjm8jdYglAzTlFelnQ
+ 2023-03-29 13:38:17,377  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary 3ad1eb9a-e548-4be4-8bb4-d7e024912628
+ 2023-03-29 13:38:17,377  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
+ 2023-03-29 13:38:17,378  INFO string.AddUserToList [104] - MESSAGE: Add user : 3ad1eb9a-e548-4be4-8bb4-d7e024912628 connection id: XzMSRSEPLQqCXXrpJzlURw
+ 2023-03-29 13:38:17,378  INFO string.AddUserToList [104] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: XrqEgjm8jdYglAzTlFelnQ
+ 2023-03-29 13:38:32,546 ERROR Microsoft.EntityFrameworkCore.Update.? [?] - MESSAGE: An exception occurred in the database while saving changes for context type 'RestaurantManagementSystem.Data.RestaurantDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+ System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2023-03-29 13:38:32,637 ERROR Microsoft.EntityFrameworkCore.Query.? [?] - MESSAGE: An exception occurred while iterating over the results of a query for context type 'RestaurantManagementSystem.Data.RestaurantDbContext'.
+System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+ System.InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+2023-03-29 13:38:32,672  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (29ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p5='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
 SET IMPLICIT_TRANSACTIONS OFF;
 SET NOCOUNT ON;
-UPDATE [Foods] SET [status] = @p0
-OUTPUT 1
-WHERE [foodId] = @p1;
- 2023-03-29 10:56:01,137  INFO string.MoveNext [71] - MESSAGE: user disconnected
- 2023-03-29 10:56:02,182  INFO string.MoveNext [71] - MESSAGE: user disconnected
+INSERT INTO [Orders] ([orderId], [orderDate], [rejectAttempts], [status], [totalPrice], [userId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+ 2023-03-29 13:38:32,674 ERROR Microsoft.AspNetCore.SignalR.HubConnectionContext.? [?] - MESSAGE: Failed writing message. Aborting connection.
+ System.NotSupportedException: Serialization and deserialization of 'System.Reflection.MethodBase' instances are not supported. Path: $.TargetSite.
+ ---> System.NotSupportedException: Serialization and deserialization of 'System.Reflection.MethodBase' instances are not supported.
+   at System.Text.Json.Serialization.Converters.UnsupportedTypeConverter`1.Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ThrowNotSupportedException(WriteStack& state, NotSupportedException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCoreAsObject(Utf8JsonWriter writer, Object value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.JsonSerializer.WriteCoreAsObject(Utf8JsonWriter writer, Object value, JsonTypeInfo jsonTypeInfo)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteArguments(Object[] arguments, Utf8JsonWriter writer)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteInvocationMessage(InvocationMessage message, Utf8JsonWriter writer)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteMessageCore(HubMessage message, IBufferWriter`1 stream)
+   at Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.WriteMessage(HubMessage message, IBufferWriter`1 output)
+   at Microsoft.AspNetCore.SignalR.HubConnectionContext.WriteCore(HubMessage message, CancellationToken cancellationToken)
+2023-03-29 13:38:32,680  INFO string.MoveNext [71] - MESSAGE: user disconnected
+ 2023-03-29 13:38:32,702  INFO string.MoveNext [41] - MESSAGE: New User connected to socket g5Yvt2qnvRVO-FxitrWiQg
+ 2023-03-29 13:38:32,703  INFO string.AddUserConnectionId [87] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
+ 2023-03-29 13:38:32,703  INFO string.AddUserToList [104] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: g5Yvt2qnvRVO-FxitrWiQg
  

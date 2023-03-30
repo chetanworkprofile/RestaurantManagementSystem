@@ -12,22 +12,24 @@
         public string pathToProfilePic { get; set; } = string.Empty;
         public DateTime? createdAt { get; set; }
         public DateTime? updatedAt { get; set; }
-        //public bool isBlocked { get; set; }
+        public bool isBlocked { get; set; } = false;
+        public bool isActive { get; set; } = false;
 
         public ResponseUser() { }
-        public ResponseUser(Guid userId, string firstName, string lastName, string email, long phone, string userRole, string address,string pathToProfilePic, DateTime createdAt, DateTime updatedaAt)
+        public ResponseUser(User user)
         {
-            this.userId = userId;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.email = email;
-            this.phone = phone;
-            this.userRole = userRole;
-            this.address = address;
-            this.pathToProfilePic = pathToProfilePic;
-            this.createdAt = createdAt;
-            this.updatedAt = updatedAt;
-            //this.isBlocked = isBlocked;
+            this.userId = user.userId;
+            this.firstName = user.firstName;
+            this.lastName = user.lastName;
+            this.email = user.email;
+            this.phone = user.phone;
+            this.userRole = user.userRole;
+            this.address = user.address;
+            this.pathToProfilePic = user.pathToProfilePic;
+            this.createdAt = user.createdAt;
+            this.updatedAt = user.updatedAt;
+            this.isBlocked = user.isBlocked;
+            this.isActive = false;
         }
     }
 }

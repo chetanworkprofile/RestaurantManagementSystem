@@ -156,16 +156,16 @@ namespace RestaurantManagementSystem.Services
             {
                 users = users.OrderByDescending(orderBy).Select(c => (c)).ToList();
             }
-
+            int count = users.Count;
             //pagination
             users = users.Skip((PageNumber - 1) * RecordsPerPage)
                                   .Take(RecordsPerPage).ToList();
-            int count = users.Count;
+           
             List<ResponseUser> list = new List<ResponseUser>();
 
             foreach (var user in users)
             {
-                ResponseUser r = new ResponseUser(user.userId, user.firstName, user.lastName, user.email, user.phone, user.userRole, user.address, user.pathToProfilePic, user.createdAt, user.updatedAt);
+                ResponseUser r = new ResponseUser(user);
                 list.Add(r);
             }
 

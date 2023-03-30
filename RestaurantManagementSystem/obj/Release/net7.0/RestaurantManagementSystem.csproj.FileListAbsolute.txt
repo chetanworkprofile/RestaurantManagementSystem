@@ -164,3 +164,6 @@ C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSys
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Release\net7.0\RestaurantManagementSystem.pdb
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Release\net7.0\RestaurantManagementSystem.genruntimeconfig.cache
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Release\net7.0\ref\RestaurantManagementSystem.dll
+C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\bin\Release\net7.0\FluentValidation.dll
+C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\bin\Release\net7.0\FluentValidation.AspNetCore.dll
+C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\bin\Release\net7.0\FluentValidation.DependencyInjectionExtensions.dll

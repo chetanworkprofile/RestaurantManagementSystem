@@ -7,6 +7,9 @@ C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSys
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Release\net7.0\PubTmp\Out\RestaurantManagementSystem.pdb
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Release\net7.0\PubTmp\Out\Azure.Core.dll
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Release\net7.0\PubTmp\Out\Azure.Identity.dll
+C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Release\net7.0\PubTmp\Out\FluentValidation.dll
+C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Release\net7.0\PubTmp\Out\FluentValidation.AspNetCore.dll
+C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Release\net7.0\PubTmp\Out\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Release\net7.0\PubTmp\Out\log4net.dll
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Release\net7.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\obj\Release\net7.0\PubTmp\Out\Microsoft.AspNetCore.OpenApi.dll

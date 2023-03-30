@@ -1,20 +1,38 @@
-2023-03-29 16:33:36,221  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
- 2023-03-29 16:33:36,246  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
- 2023-03-29 16:33:36,247  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
- 2023-03-29 16:33:36,247  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
- 2023-03-29 16:33:36,247  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
- 2023-03-29 16:33:43,187  INFO RestaurantManagementSystem.Controllers.AuthController.RegisterUser [43] - MESSAGE: User registration attempt
- 2023-03-29 16:33:43,992  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (28ms) [Parameters=[@__inpUser_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SELECT CASE
-    WHEN EXISTS (
-        SELECT 1
-        FROM [Users] AS [u]
-        WHERE [u].[email] = @__inpUser_email_0) THEN CAST(1 AS bit)
-    ELSE CAST(0 AS bit)
-END
- 2023-03-29 16:33:44,044  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (2ms) [Parameters=[@__inpUser_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
-SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+2023-03-30 15:26:48,095  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
+ 2023-03-30 15:26:48,114  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
+ 2023-03-30 15:26:48,115  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
+ 2023-03-30 15:26:48,116  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
+ 2023-03-30 15:26:48,116  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
+ 2023-03-30 15:27:21,981  INFO string.MoveNext [42] - MESSAGE: New User connected to socket wEzEtv1GlBsRTQmE0TySNg
+ 2023-03-30 15:27:21,983  INFO string.AddUserConnectionId [99] - MESSAGE: User added to online dictionary 8f30d30d-9467-4f22-86ab-290ec4583691
+ 2023-03-30 15:27:21,984  INFO string.AddUserToList [116] - MESSAGE: Add user : 8f30d30d-9467-4f22-86ab-290ec4583691 connection id: wEzEtv1GlBsRTQmE0TySNg
+ 2023-03-30 15:27:21,985  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: wEzEtv1GlBsRTQmE0TySNg
+ 2023-03-30 15:27:25,629  INFO string.MoveNext [42] - MESSAGE: New User connected to socket j8S_AQgy_JYZJTSYp1AV4w
+ 2023-03-30 15:27:25,629  INFO string.AddUserConnectionId [99] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
+ 2023-03-30 15:27:25,630  INFO string.AddUserToList [116] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: j8S_AQgy_JYZJTSYp1AV4w
+ 2023-03-30 15:27:25,630  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: wEzEtv1GlBsRTQmE0TySNg
+ 2023-03-30 15:27:27,725  INFO string.MoveNext [42] - MESSAGE: New User connected to socket xmTebq0vomIrTwgTPD6ZRw
+ 2023-03-30 15:27:27,726  INFO string.AddUserConnectionId [99] - MESSAGE: User added to online dictionary 5c1109d6-5258-43bf-8faa-b2ef88b21fe3
+ 2023-03-30 15:27:27,726  INFO string.AddUserToList [116] - MESSAGE: Add user : 5c1109d6-5258-43bf-8faa-b2ef88b21fe3 connection id: xmTebq0vomIrTwgTPD6ZRw
+ 2023-03-30 15:27:27,727  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: wEzEtv1GlBsRTQmE0TySNg
+ 2023-03-30 15:27:38,328  INFO string.MoveNext [160] - MESSAGE: Online Users method started
+ 2023-03-30 15:27:38,776  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (19ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
 FROM [Users] AS [u]
-WHERE [u].[email] = @__inpUser_email_0
- 2023-03-29 16:33:44,095 ERROR RestaurantManagementSystem.Controllers.AuthController.RegisterUser [45] - MESSAGE: Internal server error 
+ 2023-03-30 15:27:38,829  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+ 2023-03-30 15:28:51,600  INFO string.MoveNext [160] - MESSAGE: Online Users method started
+ 2023-03-30 15:28:51,611  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+ 2023-03-30 15:28:51,616  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+ 2023-03-30 15:30:10,848  INFO string.MoveNext [77] - MESSAGE: user disconnected
+ 2023-03-30 15:30:10,849  INFO string.MoveNext [81] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: 
+ 2023-03-30 15:30:11,809  INFO string.MoveNext [42] - MESSAGE: New User connected to socket pDkx4JUQeqAL-YvdOFhAxg
+ 2023-03-30 15:30:11,811  INFO string.AddUserConnectionId [99] - MESSAGE: User added to online dictionary 8f30d30d-9467-4f22-86ab-290ec4583691
+ 2023-03-30 15:30:11,811  INFO string.AddUserToList [116] - MESSAGE: Add user : 8f30d30d-9467-4f22-86ab-290ec4583691 connection id: pDkx4JUQeqAL-YvdOFhAxg
+ 2023-03-30 15:30:11,812  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: pDkx4JUQeqAL-YvdOFhAxg
  

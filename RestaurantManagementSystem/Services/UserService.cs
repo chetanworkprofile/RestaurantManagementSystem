@@ -48,7 +48,7 @@ namespace RestaurantManagementSystem.Services
                 return response2;
             }
 
-            ResponseUser r = new ResponseUser(userLoggedIn.userId, userLoggedIn.firstName, userLoggedIn.lastName, userLoggedIn.email, userLoggedIn.phone,userLoggedIn.userRole, userLoggedIn.address, userLoggedIn.pathToProfilePic, userLoggedIn.createdAt, userLoggedIn.updatedAt);
+            ResponseUser r = new ResponseUser(userLoggedIn);
 
             response = new Response(200, "User fetched", r, true);
             code = 200;

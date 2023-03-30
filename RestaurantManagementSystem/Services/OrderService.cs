@@ -73,11 +73,11 @@ namespace RestaurantManagementSystem.Services
             {
                 ordersList = ordersList.OrderByDescending(orderBy).Select(c => (c)).ToList();
             }
-
+            int count = ordersList.Count;
             //pagination
             ordersList = ordersList.Skip((PageNumber - 1) * RecordsPerPage)
                                   .Take(RecordsPerPage).ToList();
-            int count = ordersList.Count;
+            
             List<OrderOutputAll> list = new List<OrderOutputAll>();
 
             foreach (var order in ordersList)
@@ -152,11 +152,11 @@ namespace RestaurantManagementSystem.Services
             {
                 ordersList = ordersList.OrderByDescending(orderBy).Select(c => (c)).ToList();
             }
-
+            int count = ordersList.Count;
             //pagination
             ordersList = ordersList.Skip((PageNumber - 1) * RecordsPerPage)
                                   .Take(RecordsPerPage).ToList();
-            int count = ordersList.Count;
+            
             List<OrderOutputAll> list = new List<OrderOutputAll>();
 
             foreach (var order in ordersList)

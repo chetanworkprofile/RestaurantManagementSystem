@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using System.Security.Claims;
 using Azure.Core;
+using FluentValidation;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace RestaurantManagementSystem.Controllers
 {
@@ -23,16 +27,27 @@ namespace RestaurantManagementSystem.Controllers
         object result = new object();                                   //object to match both response models in return values from function
         private readonly ILogger<AuthController> _logger;
 
+        //private readonly IValidator<User> _userValidator;
+
         public AuthController(IConfiguration configuration, RestaurantDbContext dbContext, ILogger<AuthController> logger)          //constructor
         {
             authService = new AuthService(configuration, dbContext, logger);
             _logger = logger;
+            //_userValidator = validator;
         }
 
         [HttpPost]
         [Route("/api/v1/user/register")]
         public IActionResult RegisterUser([FromBody] RegisterUser inpUser)             //register user function uses authService to create a new user in db
         {
+            /*byte[] a = new byte[9302193];
+            var user = new User(Guid.NewGuid(), inpUser.firstName, inpUser.lastName, inpUser.email, inpUser.phone, "user", inpUser.address, a, inpUser.pathToProfilePic, "sdasda");
+            var validationResult = _userValidator.Validate(user);
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors.Select(e => new ResponseWithoutData(400, e.ErrorMessage,false)).First();
+                return BadRequest(errors);
+            }*/
             if (!ModelState.IsValid)
             {   //checks for validation of model
                 response2 = new ResponseWithoutData(400, "Invalid Input/One or more fields are invalid", false);

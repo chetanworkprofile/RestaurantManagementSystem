@@ -85,7 +85,7 @@ namespace RestaurantManagementSystem.Services
                 /*user.pathToProfilePic = Path.Combine(folderName, fileName);
                 DbContext.SaveChanges();*/
 
-                ResponseUser responseUser = new ResponseUser(user.userId, user.firstName, user.lastName, user.email, user.phone, user.userRole, user.address, user.pathToProfilePic, user.createdAt, user.updatedAt);
+                ResponseUser responseUser = new ResponseUser(user);
                 PicUploadResponse data = new PicUploadResponse()
                 {
                     //User = responseUser,

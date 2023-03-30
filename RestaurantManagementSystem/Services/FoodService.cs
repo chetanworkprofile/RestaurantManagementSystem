@@ -122,11 +122,11 @@ namespace RestaurantManagementSystem.Services
             {
                 foodsList = foodsList.OrderByDescending(orderBy).Select(c => (c)).ToList();
             }
-
+            int count = foodsList.Count;
             //pagination
             foodsList = foodsList.Skip((PageNumber - 1) * RecordsPerPage)
                                   .Take(RecordsPerPage).ToList();
-            int count = foodsList.Count;
+            
             List<FoodResponse> list = new List<FoodResponse>();
 
             foreach (var food in foodsList)

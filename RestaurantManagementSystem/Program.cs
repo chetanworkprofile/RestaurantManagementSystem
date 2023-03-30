@@ -1,13 +1,21 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RestaurantManagementSystem.Data;
 using RestaurantManagementSystem.Hubs;
+using RestaurantManagementSystem.Models;
 using RestaurantManagementSystem.Services;
+using RestaurantManagementSystem.Validations;
 using Swashbuckle.AspNetCore.Filters;
+using System.Reflection;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +26,22 @@ builder.Logging.ClearProviders();
 builder.Logging.AddLog4Net();
 
 builder.Services.AddControllers();
+    /*.ConfigureApiBehaviorOptions(options =>
+    {
+        options.InvalidModelStateResponseFactory = context =>
+        {
+            var errors = context.ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => JsonSerializer.Deserialize<Error>(e.ErrorMessage));
+
+            return new BadRequestObjectResult(errors);
+        };
+    })
+    .AddFluentValidation(config =>
+{
+    config.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+});*/
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -87,6 +111,10 @@ builder.Services.AddScoped<IUploadPicService, UploadPicService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IFoodService, FoodService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+
+/*builder.Services.AddTransient<IValidatorInterceptor, CustomErrorInterceptor>();
+
+builder.Services.AddScoped<IValidator<User>, UserValidator>();*/
 
 var app = builder.Build();
 

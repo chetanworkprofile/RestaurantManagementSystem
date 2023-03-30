@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.IdentityModel.Tokens;
 using RestaurantManagementSystem.Controllers;
 using RestaurantManagementSystem.Data;
 using RestaurantManagementSystem.Models;
@@ -25,8 +26,8 @@ namespace RestaurantManagementSystem.Hubs
         private readonly RestaurantDbContext DbContext;
         //private readonly IConfiguration _configuration;
         private readonly ILogger<string> _logger;
-        public static string adminUserId = "8F30D30D-9467-4F22-86AB-290EC4583691";
-        //public string adminId;
+        public static string adminUserId = "8f30d30d-9467-4f22-86ab-290ec4583691";
+        public string adminId;
 
         public RestaurantHub(RestaurantDbContext dbContext, ILogger<string> logger)
         {
@@ -43,11 +44,18 @@ namespace RestaurantManagementSystem.Hubs
                 string? userId = Context.User.FindFirstValue(ClaimTypes.Sid);
                 try {
                     AddUserConnectionId(userId);
-                    //await Clients.Client(adminId).SendAsync("GetOnlineUsers");
-                    await Clients.All.SendAsync("GetOnlineUsers");
+                    adminId = GetConnectionIdByUser(adminUserId);
+                    _logger.LogInformation($"admin userId: {adminUserId} admin id: {adminId}");
+                    if (adminId != null)
+                    {
+                        await Clients.Client(adminId).SendAsync("GetOnlineUsers");
+                    }
+                    await Clients.Caller.SendAsync(adminId);
+                    await Clients.AllExcept(Context.ConnectionId).SendAsync("hi All");
+                    //await Clients.All.SendAsync("GetOnlineUsers");
                     /*await Clients.All.SendAsync("mes",new PlaceOrder());*/
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     _logger.LogError(ex.ToString());
                 }
@@ -71,7 +79,13 @@ namespace RestaurantManagementSystem.Hubs
             _logger.LogInformation("user disconnected");
             var user = GetUserByConnectionId(Context.ConnectionId);
             RemoveUserFromList(user);
-            await Clients.All.SendAsync("GetOnlineUsers");
+            adminId = GetConnectionIdByUser(adminUserId);
+            _logger.LogInformation($"admin userId: {adminUserId} admin id: {adminId}");
+            if (adminId != null)
+            {
+                await Clients.Client(adminId).SendAsync("GetOnlineUsers"); 
+            }
+            //await Clients.All.SendAsync("GetOnlineUsers");
             //Clients.All.SendAsync("refresh");
             //await OnlineUsers();
             await base.OnDisconnectedAsync(exception);
@@ -118,7 +132,7 @@ namespace RestaurantManagementSystem.Hubs
         {
             lock (Users)
             {
-                return Users.Where(x => x.Key == user).Select(x => x.Value).First();
+                return Users.Where(x => x.Key == user).Select(x => x.Value).FirstOrDefault();
             }
         }
 
@@ -147,7 +161,10 @@ namespace RestaurantManagementSystem.Hubs
         {
             _logger.LogInformation("Online Users method started");
             List<ActiveUsers> activeList = OnlineUsersService();
-            await Clients.Caller.SendAsync("UpdateOnlineUsers", activeList);
+            var users = DbContext.Users.ToList();
+            int count = users.Count;
+            DataListForGet res = new DataListForGet(count, activeList);
+            await Clients.Caller.SendAsync("UpdateOnlineUsers", res);
 
         }
 
@@ -278,14 +295,18 @@ namespace RestaurantManagementSystem.Hubs
 
             var users = DbContext.Users.ToList();
             users = users.OrderBy(u => u.userRole).ToList();
+;
             List<ActiveUsers> activeList = new List<ActiveUsers>();
-            foreach (var u in users)
+            foreach (var u in onlineUsers)
             {
-                var a = new ActiveUsers(u);
-                if (onlineUsers.Contains(u.userId.ToString()))
+                Guid tempId = new Guid(u);
+                User tempUser = DbContext.Users.Find(tempId);
+                var a = new ActiveUsers(tempUser);
+                a.isActive = true;
+                /*if (onlineUsers.Contains(u.userId.ToString()))
                 {
                     a.isActive = true;
-                }
+                }*/
                 activeList.Add(a);
             }
             var adminActive = activeList.Where(s => s.userId == loggedInUserId).First();

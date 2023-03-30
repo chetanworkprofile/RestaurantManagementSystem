@@ -48,10 +48,11 @@ namespace RestaurantManagementSystem.Hubs
                     _logger.LogInformation($"admin userId: {adminUserId} admin id: {adminId}");
                     if (adminId != null)
                     {
-                        await Clients.Client(adminId).SendAsync("GetOnlineUsers");
+                        await Clients.Clients(adminId).SendAsync("GetOnlineUsers");
                     }
-                    await Clients.Caller.SendAsync(adminId);
-                    await Clients.AllExcept(Context.ConnectionId).SendAsync("hi All");
+                    //await Clients.Clients(adminId).SendAsync("GetOnlineUsers");
+                    //await Clients.Caller.SendAsync(adminId);
+                    //await Clients.AllExcept(Context.ConnectionId).SendAsync("hi All");
                     //await Clients.All.SendAsync("GetOnlineUsers");
                     /*await Clients.All.SendAsync("mes",new PlaceOrder());*/
                 }

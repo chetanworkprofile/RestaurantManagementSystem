@@ -202,6 +202,11 @@ namespace RestaurantManagementSystem.Hubs
 
                 await Clients.Client(chefId).SendAsync("ChefReceivedOrder", res);
                 await Clients.Caller.SendAsync("UserOrderStatus", res);
+                adminId = GetConnectionIdByUser(adminUserId);
+                if (adminId != null)
+                {
+                    await Clients.Clients(adminId).SendAsync("GetOrders",order);
+                }
             }
             catch (Exception ex)
             {
@@ -237,6 +242,11 @@ namespace RestaurantManagementSystem.Hubs
                 await Clients.Client(GetConnectionIdByUser(order.userId.ToString())).SendAsync("UserOrderStatus", orderOutput);
                 await Clients.Client(GetConnectionIdByUser(order.userId.ToString())).SendAsync("Message", $"Time left for your order to be done {totalTime}");
                 await Clients.Caller.SendAsync("Message", $"Time left for order {totalTime}");
+                adminId = GetConnectionIdByUser(adminUserId);
+                if (adminId != null)
+                {
+                    await Clients.Clients(adminId).SendAsync("GetOrders", order);
+                }
             }
             else
             {
@@ -247,6 +257,11 @@ namespace RestaurantManagementSystem.Hubs
                     await DbContext.SaveChangesAsync();
                     OrderOutput orderOutput = new OrderOutput(order);
                     await Clients.Client(GetConnectionIdByUser(order.userId.ToString())).SendAsync("UserOrderStatus", orderOutput);
+                    adminId = GetConnectionIdByUser(adminUserId);
+                    if (adminId != null)
+                    {
+                        await Clients.Clients(adminId).SendAsync("GetOrders", order);
+                    }
                 }
                 else
                 {
@@ -274,6 +289,11 @@ namespace RestaurantManagementSystem.Hubs
             OrderOutput orderOutput = new OrderOutput(order);
             await Clients.Client(GetConnectionIdByUser(order.userId.ToString())).SendAsync("UserOrderStatus", orderOutput);
             await Clients.Caller.SendAsync("Message", "Order submitted successfully");
+            adminId = GetConnectionIdByUser(adminUserId);
+            if (adminId != null)
+            {
+                await Clients.Clients(adminId).SendAsync("GetOrders", order);
+            }
         }
 
         public async Task ChefChangeFoodStatus(ChangeFoodStatus inp)       // true - available  false - not available

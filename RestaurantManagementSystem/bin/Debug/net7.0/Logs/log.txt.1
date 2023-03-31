@@ -1,18 +1,27 @@
-2023-03-30 16:25:53,081  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
- 2023-03-30 16:25:53,101  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
- 2023-03-30 16:25:53,102  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
- 2023-03-30 16:25:53,103  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
- 2023-03-30 16:25:53,103  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
- 2023-03-30 16:26:06,518  INFO string.MoveNext [42] - MESSAGE: New User connected to socket q4B5EmX7TEg9W15K-PY84g
- 2023-03-30 16:26:06,520  INFO string.AddUserConnectionId [102] - MESSAGE: User added to online dictionary 8f30d30d-9467-4f22-86ab-290ec4583691
- 2023-03-30 16:26:06,520  INFO string.AddUserToList [119] - MESSAGE: Add user : 8f30d30d-9467-4f22-86ab-290ec4583691 connection id: q4B5EmX7TEg9W15K-PY84g
- 2023-03-30 16:26:06,522  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: q4B5EmX7TEg9W15K-PY84g
- 2023-03-30 16:26:11,685  INFO string.MoveNext [42] - MESSAGE: New User connected to socket L1fchWwEv4d6hGEzQd1K9A
- 2023-03-30 16:26:11,686  INFO string.AddUserConnectionId [102] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
- 2023-03-30 16:26:11,686  INFO string.AddUserToList [119] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: L1fchWwEv4d6hGEzQd1K9A
- 2023-03-30 16:26:11,686  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: q4B5EmX7TEg9W15K-PY84g
- 2023-03-30 16:26:16,294  INFO string.MoveNext [42] - MESSAGE: New User connected to socket PQc16wmZ4Bj7x1tLrriSYg
- 2023-03-30 16:26:16,294  INFO string.AddUserConnectionId [102] - MESSAGE: User added to online dictionary 5c1109d6-5258-43bf-8faa-b2ef88b21fe3
- 2023-03-30 16:26:16,294  INFO string.AddUserToList [119] - MESSAGE: Add user : 5c1109d6-5258-43bf-8faa-b2ef88b21fe3 connection id: PQc16wmZ4Bj7x1tLrriSYg
- 2023-03-30 16:26:16,295  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: q4B5EmX7TEg9W15K-PY84g
+2023-03-31 10:31:58,301  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
+ 2023-03-31 10:31:58,323  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
+ 2023-03-31 10:31:58,324  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
+ 2023-03-31 10:31:58,324  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
+ 2023-03-31 10:31:58,324  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
+ 2023-03-31 10:32:33,409  INFO RestaurantManagementSystem.Controllers.AdminController.GetOrdersAsAdmin [36] - MESSAGE: Get foods method started
+ 2023-03-31 10:32:34,257  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (40ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+WHERE [u].[userId] = @__get_Item_0
+ 2023-03-31 10:32:34,356  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (4ms) [Parameters=[@__orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT [o].[orderId], [o].[orderDate], [o].[rejectAttempts], [o].[status], [o].[totalPrice], [o].[userId]
+FROM [Orders] AS [o]
+WHERE [o].[orderId] = @__orderId_0
+ 2023-03-31 10:32:34,379  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (4ms) [Parameters=[@__order_orderId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
+FROM [OrderFoodMap] AS [o]
+WHERE [o].[orderId] = @__order_orderId_0
+ 2023-03-31 10:32:34,399  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (4ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [f].[foodId], [f].[category], [f].[foodName], [f].[isDeleted], [f].[pathToPic], [f].[price], [f].[status], [f].[timeToPrepare]
+FROM [Foods] AS [f]
+WHERE [f].[foodId] = @__get_Item_0
+ 2023-03-31 10:32:34,424  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (4ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [f].[foodId], [f].[category], [f].[foodName], [f].[isDeleted], [f].[pathToPic], [f].[price], [f].[status], [f].[timeToPrepare]
+FROM [Foods] AS [f]
+WHERE [f].[foodId] = @__get_Item_0
  

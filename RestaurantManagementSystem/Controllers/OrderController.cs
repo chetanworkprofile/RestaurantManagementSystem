@@ -28,9 +28,9 @@ namespace RestaurantManagementSystem.Controllers
         }
 
 
-        [HttpGet, Authorize(Roles = "admin")]
+        [HttpGet, Authorize(Roles = "admin,chef")]
         //[HttpGet]
-        [Route("/api/v1/order/adminGet")]
+        [Route("/api/v1/order/adminChefGet")]
         public IActionResult GetOrdersAsAdmin(Guid? orderId = null, string? userId = null, string? status = "all", String OrderBy = "Id", int SortOrder = 1, int RecordsPerPage = 20, int PageNumber = 1)          // sort order   ===   e1 for ascending  -1 for descending
         {
             _logger.LogInformation("Get foods method started");

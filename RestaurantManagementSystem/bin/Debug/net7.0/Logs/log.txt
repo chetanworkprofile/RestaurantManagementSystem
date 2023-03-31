@@ -1,37 +1,120 @@
-2023-03-30 16:26:36,365  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
- 2023-03-30 16:26:36,392  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
- 2023-03-30 16:26:36,393  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
- 2023-03-30 16:26:36,394  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
- 2023-03-30 16:26:36,394  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
- 2023-03-30 16:26:39,970  INFO string.MoveNext [42] - MESSAGE: New User connected to socket 5cylHjRC0nYsU-xYeu9AZw
- 2023-03-30 16:26:39,972  INFO string.AddUserConnectionId [102] - MESSAGE: User added to online dictionary 5c1109d6-5258-43bf-8faa-b2ef88b21fe3
- 2023-03-30 16:26:39,973  INFO string.AddUserToList [119] - MESSAGE: Add user : 5c1109d6-5258-43bf-8faa-b2ef88b21fe3 connection id: 5cylHjRC0nYsU-xYeu9AZw
- 2023-03-30 16:26:39,975  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: 
- 2023-03-30 16:26:39,992 ERROR string.MoveNext [54] - MESSAGE: System.ArgumentNullException: Value cannot be null. (Parameter 'target')
-   at Microsoft.AspNetCore.SignalR.Protocol.HubMethodInvocationMessage..ctor(String invocationId, String target, Object[] arguments)
-   at Microsoft.AspNetCore.SignalR.DefaultHubLifetimeManager`1.SendConnectionAsync(String connectionId, String methodName, Object[] args, CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.SignalR.Internal.SingleClientProxy`1.SendCoreAsync(String method, Object[] args, CancellationToken cancellationToken)
-   at RestaurantManagementSystem.Hubs.RestaurantHub.OnConnectedAsync() in C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem\Hubs\RestaurantHub.cs:line 54
- 2023-03-30 16:26:42,650  INFO string.MoveNext [80] - MESSAGE: user disconnected
- 2023-03-30 16:26:42,651  INFO string.MoveNext [84] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: 
- 2023-03-30 16:26:43,411  INFO string.MoveNext [42] - MESSAGE: New User connected to socket F1yCR9b2XNA_zKNnSve7KQ
- 2023-03-30 16:26:43,412  INFO string.AddUserConnectionId [102] - MESSAGE: User added to online dictionary 8f30d30d-9467-4f22-86ab-290ec4583691
- 2023-03-30 16:26:43,413  INFO string.AddUserToList [119] - MESSAGE: Add user : 8f30d30d-9467-4f22-86ab-290ec4583691 connection id: F1yCR9b2XNA_zKNnSve7KQ
- 2023-03-30 16:26:43,413  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: F1yCR9b2XNA_zKNnSve7KQ
- 2023-03-30 16:26:45,365  INFO string.MoveNext [42] - MESSAGE: New User connected to socket SJBBPQIBn5CIkHG-38itZw
- 2023-03-30 16:26:45,366  INFO string.AddUserConnectionId [102] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
- 2023-03-30 16:26:45,376  INFO string.AddUserToList [119] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: SJBBPQIBn5CIkHG-38itZw
- 2023-03-30 16:26:45,376  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: F1yCR9b2XNA_zKNnSve7KQ
- 2023-03-30 16:26:47,201  INFO string.MoveNext [80] - MESSAGE: user disconnected
- 2023-03-30 16:26:47,201  INFO string.MoveNext [84] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: F1yCR9b2XNA_zKNnSve7KQ
- 2023-03-30 16:26:48,861  INFO string.MoveNext [42] - MESSAGE: New User connected to socket y24NzVPsdkx33FV3YHEcHg
- 2023-03-30 16:26:48,862  INFO string.AddUserConnectionId [102] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
- 2023-03-30 16:26:48,862  INFO string.AddUserToList [119] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: y24NzVPsdkx33FV3YHEcHg
- 2023-03-30 16:26:48,863  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: F1yCR9b2XNA_zKNnSve7KQ
- 2023-03-30 16:26:50,920  INFO string.MoveNext [42] - MESSAGE: New User connected to socket ixARZkzUa7HLqOELeYpRnA
- 2023-03-30 16:26:50,922  INFO string.AddUserConnectionId [102] - MESSAGE: User added to online dictionary 5c1109d6-5258-43bf-8faa-b2ef88b21fe3
- 2023-03-30 16:26:50,923  INFO string.AddUserToList [119] - MESSAGE: Add user : 5c1109d6-5258-43bf-8faa-b2ef88b21fe3 connection id: ixARZkzUa7HLqOELeYpRnA
- 2023-03-30 16:26:50,924  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: F1yCR9b2XNA_zKNnSve7KQ
- 2023-03-30 16:26:53,815  INFO string.MoveNext [80] - MESSAGE: user disconnected
- 2023-03-30 16:26:53,816  INFO string.MoveNext [84] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: F1yCR9b2XNA_zKNnSve7KQ
+2023-03-31 14:35:25,463  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: https://localhost:7261
+ 2023-03-31 14:35:25,489  INFO Microsoft.Hosting.Lifetime.? [?] - MESSAGE: Now listening on: http://localhost:5226
+ 2023-03-31 14:35:25,490  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Application started. Press Ctrl+C to shut down.
+ 2023-03-31 14:35:25,491  INFO Microsoft.Hosting.Lifetime.OnApplicationStarted [0] - MESSAGE: Hosting environment: Development
+ 2023-03-31 14:35:25,491  INFO Microsoft.Hosting.Lifetime.RunInternal [0] - MESSAGE: Content root path: C:\Users\ChicMic\source\repos\RestaurantManagementSystem\RestaurantManagementSystem
+ 2023-03-31 14:37:00,523  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [74] - MESSAGE: User Login attempt
+ 2023-03-31 14:37:01,364  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (33ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+WHERE [u].[email] = @__request_email_0
+ 2023-03-31 14:37:01,628  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (9ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [token] = @p0
+OUTPUT 1
+WHERE [userId] = @p1;
+ 2023-03-31 14:37:15,233  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [74] - MESSAGE: User Login attempt
+ 2023-03-31 14:37:15,252  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (5ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+WHERE [u].[email] = @__request_email_0
+ 2023-03-31 14:37:15,263  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (8ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [token] = @p0
+OUTPUT 1
+WHERE [userId] = @p1;
+ 2023-03-31 14:37:28,822  INFO RestaurantManagementSystem.Controllers.AuthController.UserLogin [74] - MESSAGE: User Login attempt
+ 2023-03-31 14:37:28,876  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (5ms) [Parameters=[@__request_email_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+WHERE [u].[email] = @__request_email_0
+ 2023-03-31 14:37:28,886  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (8ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [token] = @p0
+OUTPUT 1
+WHERE [userId] = @p1;
+ 2023-03-31 14:38:03,464  INFO string.MoveNext [42] - MESSAGE: New User connected to socket KepRIpJOY21JUpZtJTzCUA
+ 2023-03-31 14:38:03,466  INFO string.AddUserConnectionId [102] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
+ 2023-03-31 14:38:03,467  INFO string.AddUserToList [119] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: KepRIpJOY21JUpZtJTzCUA
+ 2023-03-31 14:38:03,469  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: 
+ 2023-03-31 14:38:11,470  INFO string.MoveNext [42] - MESSAGE: New User connected to socket sQlH6zwUbOm_Noa4NYjMvg
+ 2023-03-31 14:38:11,471  INFO string.AddUserConnectionId [102] - MESSAGE: User added to online dictionary edeb06fd-86d6-4006-8098-e87aab45a2c8
+ 2023-03-31 14:38:11,471  INFO string.AddUserToList [119] - MESSAGE: Add user : edeb06fd-86d6-4006-8098-e87aab45a2c8 connection id: sQlH6zwUbOm_Noa4NYjMvg
+ 2023-03-31 14:38:11,472  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: 
+ 2023-03-31 14:38:15,129  INFO string.MoveNext [42] - MESSAGE: New User connected to socket -glz22D1-8PDbptQOpEsbg
+ 2023-03-31 14:38:15,130  INFO string.AddUserConnectionId [102] - MESSAGE: User added to online dictionary 3ad1eb9a-e548-4be4-8bb4-d7e024912628
+ 2023-03-31 14:38:15,130  INFO string.AddUserToList [119] - MESSAGE: Add user : 3ad1eb9a-e548-4be4-8bb4-d7e024912628 connection id: -glz22D1-8PDbptQOpEsbg
+ 2023-03-31 14:38:15,131  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: 
+ 2023-03-31 14:38:23,254  INFO string.MoveNext [163] - MESSAGE: Online Users method started
+ 2023-03-31 14:38:23,270  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+ 2023-03-31 14:38:23,284  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+ 2023-03-31 14:40:36,942  INFO string.MoveNext [80] - MESSAGE: user disconnected
+ 2023-03-31 14:40:36,944  INFO string.MoveNext [84] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: 
+ 2023-03-31 14:40:37,915  INFO string.MoveNext [42] - MESSAGE: New User connected to socket WVMiM9Z8euRiQu75e0T6NQ
+ 2023-03-31 14:40:37,917  INFO string.AddUserConnectionId [102] - MESSAGE: User added to online dictionary fa6c4976-0610-46b3-ac96-24474349de47
+ 2023-03-31 14:40:37,918  INFO string.AddUserToList [119] - MESSAGE: Add user : fa6c4976-0610-46b3-ac96-24474349de47 connection id: WVMiM9Z8euRiQu75e0T6NQ
+ 2023-03-31 14:40:37,918  INFO string.MoveNext [48] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: 
+ 2023-03-31 14:41:11,238  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (2ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [f].[foodId], [f].[category], [f].[foodName], [f].[isDeleted], [f].[pathToPic], [f].[price], [f].[status], [f].[timeToPrepare]
+FROM [Foods] AS [f]
+WHERE [f].[foodId] = @__get_Item_0
+ 2023-03-31 14:41:11,279  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [f].[foodId], [f].[category], [f].[foodName], [f].[isDeleted], [f].[pathToPic], [f].[price], [f].[status], [f].[timeToPrepare]
+FROM [Foods] AS [f]
+WHERE [f].[foodId] = @__get_Item_0
+ 2023-03-31 14:41:11,326  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?' (DbType = Guid), @p7='?' (DbType = Int32), @p8='?' (DbType = Guid), @p9='?' (DbType = DateTime2), @p10='?' (DbType = Int32), @p11='?' (Size = 4000), @p12='?' (DbType = Int32), @p13='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [OrderFoodMap] ([mapId], [foodId], [orderId], [quantity])
+VALUES (@p0, @p1, @p2, @p3),
+(@p4, @p5, @p6, @p7);
+INSERT INTO [Orders] ([orderId], [orderDate], [rejectAttempts], [status], [totalPrice], [userId])
+VALUES (@p8, @p9, @p10, @p11, @p12, @p13);
+ 2023-03-31 14:41:11,341  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[userId], [u].[address], [u].[createdAt], [u].[email], [u].[firstName], [u].[isBlocked], [u].[isDeleted], [u].[lastName], [u].[otpUsableTill], [u].[passwordHash], [u].[pathToProfilePic], [u].[phone], [u].[token], [u].[updatedAt], [u].[userRole], [u].[verificationOTP], [u].[verifiedAt]
+FROM [Users] AS [u]
+ 2023-03-31 14:43:06,159  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (14ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [o].[orderId], [o].[orderDate], [o].[rejectAttempts], [o].[status], [o].[totalPrice], [o].[userId]
+FROM [Orders] AS [o]
+WHERE [o].[orderId] = @__get_Item_0
+ 2023-03-31 14:43:06,190  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (7ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Orders] SET [status] = @p0
+OUTPUT 1
+WHERE [orderId] = @p1;
+ 2023-03-31 14:43:06,203  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[@__orderGuid_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT [o].[mapId], [o].[foodId], [o].[orderId], [o].[quantity]
+FROM [OrderFoodMap] AS [o]
+WHERE [o].[orderId] = @__orderGuid_0
+ 2023-03-31 14:43:06,208  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [f].[foodId], [f].[category], [f].[foodName], [f].[isDeleted], [f].[pathToPic], [f].[price], [f].[status], [f].[timeToPrepare]
+FROM [Foods] AS [f]
+WHERE [f].[foodId] = @__get_Item_0
+ 2023-03-31 14:43:06,213  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [f].[foodId], [f].[category], [f].[foodName], [f].[isDeleted], [f].[pathToPic], [f].[price], [f].[status], [f].[timeToPrepare]
+FROM [Foods] AS [f]
+WHERE [f].[foodId] = @__get_Item_0
+ 2023-03-31 14:43:38,283  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (3ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [o].[orderId], [o].[orderDate], [o].[rejectAttempts], [o].[status], [o].[totalPrice], [o].[userId]
+FROM [Orders] AS [o]
+WHERE [o].[orderId] = @__get_Item_0
+ 2023-03-31 14:43:38,293  INFO Microsoft.EntityFrameworkCore.Database.Command.? [?] - MESSAGE: Executed DbCommand (8ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Orders] SET [status] = @p0
+OUTPUT 1
+WHERE [orderId] = @p1;
+ 2023-03-31 15:10:15,179  INFO string.MoveNext [80] - MESSAGE: user disconnected
+ 2023-03-31 15:10:15,206  INFO string.MoveNext [84] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: 
+ 2023-03-31 15:10:16,180  INFO string.MoveNext [80] - MESSAGE: user disconnected
+ 2023-03-31 15:10:16,182  INFO string.MoveNext [84] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: 
+ 2023-03-31 15:10:17,862  INFO string.MoveNext [80] - MESSAGE: user disconnected
+ 2023-03-31 15:10:17,901  INFO string.MoveNext [84] - MESSAGE: admin userId: 8f30d30d-9467-4f22-86ab-290ec4583691 admin id: 
  

@@ -71,5 +71,27 @@ namespace RestaurantManagementSystem.Controllers
                 return StatusCode(500, response2);
             }
         }
+
+        /*[HttpGet, Authorize(Roles = "chef")]
+        //[HttpGet]
+        [Route("/api/v1/order/chefGet")]
+        public IActionResult GetOrdersAsChef(Guid? orderId = null, string? status = "all", String OrderBy = "Id", int SortOrder = 1, int RecordsPerPage = 20, int PageNumber = 1)          // sort order   ===   e1 for ascending  -1 for descending
+        {
+            _logger.LogInformation("Get foods method started");
+            try
+            {
+                string? token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+                string? loggedInUserId = User.FindFirstValue(ClaimTypes.Sid);
+                int statusCode = 200;
+                result = orderService.GetOrdersAsChef(orderId, loggedInUserId, token, status, OrderBy, SortOrder, RecordsPerPage, PageNumber, out statusCode);
+                return StatusCode(statusCode, result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Internal server error ", ex.Message);
+                response2 = new ResponseWithoutData(500, $"Internal server error: {ex.Message}", false);
+                return StatusCode(500, response2);
+            }
+        }*/
     }
 }

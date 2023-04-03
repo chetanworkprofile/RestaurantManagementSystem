@@ -12,5 +12,6 @@ namespace RestaurantManagementSystem.Data
         public DbSet<Food> Foods { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderFoodMapping> OrderFoodMap { get; set; }
+        public DbSet<OrderChefMap> OrderChefMap { get; set; }
     }
 }
